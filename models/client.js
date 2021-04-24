@@ -57,7 +57,7 @@ Client.hasMany(Pet),
 Client.hasMany(Ticket);
 Ticket.belongsTo(Client);
 (async() => {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("--->>> Tablas Sincronizadas");
 })();
 

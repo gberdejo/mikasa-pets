@@ -1,0 +1,31 @@
+<br>
+<div class="container">
+    <div class="row row-cols-2 justify-content-center">
+        <div class="col">
+            <form action="/session" method="POST">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Inicia Sesión</h2>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="ClientEmail"
+                                placeholder="name@example.com">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" name="ClientPassword"
+                                placeholder="Password">
+                            <label for="password">Contraseña</label>
+                        </div>
+                        <br>
+                        <div class="alert" role="alert">
+                            <center> <button class="btn btn-outline-primary btn-lg" type="submit">Iniciar</button>
+                            </center>
+                            <hr>
+                            <center>Registra una <a href="/registrar" class="alert-link">cuenta</a> en su lugar</center>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

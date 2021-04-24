@@ -1,1 +1,32 @@
-<h1>Menu</h1>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-primary" href="/"><strong>MikasaPet</strong></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic"
+      aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse show" id="navbarBasic">
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Petshop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Promociones</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <a href="/" class="link-primary"><i class="fas fa-shopping-cart fa-3x me-4"></i></a>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+        {{#if user}}
+        <a class="link-primary"><i class="fas fa-user fa-3x ms-4"></i></a>
+        {{else}}
+        <a href="/login" class="link-primary"><i class="far fa-user-circle fa-3x ms-4"></i></a>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+</nav>

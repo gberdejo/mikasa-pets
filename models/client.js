@@ -1,6 +1,7 @@
 const { DataTypes, Model, Sequelize } = require('sequelize');
 const sequelize = require('../database');
 const Pet = require('./pet');
+const Ticket = require('./ticket');
 const Client = sequelize.define("client", {
     id: {
         type: DataTypes.INTEGER,
@@ -49,9 +50,12 @@ const Client = sequelize.define("client", {
 
 });
 
-//association
+//PET >--> CLIENT 
 Client.hasMany(Pet),
     Pet.belongsTo(Client);
+//TICKET >--> CLIENT
+Client.hasMany(Ticket);
+Ticket.belongsTo(Client);
 (async() => {
     await sequelize.sync({ force: true });
     console.log("--->>> Tablas Sincronizadas");

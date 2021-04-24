@@ -1,5 +1,6 @@
 const { DataTypes, Model, Sequelize } = require('sequelize');
 const sequelize = require('../database');
+const Pet = require('./pet');
 const Client = sequelize.define("client", {
     id: {
         type: DataTypes.INTEGER,
@@ -9,15 +10,15 @@ const Client = sequelize.define("client", {
     },
     name_client: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: false
     },
     lastname_client: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: false
     },
     birthdata_client: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull: false
     },
     direction_client: {
         type: DataTypes.STRING(100),
@@ -47,9 +48,13 @@ const Client = sequelize.define("client", {
     timestamps: false,
 
 });
+
+//association
+Client.hasMany(Pet),
+    Pet.belongsTo(Client);
 (async() => {
     await sequelize.sync({ force: true });
-    console.log("TABLA CLIENT SINCRONIZADA");
+    console.log("--->>> Tablas Sincronizadas");
 })();
 
 module.exports = Client;

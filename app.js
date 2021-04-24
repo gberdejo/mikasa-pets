@@ -17,6 +17,7 @@ class App {
         this._app.use(morgan('dev'))
 
         this._app.use(express.json());
+        this._app.use(express.urlencoded({ extended: true }));
 
         this._app.use(express.static('public'));
         this._app.use(session({

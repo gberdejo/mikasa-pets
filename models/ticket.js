@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database');
 const DetailTicket = require('./detail.ticket');
+const Product = require('./product');
 
 const Ticket = sequelize.define('ticket', {
     id: {
@@ -11,7 +12,7 @@ const Ticket = sequelize.define('ticket', {
     },
     status_ticket: {
         type: DataTypes.STRING,
-        require: [true, 'El status es requerido'],
+        required: [true, 'El status es requerido'],
         emun: ['PENDIENTE', 'FINALIZADO'],
     },
     created_ticket: {
@@ -21,6 +22,7 @@ const Ticket = sequelize.define('ticket', {
 }, {
     timestamps: false
 });
-Ticket.hasMany(DetailTicket);
-
+Ticket.belongsToMany(Product, { through: DetailTicket, uniqueKey: false });
+DetailTicket.belongsTo(Ticket);
+DetailTicket.belongsTo(Product);
 module.exports = Ticket;

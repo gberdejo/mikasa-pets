@@ -11,4 +11,5 @@ router.get('/register', registerPag);
 router.get('/exit', exitSession);
 router.get('*', redirectionPag);
 router.post('/session', loginSession);
+
 module.exports = router;

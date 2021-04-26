@@ -38,7 +38,5 @@ const Employee = sequelize.define('employee', {
 }, {
     timestamps: false
 });
-Employee.hasMany(Product);
-Product.belongsTo(Employee);
 
 module.exports = Employee;

@@ -22,7 +22,5 @@ const Ticket = sequelize.define('ticket', {
 }, {
     timestamps: false
 });
-Ticket.belongsToMany(Product, { through: DetailTicket, uniqueKey: false });
-DetailTicket.belongsTo(Ticket);
-DetailTicket.belongsTo(Product);
+
 module.exports = Ticket;

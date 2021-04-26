@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database');
+const Employee = require('./employee');
 
 const Product = sequelize.define('product', {
     id: {
@@ -44,4 +45,6 @@ const Product = sequelize.define('product', {
 }, {
     timestamps: false
 });
+
+
 module.exports = Product;

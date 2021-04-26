@@ -1,6 +1,10 @@
-const { DataTypes, Model, Sequelize } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database');
+const DetailTicket = require('./detail.ticket');
+const Employee = require('./employee');
 const Pet = require('./pet');
+const Product = require('./product');
+const StoryService = require('./story.service');
 const Ticket = require('./ticket');
 const Client = sequelize.define("client", {
     id: {
@@ -49,16 +53,24 @@ const Client = sequelize.define("client", {
     timestamps: false,
 
 });
-
-//PET >--> CLIENT 
+//CLIENT <----< PET 
 Client.hasMany(Pet),
     Pet.belongsTo(Client);
-//TICKET >--> CLIENT
+//CLIENT <----< TICKET
 Client.hasMany(Ticket);
 Ticket.belongsTo(Client);
+// Pet <----< StoryService >----> Employee
+Pet.belongsToMany(Employee, { through: StoryService, uniqueKey: false });
+//Employee <----< Product
+Employee.hasMany(Product);
+Product.belongsTo(Employee);
+// TICKET <----< DETAILTICKET >----> PRODUCT
+Ticket.belongsToMany(Product, { through: DetailTicket, uniqueKey: false });
+
 (async() => {
-    await sequelize.sync({ force: false });
-    console.log("--->>> Tablas Sincronizadas");
+    await sequelize.sync({ force: false })
+        .then(() => console.log("--->>> Tablas Sincronizadas"))
+        .catch(() => console.log("no sincronizado"));
 })();
 
 module.exports = Client;

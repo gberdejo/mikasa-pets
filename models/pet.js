@@ -1,5 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database');
+const Employee = require('./employee');
+const StoryService = require('./story.service');
 
 const Pet = sequelize.define('pet', {
     id: {
@@ -24,4 +26,6 @@ const Pet = sequelize.define('pet', {
 }, {
     timestamps: false
 });
+
+
 module.exports = Pet;

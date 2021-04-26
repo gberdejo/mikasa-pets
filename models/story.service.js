@@ -1,5 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database');
+const Employee = require('./employee');
+const Pet = require('./pet');
 
 const StoryService = sequelize.define('storyservice', {
     created_storyService: {
@@ -20,8 +22,6 @@ const StoryService = sequelize.define('storyservice', {
     }
 
 });
-//Pet.belongsToMany(Employee, { through: StoryService, uniqueKey: false });
-//StoryService.belongsTo(Pet);
-//StoryService.belongsTo(Employee);
+
 
 module.exports = StoryService;

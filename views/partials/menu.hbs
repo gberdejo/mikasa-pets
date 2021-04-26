@@ -22,7 +22,7 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
         {{#if usersession}}
-        <a class="link-primary"> {{usersession}} </a> <a href=""> Salir</a>
+        <a class="btn btn-success ms-1"> {{usersession}} </a><a class="btn btn-danger ms-1" href="/exit"> Salir</a>
         {{else}}
         <a href="/login" class="link-primary"><i class="far fa-user-circle fa-3x ms-4"></i></a>
         {{/if}}

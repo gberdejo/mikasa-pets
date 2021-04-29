@@ -1,24 +1,36 @@
 const { Router } = require('express');
+const { check } = require('express-validator');
 const router = Router();
 
-const { homePag, createClient, loginPag, registerPag, redirectionPag, exitSession, loginSession } = require('../controllers');
-const { validationHome, existsSession } = require('../middlewares');
+const { listPetPag, registerPetPag, homePag, createClient, loginPag, registerPag, redirectionPag, exitSession, loginSession, createPet } = require('../controllers');
+const { isEmailValid } = require('../helpers');
+const { existsSessionModePetList, existsSession, checkValidation, existsSessionModePet } = require('../middlewares');
 
+//pages
 router.get('/', [
     existsSession
 ], homePag);
-router.post('/clients', createClient);
 router.get('/login', [
     existsSession
 ], loginPag);
 router.get('/register', [
     existsSession
 ], registerPag);
-
+router.get('/register-pet', [
+    existsSessionModePet
+], registerPetPag);
+router.get('/list-pet', [
+    existsSessionModePetList
+], listPetPag);
+//model data
+router.post('/pets', createPet);
+router.post('/clients', createClient);
+router.post('/session', loginSession);
 router.get('/exit', exitSession);
+
+
+//sin ruta
 router.get('*', [
     existsSession
 ], redirectionPag);
-router.post('/session', loginSession);
-
 module.exports = router;

@@ -1,22 +1,24 @@
 const { Op } = require('sequelize');
 const Product = require('../models/product');
 const helper = {
-    listProduct: new Promise(async(resolve, reject) => {
+    listProduct: async() => {
+        let list = [];
         try {
-            const raw_product = await Product.findAll({
+            const raw = await Product.findAll({
                 order: [
                     ['name_product', 'ASC']
                 ]
             });
-            let list = [];
-            raw_product.map((pro) => {
+            raw.map((pro) => {
                 list.push(pro.dataValues);
             });
-            resolve(list);
+            return list;
+
         } catch (error) {
-            reject(error);
+            return [];
         }
-    })
+    }
+
 }
 
 module.exports = helper;

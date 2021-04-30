@@ -21,7 +21,9 @@ const sessionController = {
                 const client = data[0].dataValues;
                 req.session.usersession = client.name_client;
                 req.session.userid = client.id;
+
                 const list_product = await helper.listProduct;
+
                 return res.render('home', {
                     usersession: client.name_client,
                     list_product
@@ -41,3 +43,4 @@ const sessionController = {
         return res.render('home');
     }
 }
+module.exports = sessionController;

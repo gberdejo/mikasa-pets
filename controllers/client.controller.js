@@ -1,3 +1,4 @@
+const Client = require('../models/client');
 const clientController = {
     createUser: async(req, res = response) => {
         try {

@@ -2,12 +2,20 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const express_handlebars = require('express-handlebars');
-
+const mysql = require('mysql');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 class App {
     constructor() {
         this._app = express();
         this._port = process.env.PORT;
+        this.options = {
+            host: 'localhost',
+            port: 3306,
+            user: 'root',
+            password: 'mysql',
+            database: 'sessionstore'
+        };
         this.settings();
         this.middlewares();
         this.routes();
@@ -20,11 +28,13 @@ class App {
         this._app.use(express.urlencoded({ extended: true }));
 
         this._app.use(express.static('public'));
+
         this._app.use(session({
-            secret: 'keyboard cat',
+            secret: 'session_cookie_secret',
+            store: new MySQLStore(this.options),
             resave: false,
             saveUninitialized: false,
-            cookie: { secure: false, maxAge: 60000 }
+            //cookie: { secure: false, maxAge: 60000 }
         }));
 
     }

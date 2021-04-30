@@ -42,7 +42,7 @@ const Client = sequelize.define("client", {
         allowNull: true
     },
     password_client: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING,
         allowNull: true
     },
     created_client: {

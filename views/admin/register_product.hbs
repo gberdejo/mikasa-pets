@@ -5,7 +5,7 @@
         <div class="col">
             <h1 class="text-primary text-center">Registro de Productos</h1>
             <br><br>
-            <form action="/products" method="POST">
+            <form id="form">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-floating">
@@ -38,17 +38,17 @@
                         <br>
                         <div class="form-floating">
                             <input type="hidden" class="form-control" id="img1_product" name="img1_product">
-                            <label for="name1_product">Muestra Imagen 1</label>
+                      
                         </div>
                         <br>
                         <div class="form-floating">
                             <input type="hidden" class="form-control" id="img2_product" name="img2_product">
-                            <label for="name2_product">Muestra Imagen 2</label>
+                        
                         </div>
                         <br>
                         <div class="form-floating">
                             <input type="hidden" class="form-control" id="img3_product" name="img3_product">
-                            <label for="name3_product">Muestra Imagen 3</label>
+                         
                         </div>
                         <br>
                         <div class="ms-1 form-check">
@@ -68,7 +68,8 @@
 </div>
 <br>
 <script>
-fetch.(uri:'http://localhost:3000/register-product',
+    var form = Document.getElementByID('form');
+fetch.(uri:'http://localhost:3001/products',
     method:'POST',
     body: JSON.stringify({
         name_product:name_product,
@@ -83,9 +84,11 @@ fetch.(uri:'http://localhost:3000/register-product',
     headers:{
         "Content-type": "application/json"
     },
-    (err)=>{},
+    (err)=>{
+        console.log(err);
+    },
     (data)=>{
-
+        console.log(data);
     })
 
 </script>

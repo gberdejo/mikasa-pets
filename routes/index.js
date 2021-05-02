@@ -29,8 +29,8 @@ router.post('/clients', clientController.createUser);
 router.post('/session', sessionController.loginSession);
 router.get('/exit', sessionController.exitSession);
 
-
+router.get('/products',)
 //sin ruta
-router.get('*', [
-], pageController.redirectionHome);
+/*router.get('*', [
+], pageController.redirectionHome);*/
 module.exports = router;

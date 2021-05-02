@@ -1,9 +1,69 @@
-<!-- Aqui el form --->
+<!-- Aqui el form de los productos --->
+<br>
+<div class="container ">
+    <div class="row row-cols-2 justify-content-center">
+        <div class="col">
+            <h1 class="text-primary text-center">Registro de Productos</h1>
+            <br><br>
+            <form action="/products" method="POST">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name_product" name="name_product" placeholder="Nombre del Producto">
+                            <label for="name_product">Nombre del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="precio_product" name="precio_product" placeholder="Precio del Producto">
+                            <label for="name_product">Precio del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="stock_product" name="stock_product" placeholder="Stock del Producto">
+                            <label for="name_product">Stock del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="description_simple_product" name="description_simple_product" placeholder="Deescripcion del Producto">
+                            <label for="name_product">Descripcion del Producto</label>
+                        </div>
+                        <br>
+                         <div class="form-floating">
+                            <textarea name="description_html_product" id="description_html_product"></textarea>
+                            <label for="name_product">HTML del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="hidden" class="form-control" id="img1_product" name="img1_product">
+                            <label for="name_product">Muestra Imagen 1</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="hidden" class="form-control" id="img2_product" name="img2_product">
+                            <label for="name_product">Muestra Imagen 2</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input type="hidden" class="form-control" id="img3_product" name="img3_product">
+                            <label for="name_product">Muestra Imagen 3</label>
+                        </div>
+                        <br>
+                        <div class="ms-1 form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                            <label class="form-check-label" for="formCheckChecked">Aceptas que usemos tu información
+                                para venderla a Facebook.</label>
+                        </div>
+                        <br><br>
+                        <center><button type="submit" class="btn btn-lg  btn-outline-primary">Completed</button>
+                        </center>
+                    </div>
 
-<h1>Register</h1>
-
-
-
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
 {{>fotter}}
 <script>
 

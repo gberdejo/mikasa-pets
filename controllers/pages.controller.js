@@ -11,11 +11,11 @@ const pageController = {
             return res.render('home');
         }
     },
-    login: (req, res) => res.render('login'),
-    register: (req, res) => res.render('register'),
+    login: (req, res) => res.render('client/auth/login'),
+    register: (req, res) => res.render('client/auth/register'),
     redirectionHome: (req, res) => res.render('home'),
-    registerPet: (req, res) => res.render('register_pet'),
-    listPet: (req, res) => res.render('list_pet')
+    registerPet: (req, res) => res.render('client/register_pet'),
+    listPet: (req, res) => res.render('client/list_pet')
 }
 
 module.exports = pageController;

@@ -19,7 +19,7 @@ const mid = {
     },
     existsSessionModePet: (req, res, next) => {
         if (typeof req.session.usersession !== 'undefined') {
-            return res.render('register_pet', {
+            return res.render('client/register_pet', {
                 usersession: req.session.usersession
             });
         };
@@ -34,7 +34,7 @@ const mid = {
     },
     existsSessionModePetList: (req, res, next) => {
         if (typeof req.session.usersession !== 'undefined') {
-            return res.render('list_pet', {
+            return res.render('client/list_pet', {
                 usersession: req.session.usersession,
             })
         }

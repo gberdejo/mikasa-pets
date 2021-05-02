@@ -1,39 +1,35 @@
 const { Op } = require('sequelize');
 const helper = require('../helpers');
-
+const bcrypt = require('bcryptjs');
 const Client = require('../models/client');
 const sessionController = {
     loginSession: async(req, res) => {
         try {
             const { email, password } = req.body;
-            const list = email.split("@");
-            if (list[1] === global.DOMAIN) {
-
-            } else {
-                const data = await Client.findAll({
-                    where: {
-                        [Op.and]: [
-                            { email_client: email },
-                            { password_client: password }
-                        ]
-                    }
-                });
-                const client = data[0].dataValues;
+            const client = await Client.findOne({
+                where: {
+                    email_client: email
+                }
+            });
+            if (!client) {
+                return res.redirect('/login');
+            }
+            if (bcrypt.compareSync(password, client.password_client)) {
+                const list_product = await helper.listProduct;
                 req.session.usersession = client.name_client;
                 req.session.userid = client.id;
-
-                const list_product = await helper.listProduct;
-
-                return res.render('home', {
+                return res.render('client/home-client', {
                     usersession: client.name_client,
                     list_product
                 });
+            } else {
+                return res.redirect('/login');
             }
+
         } catch (error) {
             console.log(error);
-            return res.render('login');
+            return res.render('client/auth/login');
         }
-
     },
     exitSession: (req, res) => {
         console.log("se entro a destroy");

@@ -29,7 +29,9 @@ const pageController = {
     register: (req, res) => res.render('client/auth/register'),
     redirectionHome: (req, res) => res.render('home'),
     registerPet: (req, res) => res.render('client/register_pet'),
-    listPet: (req, res) => res.render('client/list_pet')
+    listPet: (req, res) => res.render('client/list_pet'),
+    registerProduct:(req,res) => res.render('admin/register_product'),
+    listProduct:(req,res)=>res.render('admin/list_product')
 }
 
 module.exports = pageController;

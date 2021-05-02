@@ -22,13 +22,16 @@ router.get('/register-pet', [
 ], pageController.registerPet);
 router.get('/list-pet', [
 ], petController.listPet);
-router.get('/home-client',[], pageController.homeClient);
-router.get('/register-product',pageController.registerProduct);
+router.get('/home-client', pageController.homeClient);
+
+router.get('/home-admin',pageController.homeAdmin);
 router.get('/list-product',pageController.listProduct);
-//model data
+router.get('/register-product',pageController.registerProduct);
 router.post('/products',productController.createProduct);
+
 router.post('/pets', petController.createPet);
-//router.get('/pets',petController.listPet);
+router.get('/pets',petController.listPet);
+
 router.post('/clients', clientController.createUser);
 router.post('/session', sessionController.loginSession);
 router.get('/exit', sessionController.exitSession);

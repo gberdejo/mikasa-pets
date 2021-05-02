@@ -11,7 +11,7 @@ const helper = {
             });
             raw.map((pro) => {
                 list.push(pro.dataValues);
-            });
+            }); 
             return list;
 
         } catch (error) {

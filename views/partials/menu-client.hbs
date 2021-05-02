@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand text-primary" href="/"><strong>MikasaPet</strong></a>
+    <a class="navbar-brand text-primary" href="/home-client"><strong>MikasaPet</strong></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic"
       aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,27 +8,25 @@
     <div class="collapse navbar-collapse show" id="navbarBasic">
       <ul class="navbar-nav me-auto mb-2 mb-xl-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Servicios</a>
+          <a class="nav-link active" aria-current="page" href="/home-client">Servicios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Petshop</a>
+          <a class="nav-link" href="/home-client">Petshop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Promociones</a>
+          <a class="nav-link" href="/home-client" tabindex="-1" aria-disabled="true">Promociones</a>
         </li>
       </ul>
       <form class="d-flex">
-        <a href="/" class="link-primary"><i class="fas fa-shopping-cart fa-3x me-4"></i></a>
+        <a class="link-primary"><i class="fas fa-shopping-cart fa-3x me-4"></i></a>
         {{#if usersession}}
-        <a href="/register-pet" class="link-primary"><i class="fas fa-dog fa-3x me-4"></i></a>
+        <a href="/list-pet" class="link-primary"><i class="fas fa-dog fa-3x me-4"></i></a>
         {{/if}}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
         
         {{#if usersession}}
         <a class="btn btn-success ms-1"> {{usersession}} </a><a class="btn btn-danger ms-1" href="/exit"> Salir</a>
-        {{else}}
-        <a href="/login" class="link-primary"><i class="far fa-user-circle fa-3x ms-4"></i></a>
         {{/if}}
       </form>
     </div>

@@ -15,10 +15,11 @@ const sessionController = {
                 return res.redirect('/login');
             }
             if (bcrypt.compareSync(password, client.password_client)) {
-                const list_product = await helper.listProduct;
+                const list_product = await helper.listProduct();
+                //save SESSION
                 req.session.usersession = client.name_client;
                 req.session.userid = client.id;
-                return res.render('client/home-client', {
+                return res.render('client/home_client', {
                     usersession: client.name_client,
                     list_product
                 });

@@ -1,8 +1,22 @@
 const helper = require('../helpers');
 const pageController = {
+    homeClient: async(req, res) => {
+        try {
+            const list_product = await helper.listProduct();
+            return res.render('client/home_client', {
+                usersession: req.session.usersession,
+                list_product
+            })
+        } catch (error) {
+            console.log(error);
+            return res.render('client/home_client',{
+                usersession: req.session.usersession,
+            });
+        }
+    },
     home: async(req, res) => {
         try {
-            const list_product = await helper.listProduct;
+            const list_product = await helper.listProduct();
             return res.render('home', {
                 list_product
             })

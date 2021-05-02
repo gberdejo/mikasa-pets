@@ -9,7 +9,6 @@ const petController = require('../controllers/pet.controller');
 const sessionController = require('../controllers/session.controller');
 //pages
 router.get('/', [
-    mid.existsSession
 ], pageController.home);
 router.get('/login', [
     mid.existsSession
@@ -21,10 +20,11 @@ router.get('/register-pet', [
     mid.existsSessionModePet
 ], pageController.registerPet);
 router.get('/list-pet', [
-    mid.existsSessionModePetList
-], pageController.listPet);
+], petController.listPet);
+router.get('/home-client',[], pageController.homeClient);
 //model data
 router.post('/pets', petController.createPet);
+//router.get('/pets',petController.listPet);
 router.post('/clients', clientController.createUser);
 router.post('/session', sessionController.loginSession);
 router.get('/exit', sessionController.exitSession);
@@ -32,6 +32,5 @@ router.get('/exit', sessionController.exitSession);
 
 //sin ruta
 router.get('*', [
-    mid.existsSession
 ], pageController.redirectionHome);
 module.exports = router;

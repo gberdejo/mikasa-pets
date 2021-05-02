@@ -4,15 +4,12 @@ const mid = {
     existsSession: async(req, res, next) => {
         if (typeof req.session.usersession !== 'undefined') {
             try {
-                const list_product = await helper.listProduct;
+                const list_product = await helper.listProduct();
                 return res.render('home', {
-                    usersession: req.session.usersession,
                     list_product
                 });
             } catch (error) {
-                return res.render('home', {
-                    usersession: req.session.usersession,
-                });
+                return res.render('home',);
             }
         }
         next();
@@ -34,9 +31,9 @@ const mid = {
     },
     existsSessionModePetList: (req, res, next) => {
         if (typeof req.session.usersession !== 'undefined') {
-            return res.render('client/list_pet', {
+            return res.render('client/home-client', {
                 usersession: req.session.usersession,
-            })
+            });
         }
         next();
     },

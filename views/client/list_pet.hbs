@@ -1,32 +1,28 @@
+
+{{>menu-client}}
 <div class="container">
+    <h2>Mi lista de Mascotas</h2>
+    <a class="btn btn-success" href="register-pet">Agregar otra mascosa</a>
+    <br><br>
     <div class="row row-cols-2">
+        {{#if list_pet}}
+        {{#each list_pet}}
         <div class="col">
             <div class="card mb-3">
-                <img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="card-img-top" alt="..." />
+                <img src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/por-que-nos-parece-que-los-perros-sonrien-una-historia-de-30-000-anos.jpg" class="card-img-top" alt="..." />
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">{{name_pet}}</h5>
                     <p class="card-text">
                         This is a wider card with supporting text below as a natural lead-in to additional
                         content. This content is a little bit longer.
                     </p>
                     <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <small class="text-muted">{{created_pet}}</small>
                     </p>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </p>
-                </div>
-                <img src="https://mdbootstrap.com/img/new/slides/042.jpg" class="card-img-bottom" alt="..." />
             </div>
         </div>
+        {{/each}}
+    {{/if}}
     </div>
 </div>

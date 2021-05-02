@@ -21,8 +21,9 @@ const clientController = {
                 msg: "New User",
                 client
             })
-            return res.render('home', {
-                usersession: client.name_client
+            req.session.usersession = client.dataValues.name_client;
+            return res.render('home_client', {
+                usersession: req.session.usersession
             });
 
         } catch (error) {

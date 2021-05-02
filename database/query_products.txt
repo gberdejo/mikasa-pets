@@ -1,0 +1,25 @@
+insert into products(name_product,precio_product,stock_product,
+description_simple_product,description_html_product,img1_product,
+img2_product,img3_product,created_product)values
+("Cambo",84.99,41,"es comida de calidad A1",
+"<h1>Es la mejor comida de perro</h1>","///","///","///","2020-02-20")  ;
+insert into products(name_product,precio_product,stock_product,
+description_simple_product,description_html_product,img1_product,
+img2_product,img3_product,created_product)values
+("Cambo",84.99,41,"es comida de calidad A1",
+"<h1>Es la mejor comida de perro</h1>","///","///","///","2020-02-20")  ;
+insert into products(name_product,precio_product,stock_product,
+description_simple_product,description_html_product,img1_product,
+img2_product,img3_product,created_product)values
+("Cambo",84.99,41,"Comida Regular",
+"<h1>Es la mejor comida de perro</h1>","///","///","///","2020-02-20")  ;
+insert into products(name_product,precio_product,stock_product,
+description_simple_product,description_html_product,img1_product,
+img2_product,img3_product,created_product)values
+("Super Can",50.99,41,"Comida Regular",
+"<h1>Es la mejor comida de perro</h1>","///","///","///","2020-02-20")  ;
+insert into products(name_product,precio_product,stock_product,
+description_simple_product,description_html_product,img1_product,
+img2_product,img3_product,created_product)values
+("Super Can",50.99,21,"Comida para cachorro",
+"<h1>Es la mejor comida de perro</h1>","///","///","///","2020-02-20")  ;

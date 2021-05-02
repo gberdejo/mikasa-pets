@@ -23,3 +23,10 @@ description_simple_product,description_html_product,img1_product,
 img2_product,img3_product,created_product)values
 ("Super Can",50.99,21,"Comida para cachorro",
 "<h1>Es la mejor comida de perro</h1>","///","///","///","2020-02-20")  ;
+
+
+----Inserta employee
+insert into employees(name_employee,lastname_employee,
+phone_employee,email_employee,password_employee,
+role_employee) values("Pedro","Castillo",936865356,
+"pedro@hotmail.com","123","VENDEDOR");

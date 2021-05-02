@@ -38,17 +38,17 @@
                         <br>
                         <div class="form-floating">
                             <input type="hidden" class="form-control" id="img1_product" name="img1_product">
-                            <label for="name_product">Muestra Imagen 1</label>
+                            <label for="name1_product">Muestra Imagen 1</label>
                         </div>
                         <br>
                         <div class="form-floating">
                             <input type="hidden" class="form-control" id="img2_product" name="img2_product">
-                            <label for="name_product">Muestra Imagen 2</label>
+                            <label for="name2_product">Muestra Imagen 2</label>
                         </div>
                         <br>
                         <div class="form-floating">
                             <input type="hidden" class="form-control" id="img3_product" name="img3_product">
-                            <label for="name_product">Muestra Imagen 3</label>
+                            <label for="name3_product">Muestra Imagen 3</label>
                         </div>
                         <br>
                         <div class="ms-1 form-check">
@@ -67,7 +67,6 @@
     </div>
 </div>
 <br>
-{{>fotter}}
 <script>
 fetch.(uri:'http://localhost:3000/register-product',
     method:'POST',
@@ -90,3 +89,4 @@ fetch.(uri:'http://localhost:3000/register-product',
     })
 
 </script>
+{{>footer}}

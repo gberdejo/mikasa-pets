@@ -23,7 +23,11 @@ const pageController = {
   login: (req, res) => res.render("client/auth/login"),
   register: (req, res) => res.render("client/auth/register"),
   redirectionHome: (req, res) => res.render("home"),
-  registerPet: (req, res) => res.render("client/register_pet"),
+  registerPet: (req, res) => {
+    return res.render("client/register_pet", {
+      userid: req.session.userid,
+    });
+  },
   listPet: (req, res) => res.render("client/list_pet"), //page list
   registerProduct: (req, res) => res.render("admin/register_product"), //form
   listProduct: async (req, res) => {

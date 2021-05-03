@@ -1,5 +1,5 @@
 const Client = require("../models/client");
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
 const clientService = {};
 
 clientService.registerClient = async (obj) => {

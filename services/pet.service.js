@@ -2,7 +2,7 @@ const Pet = require("../models/pet");
 const { Op } = require("sequelize");
 const petService = {};
 
-petService.createPet = async (body) => {
+petService.createPet = async (obj) => {
   try {
     const pet = await Pet.build(obj);
     if (pet instanceof Pet) {
@@ -40,8 +40,8 @@ petService.listPetClient = async (id) => {
       },
     });
     if (raw.length >= 0) {
-      raw.map(() => {
-        list.push(raw.dataValues);
+      raw.map((pets) => {
+        list.push(pets.dataValues);
       });
       return list;
     }

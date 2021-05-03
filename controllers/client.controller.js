@@ -14,7 +14,7 @@ const clientController = {
       password_client,
     } = req.body;
     const clientExists = await clientService.findClientEmail(email_client);
-    if (clientExists) return res.redirect("client/auth/register");
+    if (clientExists) return res.redirect("/register");
 
     const client = await clientService.registerClient({
       name_client,
@@ -29,14 +29,9 @@ const clientController = {
     if (client) {
       req.session.usersession = client.name_client;
       req.session.userid = client.id;
-      const list_product = await productService.listProduct();
-      return res.render("client/home_client", {
-        usersession: req.session.usersession,
-        list_product,
-      });
+      return res.redirect("/home-client");
     } else {
-      console.log(error);
-      return res.render("client/auth/register");
+      return res.redirect("/register");
     }
   },
 };

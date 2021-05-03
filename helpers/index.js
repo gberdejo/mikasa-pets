@@ -4,11 +4,7 @@ const helper = {
     listProduct: async() => {
         let list = [];
         try {
-            const raw = await Product.findAll({
-                order: [
-                    ['name_product', 'ASC']
-                ]
-            });
+            const raw = await Product.findAll();
             raw.map((pro) => {
                 list.push(pro.dataValues);
             }); 

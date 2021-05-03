@@ -1,37 +1,43 @@
-const { response } = require('express');
-const bcryptjs = require('bcryptjs');
-const { Op } = require('sequelize');
-const Client = require('../models/client');
+const { response } = require("express");
+const clientService = require("../services/client.service");
+const productService = require("../services/product.service");
 const clientController = {
-    createUser: async(req, res = response) => {
-        try {
-            const { name_client, lastname_client, birthdata_client, direction_client, nick_client, phone_client, email_client, password_client } = req.body;
-            const client = Client.build({ name_client, lastname_client, birthdata_client, direction_client, nick_client, phone_client, email_client, password_client });
-            const clientExists = await Client.findOne({
-                where: { email_client }
-            });
-            console.log(clientExists);
-            if (clientExists) {
-                return res.redirect('/');
-            }
-            const salt = bcryptjs.genSaltSync(10);
-            client.password_client = bcryptjs.hashSync(password_client, salt);
-            await client.save();
-            console.log({
-                msg: "New User",
-                client
-            })
-            req.session.usersession = client.dataValues.name_client;
-            return res.render('home_client', {
-                usersession: req.session.usersession
-            });
+  createUser: async (req, res = response) => {
+    const {
+      name_client,
+      lastname_client,
+      birthdata_client,
+      direction_client,
+      nick_client,
+      phone_client,
+      email_client,
+      password_client,
+    } = req.body;
+    const clientExists = await clientService.findClientEmail(email_client);
+    if (clientExists) return res.redirect("client/auth/register");
 
-        } catch (error) {
-
-            console.log(error)
-            return res.redirect('/')
-        }
-
+    const client = await clientService.registerClient({
+      name_client,
+      lastname_client,
+      birthdata_client,
+      direction_client,
+      nick_client,
+      phone_client,
+      email_client,
+      password_client,
+    });
+    if (client) {
+      req.session.usersession = client.name_client;
+      req.session.userid = client.id;
+      const list_product = await productService.listProduct();
+      return res.render("client/home_client", {
+        usersession: req.session.usersession,
+        list_product,
+      });
+    } else {
+      console.log(error);
+      return res.render("client/auth/register");
     }
-}
+  },
+};
 module.exports = clientController;

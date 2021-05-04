@@ -1,7 +1,9 @@
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 const clientService = require("../services/client.service");
 const productService = require("../services/product.service");
 const sessionController = {};
+
 sessionController.loginSession = async (req, res) => {
   const { email, password } = req.body;
   const client = await clientService.findClientEmail(email);

@@ -1,15 +1,9 @@
 const { Router } = require("express");
-const { check } = require("express-validator");
+const passport = require("passport");
 const router = Router();
 
-const clientController = require("../controllers/client.controller");
-const pageController = require("../controllers/pages.controller");
-const mid = require("../middlewares");
-const petController = require("../controllers/pet.controller");
-const sessionController = require("../controllers/session.controller");
-const productController = require("../controllers/product.controller");
 //pages
-router.get("/", pageController.home);
+/*router.get("/", pageController.home);
 router.get("/login", pageController.login);
 router.get("/register", pageController.register);
 router.get("/register-pet", pageController.registerPet);
@@ -24,11 +18,36 @@ router.post("/products", productController.createProduct);
 router.post("/pets", petController.createPet);
 router.get("/pets", petController.listPet);
 
-router.post("/clients", clientController.createUser);
-router.post("/session", sessionController.loginSession);
-router.get("/exit", sessionController.exitSession);
+router.post("/clients", clientController.createUser);*/
 
 //sin ruta
 /*router.get('*', [
 ], pageController.redirectionHome);*/
+router.get(
+  "/",
+
+  (req, res, next) => {
+    if (req.isAuthenticated()) return next();
+
+    res.redirect("/login");
+  },
+  (req, res) => {
+    res.render("home");
+  }
+);
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureMessage: true,
+  })
+);
+router.get("/exit", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 module.exports = router;

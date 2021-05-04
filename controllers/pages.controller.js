@@ -4,7 +4,6 @@ const pageController = {
   homeClient: async (req, res) => {
     const list_product = await productService.listProduct();
     return res.render("client/home_client", {
-      usersession: req.session.usersession,
       list_product,
     });
   },

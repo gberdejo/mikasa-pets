@@ -1,61 +1,94 @@
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const express_handlebars = require('express-handlebars');
-const mysql = require('mysql');
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-class App {
-    constructor() {
-        this._app = express();
-        this._port = process.env.PORT;
-        this.options = {
-            host: 'localhost',
-            port: 3306,
-            user: 'root',
-            password: 'mysql',
-            database: 'sessionstore'
-        };
-        this.settings();
-        this.middlewares();
-        this.routes();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const morgan = require("morgan");
+const express_handlebars = require("express-handlebars");
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
+const PassportLocal = require("passport-local").Strategy;
+const options = {
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "mysql",
+  database: "sessionstore",
+};
+//require("./configs/passport");
+
+//settings
+app.engine(
+  ".hbs",
+  express_handlebars({
+    defaultLayout: "main",
+    layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials",
+    extname: ".hbs",
+  })
+);
+app.set("view engine", ".hbs");
+
+//middlewares
+require("dotenv").config();
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser("Es un secreto"));
+app.use(
+  session({
+    secret: "Es otro secreto",
+    store: new MySQLStore(options),
+    resave: true,
+    saveUninitialized: true,
+    //cookie: { secure: false, maxAge: 60000 }
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+  new PassportLocal(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    (username, password, done) => {
+      if (username === "gabriel@hotmail.com" && password === "123") {
+        return done(null, { id: 1, name: "gabriel" });
+      }
+      return done(null, null, { message: "Credenciales incorrectas" });
     }
-    middlewares() {
-        this._app.use(cors());
-        this._app.use(morgan('dev'))
+  )
+);
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-        this._app.use(express.json());
-        this._app.use(express.urlencoded({ extended: true }));
+passport.deserializeUser((id, done) => {
+  done(null, { id: 1, name: "gabriel" });
+});
+app.use(flash());
+/*app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+        res.locals.error_msg = req.flash("error_msg");
+        res.locals.user = req.user || null;
+  res.locals.error = req.flash("error");
+  res.locals.usersession = req.user || null;
+  next();
+})*/
 
-        this._app.use(express.static('public'));
+//Routes
+app.use("/", require("./routes/index"));
 
-        this._app.use(session({
-            secret: 'session_cookie_secret',
-            store: new MySQLStore(this.options),
-            resave: false,
-            saveUninitialized: false,
-            //cookie: { secure: false, maxAge: 60000 }
-        }));
+//Static
+app.use(express.static("public"));
 
-    }
-    routes() {
-        this._app.use('/', require('./routes/index'));
-    };
-    settings() {
-        this._app.engine('hbs', express_handlebars({
-            defaultLayout: 'main',
-            layoutsDir: __dirname + "/views/layouts",
-            partialsDir: __dirname + "/views/partials",
-            extname: 'hbs'
-        }));
-        this._app.set('view engine', 'hbs');
-    };
+//Default
+app.use((req, res) => {
+  res.render("404");
+});
 
-    listen() {
-
-        this._app.listen(this._port, async() => {
-            console.log(`Server on Port: ${this._port}`);
-        })
-    }
-}
-module.exports = App;
+module.exports = app;

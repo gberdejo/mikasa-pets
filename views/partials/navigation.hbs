@@ -61,7 +61,9 @@
                 <a class="nav-link d-sm-flex align-items-sm-center" href="#">
                     <img src="https://mdbootstrap.com/img/new/avatars/1.jpg" class="rounded-circle" height="22" alt=""
                         loading="lazy" />
-                    <strong class="d-none d-sm-block ms-1">John</strong>
+                    {{#each user}}
+                    <strong class="d-none d-sm-block ms-1">{{name}}</strong>
+                    {{/each}}
                 </a>
             </li>
             <li class="nav-item me-3 me-lg-1">
@@ -98,6 +100,7 @@
                     </li>
                 </ul>
             </li>
+            {{#if user}}
             <li class="nav-item dropdown me-3 me-lg-1">
                 <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
                     data-mdb-toggle="dropdown" aria-expanded="false">
@@ -111,6 +114,7 @@
                     </li>
                 </ul>
             </li>
+            {{/if}}
         </ul>
         <!-- Right elements -->
     </div>

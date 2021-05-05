@@ -8,7 +8,6 @@ const MySQLStore = require("express-mysql-session")(session);
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
-const PassportLocal = require("passport-local").Strategy;
 const options = {
   host: "localhost",
   port: 3306,
@@ -16,7 +15,7 @@ const options = {
   password: "mysql",
   database: "sessionstore",
 };
-//require("./configs/passport");
+require("./configs/passport");
 
 //settings
 app.engine(
@@ -49,36 +48,22 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(
-  new PassportLocal(
-    {
-      usernameField: "email",
-      passwordField: "password",
-    },
-    (username, password, done) => {
-      if (username === "gabriel@hotmail.com" && password === "123") {
-        return done(null, { id: 1, name: "gabriel" });
-      }
-      return done(null, null, { message: "Credenciales incorrectas" });
-    }
-  )
-);
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  done(null, { id: 1, name: "gabriel" });
-});
 app.use(flash());
-/*app.use((req, res, next) => {
-  res.locals.success_msg = req.flash("success_msg");
-        res.locals.error_msg = req.flash("error_msg");
-        res.locals.user = req.user || null;
+app.use((req, res, next) => {
+  /*res.locals.success_msg = req.flash("success_msg");
+        res.locals.error_msg = req.flash("error_msg");*/
   res.locals.error = req.flash("error");
-  res.locals.usersession = req.user || null;
+  if (typeof req.user === "undefined") {
+    res.locals.user = null;
+  } else {
+    res.locals.user = [req.user];
+  }
+  console.log(req.user);
+  console.log(res.locals.user);
+  //console.log(res.locals.error);
+
   next();
-})*/
+});
 
 //Routes
 app.use("/", require("./routes/index"));

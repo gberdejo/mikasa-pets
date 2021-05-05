@@ -9,25 +9,22 @@ passport.use(
       usernameField: "email",
       passwordField: "password",
     },
-    async (email, password, done) => {
-      const client = await clientService.findClientEmail(email);
-      if (!client) {
-        return done(null, false, { message: "El Cliente no existe" });
+    (username, password, done) => {
+      if (username !== "gabriel@hotmail.com") {
+        return done(null, null, { message: "El usuario no existe" });
       } else {
-        if (bcrypt.compareSync(password, client.password_client)) {
-          return done(null, client);
-        } else {
-          return done(null, false, { message: "Comtraseña incorrecta" });
+        if (password !== "123") {
+          return done(null, null, { message: "La contrasela es incorrecta" });
         }
+        return done(null, { id: 1, name: "gabriel" });
       }
     }
   )
 );
-passport.serializeUser((client, done) => {
-  done(null, client.id);
+passport.serializeUser((user, done) => {
+  done(null, user.id);
 });
+
 passport.deserializeUser((id, done) => {
-  Client.findOne({ where: { id } }, (err, client) => {
-    done(err, client);
-  });
+  done(null, { id: 1, name: "gabriel" });
 });

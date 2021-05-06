@@ -1,31 +1,42 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../database');
-const Employee = require('./employee');
-const StoryService = require('./story.service');
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../database");
+const Employee = require("./employee");
+const StoryService = require("./story.service");
 
-const Pet = sequelize.define('pet', {
+const Pet = sequelize.define(
+  "pet",
+  {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    name_pet: {
-        type: DataTypes.STRING(20),
-        allowNull: true
+    name: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
     },
-    birthdata_pet: {
-        type: DataTypes.DATE,
-        allowNull: true
+    race: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
     },
-    created_pet: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    }
-
-}, {
-    timestamps: false
-});
-
+    sex: {
+      type: DataTypes.STRING(20),
+      enum: ["MACHO", "HEMBRA"],
+    },
+    birthdata: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    created: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+  },
+  {
+    timestamps: false,
+    initialAutoIncrement: 3000,
+  }
+);
 
 module.exports = Pet;

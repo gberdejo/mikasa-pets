@@ -6,8 +6,21 @@ employeeService.getEmployeebyEmail = async (email) => {
   try {
     const employee = await Employee.findOne({
       where: {
-        email_employee: email,
+        email,
       },
+    });
+    if (employee) return employee.dataValues;
+
+    return null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+employeeService.getEmployeebyId = async (id) => {
+  try {
+    const employee = await Employee.findOne({
+      where: { id },
     });
     if (employee) return employee.dataValues;
 

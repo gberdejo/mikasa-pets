@@ -1,50 +1,57 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../database');
-const Employee = require('./employee');
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../database");
+const Employee = require("./employee");
 
-const Product = sequelize.define('product', {
+const Product = sequelize.define(
+  "product",
+  {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: null,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
-    name_product: {
-        type: DataTypes.STRING(50),
-        required: [true, "el nombre del producto es necesario"],
+    name: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
     },
-    precio_product: {
-        type: DataTypes.DOUBLE,
-        required: [true, '']
+    precio: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
     },
-    stock_product: {
-        type: DataTypes.INTEGER,
-        required: [true, 'es necesario el stock']
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    description_simple_product: {
-        type: DataTypes.STRING,
-        required: [true, 'es nesesario la descripcion simple']
+    description_simple: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    description_html_product: {
-        type: DataTypes.STRING,
-        required: [true, 'es necesario la descripcion en html']
+    description_html: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    img1_product: {
-        type: DataTypes.STRING,
+    img1: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    img2_product: {
-        type: DataTypes.STRING,
+    img2: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    img3_product: {
-        type: DataTypes.STRING,
+    img3: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    created_product: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    }
-}, {
-    timestamps: false
-});
-
+    created: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+  },
+  {
+    timestamps: false,
+    initialAutoIncrement: 101000,
+  }
+);
 
 module.exports = Product;

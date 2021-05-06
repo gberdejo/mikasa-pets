@@ -1,12 +1,12 @@
-insert into products(name_product,precio_product,stock_product,
-description_simple_product,description_html_product,img1_product,
-img2_product,img3_product,created_product)values
+insert into products(name,precio,stock,
+description_simple,description_html,img1,
+img2,img3,created,employeeId)values
 ("Cambo",84.99,41,"es comida de calidad A1",
-"best","n","n","n","2020-02-20")  ;
+"best","n","n","n","2020-02-20",2002);
 
 
 ----Inserta employee
-insert into employees(name_employee,lastname_employee,
-phone_employee,email_employee,password_employee,
-role_employee) values("Pedro","Castillo",936865356,
+insert into employees(name,lastname,
+phone,email,password,
+role) values("Pedro","Castillo",936865356,
 "pedro@mikasa.pet","123","VENDEDOR");

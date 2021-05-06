@@ -38,7 +38,7 @@ passport.use(
 
         if (!user) return done(null, null, { message: "No existe el usuario" });
 
-        if (!bcrypt.compareSync(password, user.password_client))
+        if (!bcrypt.compareSync(password, user.password))
           return done(null, null, { message: "La contraseña es incorrecta" });
 
         done(null, user);
@@ -51,10 +51,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  /*const user = await employeeService.getEmployeebyEmail(id);
-  if (user) return done(null, user);*/
+  let user = await clientService.getClientbyId(id);
+  if (user) return done(null, user);
 
-  const user = await clientService.getClientbyId(id);
-  console.log(user);
+  user = await employeeService.getEmployeebyId(id);
   done(null, user);
 });

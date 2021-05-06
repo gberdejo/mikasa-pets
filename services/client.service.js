@@ -7,7 +7,7 @@ clientService.registerClient = async (obj) => {
     const client = Client.build(obj);
     if (client instanceof Client) {
       const salt = bcryptjs.genSaltSync(10);
-      client.password_client = bcryptjs.hashSync(obj.password_client, salt);
+      client.password = bcryptjs.hashSync(obj.password, salt);
       await client.save();
       return client.dataValues;
     }
@@ -19,7 +19,7 @@ clientService.registerClient = async (obj) => {
 };
 clientService.getClientbyEmail = async (email) => {
   try {
-    const client = await Client.findOne({ where: { email_client: email } });
+    const client = await Client.findOne({ where: { email } });
     if (client) return client.dataValues;
 
     return null;
@@ -31,9 +31,7 @@ clientService.getClientbyEmail = async (email) => {
 clientService.getClientbyId = async (id) => {
   try {
     const client = await Client.findOne({
-      where: {
-        id,
-      },
+      where: { id },
     });
     if (client) return client.dataValues;
 

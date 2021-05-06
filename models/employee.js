@@ -11,34 +11,39 @@ const Employee = sequelize.define(
       allowNull: false,
       autoIncrement: true,
     },
-    name_employee: {
+    name: {
       type: DataTypes.STRING(100),
-      required: [true, "es necesario el nombre del empleado"],
+      allowNull: false,
     },
-    lastname_employee: {
+    lastname: {
       type: DataTypes.STRING(100),
-      required: [true, "es necesario el apellido del empleado"],
+      allowNull: false,
     },
-    phone_employee: {
+    phone: {
       type: DataTypes.INTEGER,
-      required: [true, "es necesario el numero de celular"],
+      allowNull: false,
     },
-    email_employee: {
+    email: {
       type: DataTypes.STRING(50),
-      required: [true, "es necesario el emial del empleado"],
+      allowNull: false,
     },
-    password_employee: {
+    password: {
       type: DataTypes.STRING,
-      required: [true, "es necesario la contraseña"],
+      allowNull: false,
     },
-    role_employee: {
+    role: {
       type: DataTypes.STRING(20),
-      required: [true, "es necesario seleccionar un rol"],
-      emun: ["VETERINARIO", "VENDEDOR"],
+      allowNull: true,
+      enum: ["VETERINARIO", "VENDEDOR"],
+    },
+    created: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
     timestamps: false,
+    initialAutoIncrement: 2000,
   }
 );
 

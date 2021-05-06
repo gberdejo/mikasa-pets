@@ -2,7 +2,9 @@ const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const clientService = require("../services/client.service");
 const productService = require("../services/product.service");
+
 const authController = {};
+
 authController.renderHome = (req, res) => res.render("home");
 authController.renderLogin = (req, res) => res.render("login");
 authController.login = passport.authenticate("local", {
@@ -16,30 +18,30 @@ authController.login = passport.authenticate("local", {
 authController.renderSignUp = (req, res) => res.render("signup");
 authController.signUp = async (req, res) => {
   const {
-    name_client,
-    lastname_client,
-    birthdata_client,
-    direction_client,
-    nick_client,
-    phone_client,
-    email_client,
-    password_client,
+    name,
+    lastname,
+    birthdata,
+    direction,
+    nick,
+    phone,
+    email,
+    password,
   } = req.body;
-  const clientExists = await clientService.getClientbyEmail(email_client);
+  const clientExists = await clientService.getClientbyEmail(email);
   if (clientExists) {
     req.flash("error", "El Usuario ya existe");
     return res.redirect("/signup");
   }
 
   const client = await clientService.registerClient({
-    name_client,
-    lastname_client,
-    birthdata_client,
-    direction_client,
-    nick_client,
-    phone_client,
-    email_client,
-    password_client,
+    name,
+    lastname,
+    birthdata,
+    direction,
+    nick,
+    phone,
+    email,
+    password,
   });
   if (client) return res.redirect("/login");
 

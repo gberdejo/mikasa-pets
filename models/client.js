@@ -15,45 +15,46 @@ const Client = sequelize.define(
       allowNull: false,
       autoIncrement: true,
     },
-    name_client: {
+    name: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    lastname_client: {
+    lastname: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    birthdata_client: {
+    birthdata: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    direction_client: {
+    direction: {
       type: DataTypes.STRING(100),
-      allowNull: true,
+      allowNull: false,
     },
-    nick_client: {
+    nick: {
       type: DataTypes.STRING(10),
-      allowNull: true,
+      allowNull: false,
     },
-    phone_client: {
+    phone: {
       type: DataTypes.INTEGER(9),
-      allowNull: true,
+      allowNull: false,
     },
-    email_client: {
+    email: {
       type: DataTypes.STRING(30),
-      allowNull: true,
+      allowNull: false,
     },
-    password_client: {
+    password: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    created_client: {
+    created: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
   },
   {
     timestamps: false,
+    initialAutoIncrement: 1000,
   }
 );
 //CLIENT <----< PET

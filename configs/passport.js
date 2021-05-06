@@ -1,7 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const clientService = require("../services/client.service");
-const Client = require("../models/client");
+const employeeService = require("../services/employee.service");
 const bcrypt = require("bcryptjs");
 /*sessionController.loginSession = async (req, res) => {
   const { email, password } = req.body;
@@ -23,13 +23,26 @@ passport.use(
       passwordField: "password",
     },
     async (username, password, done) => {
-      const user = await clientService.getClientbyEmail(username);
-      if (!user) return done(null, null, { message: "No existe el usuario" });
+      if (username.split("@")[1] === "mikasa.pet") {
+        let user = await employeeService.getEmployeebyEmail(username);
+        if (!user) return done(null, null, { message: "El empleado no exite" });
 
-      if (!bcrypt.compareSync(password, user.password_client))
-        return done(null, null, { message: "La contraseña es incorrecta" });
+        /*if (!bcrypt.compareSync(password, user.password_employee))
+          return done(null, null, {
+            message: "La contraseña del es incorrecta",
+          });*/
+        console.log(user);
+        done(null, user);
+      } else {
+        const user = await clientService.getClientbyEmail(username);
 
-      done(null, user);
+        if (!user) return done(null, null, { message: "No existe el usuario" });
+
+        if (!bcrypt.compareSync(password, user.password_client))
+          return done(null, null, { message: "La contraseña es incorrecta" });
+
+        done(null, user);
+      }
     }
   )
 );
@@ -38,6 +51,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
+  /*const user = await employeeService.getEmployeebyEmail(id);
+  if (user) return done(null, user);*/
+
   const user = await clientService.getClientbyId(id);
   console.log(user);
   done(null, user);

@@ -9,4 +9,4 @@ img2_product,img3_product,created_product)values
 insert into employees(name_employee,lastname_employee,
 phone_employee,email_employee,password_employee,
 role_employee) values("Pedro","Castillo",936865356,
-"pedro@hotmail.com","123","VENDEDOR");
+"pedro@mikasa.pet","123","VENDEDOR");

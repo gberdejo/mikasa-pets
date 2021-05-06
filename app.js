@@ -66,6 +66,7 @@ app.use((req, res, next) => {
 
 //Routes
 app.use("/", require("./routes/auth.routes"));
+app.use("/", require("./routes/client.routes"));
 
 //Static
 app.use(express.static("public"));

@@ -1,9 +1,26 @@
-const isAuthenticated = (req, res, next) => {
+const employeeService = require("../services/employee.service");
+
+const helper = {};
+
+helper.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
 
   res.redirect("/login");
 };
+helper.validationUser = async (email) => {
+  let user = {};
+  const validation = email.split("@");
+  if (validation[1] === "mikasa.pet") {
+    const employee = await employeeService.getEmployeebyEmail(email);
 
-module.exports = {
-  isAuthenticated,
+    if (employee.role_employee !== "VENDEDOR") {
+    }
+  } else {
+    return {
+      name: "carlos",
+      role: "CLIENTE",
+    };
+  }
 };
+
+module.exports = helper;

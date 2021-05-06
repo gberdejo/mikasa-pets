@@ -1,20 +1,9 @@
-const { Op } = require('sequelize');
-const Product = require('../models/product');
-const helper = {
-    listProduct: async() => {
-        let list = [];
-        try {
-            const raw = await Product.findAll();
-            raw.map((pro) => {
-                list.push(pro.dataValues);
-            }); 
-            return list;
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) return next();
 
-        } catch (error) {
-            return [];
-        }
-    }
+  res.redirect("/login");
+};
 
-}
-
-module.exports = helper;
+module.exports = {
+  isAuthenticated,
+};

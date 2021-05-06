@@ -9,7 +9,7 @@ clientService.registerClient = async (obj) => {
       const salt = bcryptjs.genSaltSync(10);
       client.password_client = bcryptjs.hashSync(obj.password_client, salt);
       await client.save();
-      return client;
+      return client.dataValues;
     }
     return null;
   } catch (error) {
@@ -17,10 +17,25 @@ clientService.registerClient = async (obj) => {
     return null;
   }
 };
-clientService.findClientEmail = async (email) => {
+clientService.getClientbyEmail = async (email) => {
   try {
     const client = await Client.findOne({ where: { email_client: email } });
-    if (client) return client;
+    if (client) return client.dataValues;
+
+    return null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+clientService.getClientbyId = async (id) => {
+  try {
+    const client = await Client.findOne({
+      where: {
+        id,
+      },
+    });
+    if (client) return client.dataValues;
 
     return null;
   } catch (error) {

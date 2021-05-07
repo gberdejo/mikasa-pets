@@ -2,22 +2,24 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
 const StoryService = sequelize.define("storyservice", {
-  created: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-  attentio: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  nameservice: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  id_ticket_service: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
+    attentio: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    },
+    nameservice: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    diagnosis: {
+        type: DataTypes.STRING(300),
+        allowNull: false
+    },
+    id_ticket_service: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+}, {
+    timestamps: false,
 });
 
 module.exports = StoryService;

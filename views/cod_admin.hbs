@@ -1,0 +1,31 @@
+<br>
+<div class="container ">
+    <div class="row row-cols-2 justify-content-center">
+        <div class="col">
+            <h1 class="text-primary text-center">Colocar el Codigo de su superior para acceder al modo Admin</h1>
+            <br><br>
+            <form  method="POST" action="/cod-admin" >
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name_pet" name="cod" placeholder="Nombres">
+                            <label for="name_pet">codigo de 6 digitos</label>
+                        </div>
+                        <br>
+                        <select name="sup" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                            <option>Seleccione a su superior</option>
+                            <option value="Gabriel">Gabriel</option>
+                            <option value="Apollo">Apollo</option>
+                        </select>
+                        <br>
+                        <br><br>
+                        <center><button type="submit" class="btn btn-lg  btn-outline-primary">Validar</button>
+                        </center>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

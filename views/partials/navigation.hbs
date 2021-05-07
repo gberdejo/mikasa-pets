@@ -53,6 +53,7 @@
                 </a>
             </li>
             {{/if}}
+            {{#if user}}
             <li class="nav-item me-3 me-lg-1">
                 <a class="nav-link" href="#">
                     <span><i class="fas fa-shopping-cart fa-lg"></i> MyCart</span>
@@ -67,7 +68,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="/my-pets">Mis Mascotas</a></li>
-                    <li><a class="dropdown-item" href="#">Agregar Mascota</a></li>
+                    <li><a class="dropdown-item" href="/register-my-pets">Agregar Mascota</a></li>
 
                 </ul>
             </li>
@@ -85,7 +86,7 @@
                     </li>
                 </ul>
             </li>
-            {{#if user}}
+            
             <li class="nav-item dropdown me-3 me-lg-1">
                 <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
                     data-mdb-toggle="dropdown" aria-expanded="false">

@@ -17,14 +17,14 @@ petController.createPet = async(req, res) => {
         sex,
         birthdata,
         img: "img",
+        type: "perro",
         clientId: req.user.id,
     });
 
     console.log(pet);
-    if (pet) return res.json(pet)
+    if (pet) return res.redirect('my-pets');
 
-    //return res.redirect("/register-my-pets");
-    return res.json({ message: "Ocurrio algo" });
+    return res.redirect("/register-my-pets");
 };
 
 module.exports = petController;

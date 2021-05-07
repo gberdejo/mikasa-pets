@@ -46,7 +46,7 @@
                                 para venderla a Facebook.</label>
                         </div>
                         <br><br>
-                        <center><button id="send" class="btn btn-lg  btn-outline-primary">Completed</button>
+                        <center><button type="submit" class="btn btn-lg  btn-outline-primary">Completed</button>
                         </center>
                     </div>
 
@@ -57,22 +57,74 @@
     </div>
 </div>
 <br>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
-
     (function () {
-        alert("Hola");
+        const modal = document.getElementById('exampleModal');
+        modal.show();
+
+        const exampleModal = document.getElementById('exampleModal');
+        exampleModal.show();
+
+        const form = document.getElementById("form");
+        form.addEventListener("submit", async (event)=>{
+            event.preventDefault();
+            let data = new FormData(form);
+            const searchParams =new URLSearchParams();
+            for(const pair of data){
+                searchParams.append(pair[0],pair[1]);
+            }
+            await fetch("/pets",{
+                method:"POST",
+                /*headers:{
+                    //'Content-Type': 'application/json'
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    // "Content-Type": "multipart/form-data",
+                },*/
+                body : searchParams
+            })
+            .then((response)=>{
+                if(response.ok){
+                   return response.json();
+                }
+                throw new Error("Ocurrio algo");
+            })
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((err)=>console.log(err));
+
+        
+        });
 
 
     })();
-    /*function displayRadioValue() {
-            var ele = document.querySelectorAll;
-
-            for (i = 0; i < ele.length; i++) {
-                if (ele[i].checked)
-                    document.getElementById("result").innerHTML
-                        = "Gender: " + ele[i].value;
-            }
-        }*/
-
-
 </script>

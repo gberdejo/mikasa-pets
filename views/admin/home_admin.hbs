@@ -1,0 +1,58 @@
+
+{{>menu-admin}}
+<br><br>
+<div class="container">
+<h3 class="text-center text-primary">Comida de Perros</h3>
+<div class="row row-cols-1 row-cols-sm-4 g-3">
+  {{#if list_product}}
+    {{#each list_product}}
+  <div class="col">
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title text-primary">{{name_product}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{description_simple_product}}</h6>
+    <p class="card-text">Stock: {{stock_product}} unidades</p>
+    <img src="https://images.ctfassets.net/sa0sroutfts9/3HCwCX7Xt73tL6kGkIWM4k/6ec70a5fc39bb1b1522072d37c63667f/GO-SOLUTIONS-Recipe-Image-Dog-Skin_Coat-Care-Salmon-With-Grains.png" 
+    class="img-fluid" alt="card-img-bottom">
+    <a class="text-muted card-link">price: 152.99</a>
+    <a  class="btn btn-success card-link">Add</a>
+    </div>
+    </div>
+  </div>
+    {{/each}}
+    {{/if}}
+</div>
+</div>
+<br><br>
+<div class="container-fluid">
+    <div class="card-group">
+  <div class="card">
+    <img src="http://static1.squarespace.com/static/5799536020099e4250405d3f/579a68dd3e00beeff59172ef/5a020e62ec212d1c2e3fe655/1510084559929/croquetas+perro.jpg?format=1500w"
+     class="card-img-top" alt="card-group-image">
+    <div class="card-body">
+      <h5 class="card-title">Alimento</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+        This content is a little bit longer.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://static8.depositphotos.com/1006681/826/i/600/depositphotos_8264880-stock-photo-i-love-my-vet.jpg"
+     class="card-img-top" alt="card-group-image">
+    <div class="card-body">
+      <h5 class="card-title">Servicios</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+
+  </div>
+  <div class="card">
+    <img src="https://st.depositphotos.com/1177973/2637/i/600/depositphotos_26379649-stock-photo-pet-accessories-isolated-on-white.jpg"
+     class="card-img-top" alt="card-group-image">
+    <div class="card-body">
+      <h5 class="card-title">Accesorios</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+        This card has even longer content than the first to show that equal height action.</p>
+    </div>
+  </div>
+</div>
+</div>
+{{>footer}}

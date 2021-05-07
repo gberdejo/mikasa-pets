@@ -1,6 +1,7 @@
-const App = require('./app');
+const app = require("./app");
 global.DOMAIN = "mikasa.pet";
-require('dotenv').config();
+require("dotenv").config();
 
-const app = new App();
-app.listen();
+app.listen(process.env.PORT, () => {
+  console.log("Runn server");
+});

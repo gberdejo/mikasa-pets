@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Mi lista de Mascotas</h2>
+    <a class="btn btn-outline-success" href="/register-my-pets">Agregar otra mascosa</a>
+    <br><br>
+    <div class="row row-cols-2">
+
+        {{#each pets}}
+        <div class="col">
+            <div class="card mb-3">
+                <img src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/por-que-nos-parece-que-los-perros-sonrien-una-historia-de-30-000-anos.jpg"
+                    class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <h6 class="text-muted">raza: {{race}}</h6>
+                    <h6 class="text-muted">sexo: {{sex}}</h6>
+                    <p>{{birthdata}}</p>
+                    <p class="card-text">
+                        This is a wider card with supporting text below as a natural lead-in to additional
+                        content. This content is a little bit longer.
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">{{created}}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+</div>

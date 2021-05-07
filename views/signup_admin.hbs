@@ -2,22 +2,22 @@
 <div class="container ">
     <div class="row row-cols-2 justify-content-center">
         <div class="col">
-            <h1 class="text-primary text-center">Registrate</h1>
+            <h1 class="text-primary text-center">Registrate Mode Admins</h1>
             <br><br>
-            <form action="/clients" method="POST">
+            <form action="/signup-admin" method="POST">
                 <div class="card">
                     <div class="card-body">
                         <div class="row row-cols-2 mb-3">
                             <div class="col">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name_client" name="name_client"
+                                    <input type="text" class="form-control" id="name_client" name="name"
                                         placeholder="Nombres">
                                     <label for="name_client">Nombres</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="lastname_client" name="lastname_client"
+                                    <input type="text" class="form-control" id="lastname_client" name="lastname"
                                         placeholder="Apellidos">
                                     <label for="lastname_client">Apellidos</label>
                                 </div>
@@ -25,17 +25,17 @@
                             </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="nick_client" name="nick_client"
+                            <input type="text" class="form-control" id="nick_client" name="nick"
                                 placeholder="name@example.com">
                             <label for="nick_client">Usuario</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email_client"
+                            <input type="email" class="form-control" id="email" name="email"
                                 placeholder="name@example.com">
                             <label for="email">Email</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="password" name="password_client"
+                            <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password">
                             <label for="password">Contraseña</label>
                         </div>
@@ -44,31 +44,41 @@
                         <div class="row row-cols-2">
                             <div class="col">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" name="birthdata_client" id="">
+                                    <input type="date" class="form-control" name="birthdata" id="">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" id="phone_client" name="phone_client"
+                                    <input type="number" class="form-control" id="phone_client" name="phone"
                                         placeholder="Celular">
                                     <label for="phone_client">Celular</label>
                                 </div>
                             </div>
-                        </div>
-                        <br>
+                        </div><br>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="clientDireccion" name="direction_client"
+                            <input type="text" class="form-control" id="clientDireccion" name="direction"
                                 placeholder="Dirección">
                             <label for="clientDireccion">Dirección</label>
                         </div>
                         <br>
+                        <h6>Datos Administrativos</h6>
+                         <select name="sup" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                            <option>Cargo</option>
+                            <option value="VETERINARIO">VETERINARIO</option>
+                            <option value="VENDEDOR">VENDEDOR</option>
+                        </select><br>
+                        <div class="form-floating">
+                                    <input type="text" class="form-control" id="codigo" name="codigo"
+                                        placeholder="codigo">
+                                    <label for="codigo">Codigo de verificación</label>
+                        </div><br>
                         <div class="ms-1 form-check">
                             <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
                             <label class="form-check-label" for="formCheckChecked">Aceptas que usemos tu información
                                 para venderla a Facebook.</label>
                         </div>
                         <br><br>
-                        <center><button type="submit" class="btn btn-lg  btn-outline-primary">Completed</button>
+                        <center><button type="submit" class="btn btn-lg  btn-outline-primary">Registrarse</button>
                         </center>
                         <hr>
                         <div class="alert" role="alert">

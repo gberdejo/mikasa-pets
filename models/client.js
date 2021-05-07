@@ -1,61 +1,62 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../database');
-const DetailTicket = require('./detail.ticket');
-const Employee = require('./employee');
-const Pet = require('./pet');
-const Product = require('./product');
-const StoryService = require('./story.service');
-const Ticket = require('./ticket');
-const Client = sequelize.define("client", {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true
-    },
-    name_client: {
-        type: DataTypes.STRING(50),
-        allowNull: false
-    },
-    lastname_client: {
-        type: DataTypes.STRING(50),
-        allowNull: false
-    },
-    birthdata_client: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    direction_client: {
-        type: DataTypes.STRING(100),
-        allowNull: true
-    },
-    nick_client: {
-        type: DataTypes.STRING(10),
-        allowNull: true
-    },
-    phone_client: {
-        type: DataTypes.INTEGER(9),
-        allowNull: true
-    },
-    email_client: {
-        type: DataTypes.STRING(30),
-        allowNull: true
-    },
-    password_client: {
-        type: DataTypes.STRING(10),
-        allowNull: true
-    },
-    created_client: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../database");
+const DetailTicket = require("./detail.ticket");
+const Employee = require("./employee");
+const Pet = require("./pet");
+const Product = require("./product");
+const StoryService = require("./story.service");
+const Ticket = require("./ticket");
+const Client = sequelize.define(
+    "client", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement: true,
+        },
+        name: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        lastname: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        birthdata: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+        },
+        direction: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
+        },
+        nick: {
+            type: DataTypes.STRING(10),
+            allowNull: false,
+        },
+        phone: {
+            type: DataTypes.INTEGER(9),
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING(30),
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        date: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
+    }, {
+        timestamps: false,
+        initialAutoIncrement: 1000,
     }
-}, {
-    timestamps: false,
-
-});
-//CLIENT <----< PET 
-Client.hasMany(Pet),
-    Pet.belongsTo(Client);
+);
+//CLIENT <----< PET
+Client.hasMany(Pet), Pet.belongsTo(Client);
 //CLIENT <----< TICKET
 Client.hasMany(Ticket);
 Ticket.belongsTo(Client);
@@ -68,9 +69,13 @@ Product.belongsTo(Employee);
 Ticket.belongsToMany(Product, { through: DetailTicket, uniqueKey: false });
 
 (async() => {
-    await sequelize.sync({ force: false })
+    await sequelize
+        .sync({ force: false })
         .then(() => console.log("--->>> Tablas Sincronizadas"))
-        .catch(() => console.log("no sincronizado"));
+        .catch((err) => {
+            console.log("--->>> Tablas NO! Sincronizadas");
+            console.log(err);
+        });
 })();
 
 module.exports = Client;

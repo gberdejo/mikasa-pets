@@ -1,21 +1,30 @@
-const Pet = require('../models/pet');
-const petController = {
-    createPet: async(req, res) => {
-        const { name_pet, birthdata_pet } = req.body;
-        try {
-            const pet = await Pet.create({
-                name_pet,
-                birthdata_pet,
-                clientId: req.session.userid
-            });
-            return res.json({ pet });
-        } catch (error) {
-            console.log(error);
-            return res.json({ msg: "algo fallo" });
-        }
-    }
+const petService = require("../services/pet.service");
+
+const petController = {};
+
+petController.renderMyPets = async(req, res) => {
+    const pets = await petService.getListPetbyClient(req.user.id);
+    res.render("pet_list", { pets });
 };
+petController.renderRegisterPet = (req, res) => res.render("pet_register");
 
+petController.createPet = async(req, res) => {
+    console.log(req.body);
+    const { name, race, sex, birthdata } = req.body;
+    const pet = await petService.createPet({
+        name,
+        race,
+        sex,
+        birthdata,
+        img: "img",
+        type: "perro",
+        clientId: req.user.id,
+    });
 
+    console.log(pet);
+    if (pet) return res.redirect('my-pets');
+
+    return res.redirect("/register-my-pets");
+};
 
 module.exports = petController;

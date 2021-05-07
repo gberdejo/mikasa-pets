@@ -1,61 +1,75 @@
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const express_handlebars = require('express-handlebars');
-const mysql = require('mysql');
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-class App {
-    constructor() {
-        this._app = express();
-        this._port = process.env.PORT;
-        this.options = {
-            host: 'localhost',
-            port: 3306,
-            user: 'root',
-            password: 'mysql',
-            database: 'sessionstore'
-        };
-        this.settings();
-        this.middlewares();
-        this.routes();
-    }
-    middlewares() {
-        this._app.use(cors());
-        this._app.use(morgan('dev'))
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const morgan = require("morgan");
+const express_handlebars = require("express-handlebars");
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
+const options = {
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "mysql",
+  database: "sessionstore",
+};
+require("./configs/passport");
 
-        this._app.use(express.json());
-        this._app.use(express.urlencoded({ extended: true }));
+//settings
+app.engine(
+  ".hbs",
+  express_handlebars({
+    defaultLayout: "main",
+    layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials",
+    extname: ".hbs",
+  })
+);
+app.set("view engine", ".hbs");
 
-        this._app.use(express.static('public'));
+//middlewares
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser("Es un secreto"));
+app.use(
+  session({
+    secret: "Es otro secreto",
+    store: new MySQLStore(options),
+    resave: true,
+    saveUninitialized: true,
+    //cookie: { secure: false, maxAge: 60000 }
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-        this._app.use(session({
-            secret: 'session_cookie_secret',
-            store: new MySQLStore(this.options),
-            resave: false,
-            saveUninitialized: false,
-            //cookie: { secure: false, maxAge: 60000 }
-        }));
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.error = req.flash("error");
+  if (typeof req.user === "undefined") {
+    res.locals.user = null;
+  } else {
+    res.locals.user = [req.user];
+  }
+  next();
+});
 
-    }
-    routes() {
-        this._app.use('/', require('./routes/index'));
-    };
-    settings() {
-        this._app.engine('hbs', express_handlebars({
-            defaultLayout: 'main',
-            layoutsDir: __dirname + "/views/layouts",
-            partialsDir: __dirname + "/views/partials",
-            extname: 'hbs'
-        }));
-        this._app.set('view engine', 'hbs');
-    };
+//Routes
+app.use("/", require("./routes/auth.routes"));
+app.use("/", require("./routes/client.routes"));
+app.use("/", require("./routes/pet.routes"));
 
-    listen() {
+//Static
+app.use(express.static("public"));
 
-        this._app.listen(this._port, async() => {
-            console.log(`Server on Port: ${this._port}`);
-        })
-    }
-}
-module.exports = App;
+//Default
+app.use((req, res) => {
+  res.render("404");
+});
+
+module.exports = app;

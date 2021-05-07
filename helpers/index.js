@@ -1,24 +1,26 @@
-const { Op } = require('sequelize');
-const Product = require('../models/product');
-const helper = {
-    listProduct: async() => {
-        let list = [];
-        try {
-            const raw = await Product.findAll({
-                order: [
-                    ['name_product', 'ASC']
-                ]
-            });
-            raw.map((pro) => {
-                list.push(pro.dataValues);
-            });
-            return list;
+const employeeService = require("../services/employee.service");
 
-        } catch (error) {
-            return [];
-        }
+const helper = {};
+
+helper.isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) return next();
+
+  res.redirect("/");
+};
+helper.validationUser = async (email) => {
+  let user = {};
+  const validation = email.split("@");
+  if (validation[1] === "mikasa.pet") {
+    const employee = await employeeService.getEmployeebyEmail(email);
+
+    if (employee.role_employee !== "VENDEDOR") {
     }
-
-}
+  } else {
+    return {
+      name: "carlos",
+      role: "CLIENTE",
+    };
+  }
+};
 
 module.exports = helper;

@@ -1,0 +1,114 @@
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid justify-content-between">
+        <!-- Left elements -->
+        <div class="d-flex">
+            <!-- Brand -->
+            <a class="navbar-brand me-2 mb-1 d-flex align-items-center">
+                <strong>MikasaPet</strong>
+            </a>
+
+            <!-- Search form -->
+            <div style="min-width: 125px;"></div>
+            <!--<form class="input-group w-auto my-auto d-none d-sm-flex ">
+                <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search"
+                    style="min-width: 125px;" />
+                <span class="input-group-text border-0 d-none d-lg-flex"><i class="fas fa-search"></i></span>
+            </form>-->
+        </div>
+        <!-- Left elements -->
+
+        <!-- Center elements -->
+        <ul class="navbar-nav flex-row d-none d-md-flex">
+            <li class="nav-item me-3 me-lg-1 active">
+                <a class="nav-link" href="/">
+                    <span><i class="fas fa-home fa-lg"></i></span> Home
+                </a>
+            </li>
+
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-shopping-basket fa-lg"></i></span> Productos
+                </a>
+            </li>
+
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-hospital-user fa-lg"></i></span> Servicios
+                </a>
+            </li>
+        </ul>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+        <ul class="navbar-nav flex-row">
+            {{#if user}}
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+                    <img src="https://mdbootstrap.com/img/new/avatars/2.jpg" class="rounded-circle" height="22" alt=""
+                        loading="lazy" />
+                    {{#each user}}
+                    <strong class="d-none d-sm-block ms-1">{{name}}</strong>
+                    {{/each}}
+                </a>
+            </li>
+            {{/if}}
+            {{#if user}}
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="#">
+                    <span><i class="fas fa-shopping-cart fa-lg"></i> MyCart</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown me-3 me-lg-1">
+                <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-paw fa-lg"></i> MyPet
+
+                    <!--<span class="badge rounded-pill badge-notification bg-danger">6</span>-->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="/my-pets">Mis Mascotas</a></li>
+                    <li><a class="dropdown-item" href="/register-my-pets">Agregar Mascota</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-item dropdown me-3 me-lg-1">
+                <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">12</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Some news</a></li>
+                    <li><a class="dropdown-item" href="#">Another news</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown me-3 me-lg-1">
+                <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-chevron-circle-down fa-lg"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    <li><a class="dropdown-item" href="#">Another news</a></li>
+                    <li>
+                        <a class="dropdown-item" href="/exit">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </li>
+            {{else}}
+            <li class="nav-item me-3 me-lg-1">
+                <a class="nav-link" href="/login">
+                    <span><i class="fas fa-user fa-lg"></i></span>
+                </a>
+            </li>
+            {{/if}}
+        </ul>
+        <!-- Right elements -->
+    </div>
+</nav>
+<!-- Navbar -->

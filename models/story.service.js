@@ -1,27 +1,25 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../database');
-const Employee = require('./employee');
-const Pet = require('./pet');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../database");
 
-const StoryService = sequelize.define('storyservice', {
-    created_storyService: {
+const StoryService = sequelize.define("storyservice", {
+    attentio: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
     },
-    attentio_pet: {
-        type: DataTypes.DATE,
-        required: [true, 'es necesario la fecha de atencion']
-    },
-    nameservice_pet: {
+    nameservice: {
         type: DataTypes.STRING,
-        required: [true, 'es necesario el nombre del servicio']
+        allowNull: false,
+    },
+    diagnosis: {
+        type: DataTypes.STRING(300),
+        allowNull: false
     },
     id_ticket_service: {
         type: DataTypes.INTEGER,
-        required: [true, 'es necesario el id del la boleta de pago']
-    }
-
+        allowNull: false,
+    },
+}, {
+    timestamps: false,
 });
-
 
 module.exports = StoryService;

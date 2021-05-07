@@ -1,25 +1,25 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../database');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../database");
 
-const DetailTicket = sequelize.define('detailticket', {
-    amount_product: {
+const DetailTicket = sequelize.define("detailticket", {
+    amount: {
         type: DataTypes.INTEGER,
-        required: [true, "es necesario la cantidad "]
+        allowNull: false,
     },
-    discount_product: {
+    discount: {
         type: DataTypes.DOUBLE,
         defaultValue: 0.0,
     },
-    price_product: {
+    price: {
         type: DataTypes.DOUBLE,
-        required: [true, "se necesita el precio"]
+        allowNull: false,
     },
-    subtotal_product: {
+    subtotal: {
         type: DataTypes.DOUBLE,
-        required: [true, "se necesita el subtoal"]
-    }
+        allowNull: false,
+    },
 }, {
-    timestamps: false
+    timestamps: false,
 });
 
 module.exports = DetailTicket;

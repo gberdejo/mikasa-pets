@@ -1,19 +1,7 @@
-const Client = require('../models/client');
+const { response } = require("express");
+const clientService = require("../services/client.service");
+const productService = require("../services/product.service");
 const clientController = {
-    createUser: async(req, res = response) => {
-        try {
-            const body = req.body;
-            const client = await Client.create(body);
-            req.session.usersession = client.name_client;
-            return res.render('home', {
-                usersession: client.name_client
-            });
-
-        } catch (error) {
-            console.log(error)
-            return res.render('register');
-        }
-
-    }
-}
+  createUser: async (req, res = response) => {},
+};
 module.exports = clientController;

@@ -1,7 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const DetailTicket = require("./detail.ticket");
-const Product = require("./product");
 
 const Ticket = sequelize.define(
   "ticket",
@@ -20,13 +18,8 @@ const Ticket = sequelize.define(
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    created: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
-    timestamps: false,
     initialAutoIncrement: 20200,
   }
 );

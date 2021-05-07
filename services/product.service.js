@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-const { Op } = require("sequelize");
+//const { Op } = require("sequelize");
 
 const productService = {};
 
@@ -16,7 +16,7 @@ productService.createProduct = async (obj) => {
     return null;
   }
 };
-productService.listProduct = async () => {
+productService.getlistProduct = async () => {
   let list = [];
   try {
     const raw = await Product.findAll();
@@ -26,10 +26,10 @@ productService.listProduct = async () => {
       });
       return list;
     }
-    return null;
+    return list;
   } catch (error) {
     console.log(error);
-    return null;
+    return list;
   }
 };
 module.exports = productService;

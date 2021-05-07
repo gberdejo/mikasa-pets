@@ -1,6 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const Employee = require("./employee");
 
 const Product = sequelize.define(
   "product",
@@ -43,13 +42,8 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    created: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
-    timestamps: false,
     initialAutoIncrement: 101000,
   }
 );

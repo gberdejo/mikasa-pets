@@ -1,7 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const Employee = require("./employee");
-const Pet = require("./pet");
 
 const StoryService = sequelize.define("storyservice", {
   created: {

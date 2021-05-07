@@ -1,32 +1,28 @@
-const Pet = require("../models/pet");
 const petService = require("../services/pet.service");
-const { response } = require("express");
-const petController = {
-  createPet: async (req, res = response) => {
-    const { name_pet, birthdata_pet } = req.body;
-    const pet = await petService.createPet({
-      name_pet,
-      birthdata_pet,
-      clientId: req.session.userid,
-    });
-    if (pet) {
-      return res.redirect("/list-pet");
-    }
-    return res.redirect("/register-pet");
-  },
-  listPet: async (req, res) => {
-    const list_pet = await petService.listPetClient(req.session.userid);
-    if (list_pet) {
-      return res.render("client/list_pet", {
-        usersession: req.session.usersession,
-        list_pet,
-      });
-    } else {
-      return res.render("client/register_pet", {
-        usersession: req.session.usersession,
-      });
-    }
-  },
+
+const petController = {};
+
+petController.renderMyPets = async (req, res) => {
+  const pets = await petService.getListPetbyClient(req.user.id);
+  res.render("pet_list", { pets });
+};
+petController.renderRegisterPet = (req, res) => res.render("pet_register");
+
+petController.createPet = async (req, res) => {
+  const { name, race, sex, birthdata } = req.body;
+  const pet = await petService.createPet({
+    name,
+    race,
+    sex,
+    birthdata,
+    img: "img",
+    clientId: req.user.id,
+  });
+
+  console.log(pet);
+  if (pet) return res.redirect("/my-pets");
+
+  return res.redirect("/register-my-pets");
 };
 
 module.exports = petController;

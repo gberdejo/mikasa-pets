@@ -56,14 +56,13 @@
 <div class="container">
   <h3 class="text-center text-primary">Comida de Perros</h3>
   <div class="row row-cols-1 row-cols-sm-4 g-3">
-    {{#if list_product}}
-    {{#each list_product}}
+    {{#each products}}
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-primary">{{name_product}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{description_simple_product}}</h6>
-          <p class="card-text">Stock: {{stock_product}} unidades</p>
+          <h5 class="card-title text-primary">{{name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{description_simple}}</h6>
+          <p class="card-text">Stock: {{stock}} unidades</p>
           <img
             src="https://images.ctfassets.net/sa0sroutfts9/3HCwCX7Xt73tL6kGkIWM4k/6ec70a5fc39bb1b1522072d37c63667f/GO-SOLUTIONS-Recipe-Image-Dog-Skin_Coat-Care-Salmon-With-Grains.png"
             class="img-fluid" alt="card-img-bottom">
@@ -73,7 +72,6 @@
       </div>
     </div>
     {{/each}}
-    {{/if}}
   </div>
 </div>
 <br><br>
@@ -110,4 +108,3 @@
     </div>
   </div>
 </div>
-{{>footer}}

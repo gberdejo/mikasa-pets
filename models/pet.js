@@ -1,7 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const Employee = require("./employee");
-const StoryService = require("./story.service");
 
 const Pet = sequelize.define(
   "pet",
@@ -28,13 +26,12 @@ const Pet = sequelize.define(
       type: DataTypes.DATE,
       allowNull: true,
     },
-    created: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+    img: {
+      type: DataTypes.STRING(400),
+      allowNull: false,
     },
   },
   {
-    timestamps: false,
     initialAutoIncrement: 3000,
   }
 );

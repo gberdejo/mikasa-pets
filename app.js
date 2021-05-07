@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -30,11 +31,10 @@ app.engine(
 app.set("view engine", ".hbs");
 
 //middlewares
-require("dotenv").config();
 app.use(cors());
 app.use(morgan("dev"));
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser("Es un secreto"));
 app.use(
   session({
@@ -50,23 +50,19 @@ app.use(passport.session());
 
 app.use(flash());
 app.use((req, res, next) => {
-  /*res.locals.success_msg = req.flash("success_msg");
-        res.locals.error_msg = req.flash("error_msg");*/
-
   res.locals.error = req.flash("error");
   if (typeof req.user === "undefined") {
     res.locals.user = null;
   } else {
     res.locals.user = [req.user];
   }
-  //console.log(res.locals.error);
-
   next();
 });
 
 //Routes
 app.use("/", require("./routes/auth.routes"));
 app.use("/", require("./routes/client.routes"));
+app.use("/", require("./routes/pet.routes"));
 
 //Static
 app.use(express.static("public"));

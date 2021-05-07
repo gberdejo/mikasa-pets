@@ -1,0 +1,78 @@
+<br>
+<div class="container ">
+    <div class="row row-cols-2 justify-content-center">
+        <div class="col">
+            <h1 class="text-primary text-center">Registrate</h1>
+            <br><br>
+            <form id="form">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name_pet" name="name" placeholder="Nombres">
+                            <label for="name_pet">Nombres de la mascota</label>
+                        </div>
+                        <br>
+                        <select name="race" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                            <option>Seleccione la raza de su mascota</option>
+                            <option value="Pastor Alemán">Pastor Alemán</option>
+                            <option value="Bulldog">Bulldog</option>
+                            <option value="Labrador Retriever">Labrador Retriever</option>
+                            <option value="Poodle">Poodle</option>
+                        </select>
+                        <br>
+                        <!-- Default radio -->
+                        <div class="form-check mb-2 ms-3">
+                            <input class="form-check-input" onclick="select('Hembra')" type="radio" name=""
+                                id="flexRadioDefault1" />
+                            <label class="form-check-label" for="flexRadioDefault1"> Hembra </label>
+                        </div>
+                        <!-- Default checked radio -->
+                        <div class="form-check ms-3">
+                            <input class="form-check-input" onclick="select('Macho')" type="radio" name=""
+                                id="flexRadioDefault2" checked />
+                            <label class="form-check-label" for="flexRadioDefault2"> Macho </label>
+                        </div>
+                        <br>
+                        <h6>Fecha de Nacimiento</h6>
+                        <div class="form-floating">
+                            <input type="date" class="form-control" name="birthdata" id="">
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="ms-1 form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                            <label class="form-check-label" for="formCheckChecked">Aceptas que usemos tu información
+                                para venderla a Facebook.</label>
+                        </div>
+                        <br><br>
+                        <center><button id="send" class="btn btn-lg  btn-outline-primary">Completed</button>
+                        </center>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<br>
+<script>
+
+    (function () {
+        alert("Hola");
+
+
+    })();
+    /*function displayRadioValue() {
+            var ele = document.querySelectorAll;
+
+            for (i = 0; i < ele.length; i++) {
+                if (ele[i].checked)
+                    document.getElementById("result").innerHTML
+                        = "Gender: " + ele[i].value;
+            }
+        }*/
+
+
+</script>

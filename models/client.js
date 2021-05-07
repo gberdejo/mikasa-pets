@@ -47,13 +47,8 @@ const Client = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    created: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
-    timestamps: false,
     initialAutoIncrement: 1000,
   }
 );

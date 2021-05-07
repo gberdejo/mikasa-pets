@@ -5,7 +5,10 @@ const productService = require("../services/product.service");
 
 const authController = {};
 
-authController.renderHome = (req, res) => res.render("home");
+authController.renderHome = async (req, res) => {
+  const products = await productService.getlistProduct();
+  res.render("home", { products });
+};
 authController.renderLogin = (req, res) => res.render("login");
 authController.login = passport.authenticate("local", {
   successRedirect: "/",

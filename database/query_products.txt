@@ -1,3 +1,4 @@
+----Inserta product
 insert into products(name,precio,stock,
 description_simple,description_html,img1,
 img2,img3,created,employeeId)values
@@ -10,3 +11,7 @@ insert into employees(name,lastname,
 phone,email,password,
 role) values("Pedro","Castillo",936865356,
 "pedro@mikasa.pet","123","VENDEDOR");
+
+-----Inser pet
+insert into pets(name,race,sex,birthdata,clientId)
+values("toby","Bully","Macho","2020-02-20",1000);

@@ -7,7 +7,7 @@ petService.createPet = async (obj) => {
     const pet = await Pet.build(obj);
     if (pet instanceof Pet) {
       await pet.save();
-      return pet;
+      return pet.dataValues;
     }
     return null;
   } catch (error) {
@@ -31,7 +31,7 @@ petService.listPet = async () => {
     return null;
   }
 };
-petService.listPetClient = async (id) => {
+petService.getListPetbyClient = async (id) => {
   let list = [];
   try {
     const raw = await Pet.findAll({
@@ -45,10 +45,10 @@ petService.listPetClient = async (id) => {
       });
       return list;
     }
-    return null;
+    return list;
   } catch (error) {
     console.log(error);
-    return null;
+    return list;
   }
 };
 module.exports = petService;

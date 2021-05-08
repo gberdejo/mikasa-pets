@@ -1,43 +1,42 @@
 const Product = require("../models/product");
-const { response } = require("express");
-const helper = require("../helpers");
-const productController = {
-  createProduct: async (req, res = response) => {
-    try {
-      const {
-        name_product,
-        precio_product,
-        stock_product,
-        description_simple_product,
-        description_hmtl_product,
-        img1_product,
-        img2_product,
-        img3_product,
-        employeeId,
-      } = req.body;
-      console.log(req.body);
-      const product = Product.build({
-        name_product,
-        precio_product,
-        stock_product,
-        description_simple_product,
-        description_hmtl_product,
-        img1_product,
-        img2_product,
-        img3_product,
-        employeeId,
-      });
-      console.log(product);
-      await product.save();
+const productService = require("../services/product.service");
+const productController = {};
 
-      const list_product = await helper.listProduct();
-      return res.render("admin/list_product", {
-        list_product,
-      });
-    } catch (error) {
-      console.log(error);
-      return res.render("admin/list_product");
-    }
-  },
+productController.getListProduct = (req, res) => {
+  res.send("");
 };
+productController.renderListProduct = async (req, res) => {
+  const products = await productService.getlistProduct();
+  res.render("product_list", { products });
+};
+productController.renderCreateProduct = async (req, res) => {
+  res.render("product_register");
+};
+productController.createProduct = async (req, res) => {
+  const {
+    name,
+    precio,
+    stock,
+    description_simple,
+    description_html,
+    img1,
+    img2,
+    img3,
+  } = req.body;
+  const obj = {
+    name,
+    precio,
+    stock,
+    description_simple,
+    description_html,
+    img1,
+    img2,
+    img3,
+  };
+  const product = await productService.createProduct(obj);
+  if (!product) return res.redirect("/create-product");
+  req.flash("success", "Se a guardado satisfactoriamente");
+  res.redirect("/create-product");
+};
+
 module.exports = productController;

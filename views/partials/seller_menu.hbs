@@ -1,0 +1,39 @@
+{{#if seller}}
+<li class="nav-item me-3 me-lg-1">
+    <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+        <img src="https://mdbootstrap.com/img/new/avatars/3.jpg" class="rounded-circle" height="22" alt=""
+            loading="lazy" />
+        {{#each user}}
+        <strong class="d-none d-sm-block ms-1">Vendedor {{name}}</strong>
+        {{/each}}
+    </a>
+</li>
+
+
+<li class="nav-item dropdown me-3 me-lg-1">
+    <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+        data-mdb-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-store fa-lg"></i> Productos
+
+        <!--<span class="badge rounded-pill badge-notification bg-danger">6</span>-->
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item" href="/list-products">Lista de Productos</a></li>
+        <li><a class="dropdown-item" href="#">Agregar Productos</a></li>
+
+    </ul>
+</li>
+<li class="nav-item dropdown me-3 me-lg-1">
+    <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
+        data-mdb-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-chevron-circle-down fa-lg"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item" href="#">Perfil</a></li>
+        <li><a class="dropdown-item" href="#">Another news</a></li>
+        <li>
+            <a class="dropdown-item" href="/exit">Cerrar Sesión</a>
+        </li>
+    </ul>
+</li>
+{{/if}}

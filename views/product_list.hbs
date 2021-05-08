@@ -1,0 +1,27 @@
+<div class="container">
+  <br>
+  <h2>Lista de Productos</h2>
+  <a href="/create-product" class="btn btn-success">Agregar Producto</a>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock del Producto</th>
+        <th scope="col">Descripcion del Producto</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+      <tr class="table-active">
+        <th scope="row">{{id}}</th>
+        <td>{{name}}</td>
+        <td>{{precio}}</td>
+        <td>{{stock}}</td>
+        <td>{{description_simple}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

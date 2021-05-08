@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-//const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 
 const productService = {};
 
@@ -16,10 +16,10 @@ productService.createProduct = async (obj) => {
     return null;
   }
 };
-productService.getlistProduct = async () => {
+productService.getlistProduct = async (order = "ASC") => {
   let list = [];
   try {
-    const raw = await Product.findAll();
+    const raw = await Product.findAll({ order });
     if (raw.length >= 0) {
       raw.map((products) => {
         list.push(products.dataValues);

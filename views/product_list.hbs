@@ -1,27 +1,45 @@
 <div class="container">
   <br>
-  <h2>Lista de Productos</h2>
-  <a href="/create-product" class="btn btn-success">Agregar Producto</a>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Producto</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Stock del Producto</th>
-        <th scope="col">Descripcion del Producto</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each products}}
-      <tr class="table-active">
-        <th scope="row">{{id}}</th>
-        <td>{{name}}</td>
-        <td>{{precio}}</td>
-        <td>{{stock}}</td>
-        <td>{{description_simple}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+  <div class="d-flex justify-content-between bd-highlight mb-2">
+    <h2>Lista de Productos</h2>
+    <div>
+      <a href="/create-product" class="btn btn-success ">Agregar Producto</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table align-middle table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock del Producto</th>
+          <th scope="col">Descripcion del Producto</th>
+          <th scope="col">Descripcion completa</th>
+          <th scope="col">Acciones</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <th scope="row">{{id}}</th>
+          <td>{{name}}</td>
+          <td>{{precio}}</td>
+          <td>{{stock}}</td>
+          <td>{{description_simple}}</td>
+          <td>
+            <p class="" style="width: 160px;">{{description_html}}</p>
+          </td>
+          <td><a href="/update-product/{{id}}" class="btn btn-info btn-sm">Actualizar</a></td>
+          <td>
+            <form action="/delete-product/{{id}}" method="POST"><button class="btn btn-danger btn-sm"
+                type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>

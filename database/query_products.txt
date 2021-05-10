@@ -1,10 +1,13 @@
 ----Inserta product
-insert into products(name,precio,stock,
-description_simple,description_html,img1,
-img2,img3,created,employeeId)values
-("Cambo",84.99,41,"es comida de calidad A1",
-"best","n","n","n","2020-02-20",2002);
-
+insert into products(
+name,precio,stock,description_simple,description_html,img1,img2,img3,employeeId)values
+("Cambo",84.99,41,"es comida de calidad A1","best","n","n","n",2000);
+insert into products(
+name,precio,stock,description_simple,description_html,img1,img2,img3,employeeId)values
+("Mi Maskot",84.99,41,"es comida de calidad A1","best","n","n","n",2000);
+insert into products(
+name,precio,stock,description_simple,description_html,img1,img2,img3,employeeId)values
+("Super Can",84.99,41,"es comida de calidad A1","best","n","n","n",2000);
 
 ----Inserta employee
 insert into employees(name,lastname,

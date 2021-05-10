@@ -7,53 +7,59 @@ const Product = require("./product");
 const StoryService = require("./story.service");
 const Ticket = require("./ticket");
 const Client = sequelize.define(
-    "client", {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true,
-        },
-        name: {
-            type: DataTypes.STRING(50),
-            allowNull: false,
-        },
-        lastname: {
-            type: DataTypes.STRING(50),
-            allowNull: false,
-        },
-        birthdata: {
-            type: DataTypes.DATEONLY,
-            allowNull: false,
-        },
-        direction: {
-            type: DataTypes.STRING(100),
-            allowNull: false,
-        },
-        nick: {
-            type: DataTypes.STRING(10),
-            allowNull: false,
-        },
-        phone: {
-            type: DataTypes.INTEGER(9),
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING(30),
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        date: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
-        }
-    }, {
-        timestamps: false,
-        initialAutoIncrement: 1000,
-    }
+  "client",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    lastname: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    birthdata: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    direction: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    nick: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
+    },
+    phone: {
+      type: DataTypes.INTEGER(9),
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    role: {
+      type: DataTypes.STRING(15),
+      defaultValue: "CLIENTE",
+    },
+  },
+  {
+    timestamps: false,
+    initialAutoIncrement: 1000,
+  }
 );
 //CLIENT <----< PET
 Client.hasMany(Pet), Pet.belongsTo(Client);
@@ -68,14 +74,14 @@ Product.belongsTo(Employee);
 // TICKET <----< DETAILTICKET >----> PRODUCT
 Ticket.belongsToMany(Product, { through: DetailTicket, uniqueKey: false });
 
-(async() => {
-    await sequelize
-        .sync({ force: false })
-        .then(() => console.log("--->>> Tablas Sincronizadas"))
-        .catch((err) => {
-            console.log("--->>> Tablas NO! Sincronizadas");
-            console.log(err);
-        });
+(async () => {
+  await sequelize
+    .sync({ force: false })
+    .then(() => console.log("--->>> Tablas Sincronizadas"))
+    .catch((err) => {
+      console.log("--->>> Tablas NO! Sincronizadas");
+      console.log(err);
+    });
 })();
 
 module.exports = Client;

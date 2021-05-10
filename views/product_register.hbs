@@ -1,0 +1,79 @@
+<!-- Aqui el form de los productos --->
+<br>
+<div class="container ">
+    <div class="row row-cols-2 justify-content-center">
+        <div class="col">
+            <h1 class="text-primary text-center">Registro de Productos</h1>
+
+            <form action="/products" method="POST">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-outline">
+                            <input type="text" id="typeText" class="form-control" name="name" />
+                            <label class="form-label" for="typeText">Nombre del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-outline">
+                            <input type="number" id="typeNumber" class="form-control" name="precio" />
+                            <label class="form-label" for="typeNumber">Precio del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-outline">
+                            <input type="number" id="typeNumber" class="form-control" name="stock" />
+                            <label class="form-label" for="typeNumber">Stock del Producto</label>
+                        </div>
+                        <br>
+                        <div class="form-outline">
+                            <input type="text" id="typeText" class="form-control" name="description_simple" />
+                            <label class="form-label" for="typeText">Descripción del Producto</label>
+                        </div>
+
+
+                        <br>
+                        <div class="form-outline">
+                            <textarea class="form-control" id="textAreaExample" rows="4"
+                                name="description_html"></textarea>
+                            <label class="form-label" for="textAreaExample">Descripción</label>
+                        </div><br>
+                        <div class="ms-1 form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                            <label class="form-check-label" for="formCheckChecked">Aceptas que usemos tu información
+                                para venderla a Facebook.</label>
+                        </div>
+                        <br><br>
+                        <center><button type="submit" class="btn btn-lg  btn-outline-primary">Completed</button>
+                        </center>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<script>
+    /*   var form = Document.getElementByID('form');
+   fetch.(uri:'http://localhost:3001/products',
+       method:'POST',
+       body: JSON.stringify({
+           name_product:name_product,
+           precio_product:precio_product,
+           stock_product:stock_product,
+           description_simple_product: description_simple_product,
+           description_html_product:description_html_product,
+           img1_product:img1_product,
+           img2_product:img2_product,
+           img3_product:img3_product
+       }),
+       headers:{
+           "Content-type": "application/json"
+       },
+       (err)=>{
+           console.log(err);
+       },
+       (data)=>{
+           console.log(data);
+       })
+   */
+</script>
+{{>footer}}

@@ -41,6 +41,10 @@ const Product = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        status:{
+            type : DataTypes.INTEGER(1),
+            defaultValue: 1
+        },
         date: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW

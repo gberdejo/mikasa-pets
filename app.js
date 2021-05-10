@@ -51,10 +51,23 @@ app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+
   if (typeof req.user === "undefined") {
     res.locals.user = null;
   } else {
     res.locals.user = [req.user];
+
+    res.locals.client = req.user.role === "CLIENTE" ? "CLIENT" : null;
+    res.locals.seller = req.user.role === "VENDEDOR" ? "VENDEDOR" : null;
+    res.locals.veterinary =
+      req.user.role === "VETERINARIO" ? "VETERINARIO" : null;
+
+    console.log("========");
+    console.log(res.locals.client);
+    console.log(res.locals.seller);
+    console.log(res.locals.veterinary);
+    console.log("========");
   }
   next();
 });
@@ -63,6 +76,7 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/auth.routes"));
 app.use("/", require("./routes/client.routes"));
 app.use("/", require("./routes/pet.routes"));
+app.use("/", require("./routes/product.routes"));
 
 //Static
 app.use(express.static("public"));

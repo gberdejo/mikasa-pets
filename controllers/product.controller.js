@@ -1,10 +1,6 @@
-const Product = require("../models/product");
 const productService = require("../services/product.service");
 const productController = {};
 
-productController.getListProduct = (req, res) => {
-  res.send("");
-};
 productController.renderListProduct = async (req, res) => {
   const products = await productService.getlistProduct();
   res.render("product_list", { products });

@@ -1,0 +1,46 @@
+<br>
+<div class="container-fluid">
+    <div class="d-flex justify-content-between bd-highlight mb-2">
+        <h2>Lista de servicios para mascotas</h2>
+        <div>
+            <a class="btn btn-outline-success" href="/create-vet">Agregar Servicio</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Veterinario</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descripcion del Producto</th>
+                    <th scope="col">Descripcion completa</th>
+                    <th scope="col">Acciones</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each vets}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <th>{{employeeId}}</th>
+                    <td>{{name}}</td>
+                    <td>{{precio}}</td>
+                    <td>{{description_simple}}</td>
+                    <td>
+                        <p class="" style="width: 160px;">{{description_html}}</p>
+                    </td>
+                    <td><a href="#" class="btn btn-info btn-sm">Actualizar</a></td>
+                    <td>
+                        <form action="#" method="POST"><button class="btn btn-danger btn-sm"
+                                type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br><br><br><br>

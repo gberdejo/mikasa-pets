@@ -19,31 +19,35 @@ const Product = sequelize.define(
         },
         stock: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            defaultValue: 0
         },
         description_simple: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: "Descripción simple"
         },
         description_html: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: "Descripción compleja"
         },
         img1: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: "img"
         },
         img2: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: "img"
         },
         img3: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: "img"
         },
         status:{
             type : DataTypes.INTEGER(1),
             defaultValue: 1
+        },
+        category:{
+            type: DataTypes.STRING(15),
+            allowNull: false
         },
         date: {
             type: DataTypes.DATE,

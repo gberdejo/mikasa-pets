@@ -2,7 +2,7 @@ const Product = require("../models/product");
 const { Op } = require("sequelize");
 const productService = {};
 
-productService.createProduct = async (obj) => {
+productService.createProductandVet = async (obj) => {
   try {
     const product = await Product.build(obj);
     if (product instanceof Product) {
@@ -21,6 +21,9 @@ productService.getProduct = async (id) => {
       where:{
         id:{
           [Op.eq] : id
+        },
+        category:{
+          [Op.eq]: "PRODUCT"
         }
       }
     });
@@ -38,6 +41,34 @@ productService.getlistProduct = async ()=> {
       where:{
         status:{
           [Op.eq]:1
+        },
+        category:{
+          [Op.eq]: "PRODUCT"
+        }
+      }
+    });
+    if (raw.length >= 0) {
+      raw.map((products) => {
+        list.push(products.dataValues);
+      });
+      return list;
+    }
+    return list;
+  } catch (error) {
+    console.log(error);
+    return list;
+  }
+};
+productService.getlistVet = async ()=> {
+  let list = [];
+  try {
+    const raw = await Product.findAll({
+      where:{
+        status:{
+          [Op.eq]:1
+        },
+        category:{
+          [Op.eq]: "VET"
         }
       }
     });
@@ -78,9 +109,6 @@ productService.updateProduct = async (obj)=> {
       stock : obj.stock,
       description_simple : obj.description_simple,
       description_html : obj.description_html,
-      img1 : obj.img1,
-      img2 : obj.img2,
-      img3 : obj.img3,
     },{
       where :{
         id :{

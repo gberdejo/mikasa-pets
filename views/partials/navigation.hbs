@@ -27,13 +27,13 @@
             </li>
 
             <li class="nav-item me-3 me-lg-1">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/product">
                     <span><i class="fas fa-shopping-basket fa-lg"></i></span> Productos
                 </a>
             </li>
 
             <li class="nav-item me-3 me-lg-1">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/vet">
                     <span><i class="fas fa-hospital-user fa-lg"></i></span> Servicios
                 </a>
             </li>
@@ -44,6 +44,7 @@
         <ul class="navbar-nav flex-row">
             {{>client_menu}}
             {{>seller_menu}}
+            {{>veterinary_menu}}
             {{#if user}}
             {{else}}
             <li class="nav-item me-3 me-lg-1">

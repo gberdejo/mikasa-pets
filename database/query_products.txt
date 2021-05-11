@@ -1,19 +1,30 @@
 ----Inserta product
 insert into products(
-name,precio,stock,description_simple,description_html,img1,img2,img3,employeeId)values
-("Cambo",84.99,41,"es comida de calidad A1","best","n","n","n",2000);
+name,precio,stock,description_simple,description_html,img1,img2,img3,category,employeeId)values
+("Cambo",84.99,41,"es comida de calidad A1","best","n","n","n","PRODUCT",2000);
 insert into products(
-name,precio,stock,description_simple,description_html,img1,img2,img3,employeeId)values
-("Mi Maskot",84.99,41,"es comida de calidad A1","best","n","n","n",2000);
+name,precio,stock,description_simple,description_html,img1,img2,img3,category,employeeId)values
+("Mi Maskot",84.99,41,"es comida de calidad A1","best","n","n","n","PRODUCT",2000);
 insert into products(
-name,precio,stock,description_simple,description_html,img1,img2,img3,employeeId)values
-("Super Can",84.99,41,"es comida de calidad A1","best","n","n","n",2000);
+name,precio,stock,description_simple,description_html,img1,img2,img3,category,employeeId)values
+("Super Can",84.99,41,"es comida de calidad A1","best","n","n","n","PRODUCT",2000);
+
+-----inser product vet
+insert into products(
+name,precio,description_simple,description_html,category,employeeId)
+values("Baño agua caliente",50.0,"bañado de perro","bañado completo con agua caliente","VET",2001);
 
 ----Inserta employee
 insert into employees(name,lastname,
 phone,email,password,
 role) values("Pedro","Castillo",936865356,
 "pedro@mikasa.pet","123","VENDEDOR");
+-------
+insert into employees(name,lastname,
+phone,email,password,
+role) values("Adriana","Berdejo",936865356,
+"adri@mikasa.pet","123","VETERINARIO");
+
 
 -----Inser pet
 insert into pets(name,race,sex,birthdata,clientId)

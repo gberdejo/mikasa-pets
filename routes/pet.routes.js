@@ -1,14 +1,9 @@
 const { Router } = require("express");
 const router = Router();
 const petController = require("../controllers/pet.controller");
-const helper = require("../helpers/index");
-
-router.get("/my-pets", [helper.isAuthenticated], petController.renderMyPets);
-router.get(
-  "/register-my-pets",
-  [helper.isAuthenticated],
-  petController.renderRegisterPet
-);
-router.post("/pets", petController.createPet);
+const { isAuthenticated } = require('../helpers');
+router.get("/my-pets", [isAuthenticated], petController.renderMyPets);
+router.get("/register-my-pets", [isAuthenticated], petController.renderRegisterPet);
+router.post("/pets", [isAuthenticated], petController.createPet);
 
 module.exports = router;

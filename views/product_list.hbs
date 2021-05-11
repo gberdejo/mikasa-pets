@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <br>
   <div class="d-flex justify-content-between bd-highlight mb-2">
     <h2>Lista de Productos</h2>
@@ -10,7 +10,8 @@
     <table class="table align-middle table-hover">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Vendedor</th>
           <th scope="col">Producto</th>
           <th scope="col">Precio</th>
           <th scope="col">Stock del Producto</th>
@@ -24,6 +25,7 @@
         {{#each products}}
         <tr>
           <th scope="row">{{id}}</th>
+          <th>{{employeeId}}</th>
           <td>{{name}}</td>
           <td>{{precio}}</td>
           <td>{{stock}}</td>

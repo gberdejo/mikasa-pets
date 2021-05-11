@@ -55,9 +55,12 @@
         <div>
           <p>
             Copyright 2020 Todos los derechos reservados
+            {{#if user}}
+            {{else}}
             <a href="/signup-admin" style="text-decoration: none;">
               <strong class="text-info"> Devealopers more one</strong>
             </a>
+            {{/if}}
           </p>
         </div>
       </div>

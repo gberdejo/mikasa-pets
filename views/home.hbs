@@ -67,7 +67,11 @@
             src="https://images.ctfassets.net/sa0sroutfts9/3HCwCX7Xt73tL6kGkIWM4k/6ec70a5fc39bb1b1522072d37c63667f/GO-SOLUTIONS-Recipe-Image-Dog-Skin_Coat-Care-Salmon-With-Grains.png"
             class="img-fluid" alt="card-img-bottom">
           <a class="text-muted card-link">price: 152.99</a>
+          {{#if client}}
           <a href="#" class="btn btn-success card-link">Add</a>
+          {{else}}
+          <a class="btn btn-success card-link">Add</a>
+          {{/if}}
         </div>
       </div>
     </div>

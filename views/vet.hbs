@@ -1,0 +1,22 @@
+<br>
+<div class="container">
+    <h2>Encuentra los servios para atenter a tu mascota</h2>
+    <br><br>
+    <div class="row row-cols-2">
+        {{#each vets}}
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">{{description_simple}}</div>
+                <img
+                    src="https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias-1080x675.jpg">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">{{description_html}}</p>
+                    <a class="btn btn-primary">Programar cita</a>
+                </div>
+                <div class="card-footer text-muted">2 days ago</div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div><br><br><br><br>

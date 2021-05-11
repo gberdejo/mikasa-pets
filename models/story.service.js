@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
 const StoryService = sequelize.define("storyservice", {
-    attentio: {
+    attention: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
     },

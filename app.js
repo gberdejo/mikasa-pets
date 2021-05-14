@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -10,11 +9,11 @@ const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const options = {
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "mysql",
-  database: "sessionstore",
+  host: process.env.SESSION_DB_HOST,
+  port: process.env.SESSION_DB_PORT,
+  user: process.env.SESSION_DB_USER,
+  password: process.env.SESSION_DB_PASS,
+  database: process.env.SESSION_DB_SESSION_NAME,
 };
 require("./configs/passport");
 

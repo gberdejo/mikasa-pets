@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const morgan = require("morgan");
+//const morgan = require("morgan");
 const express_handlebars = require("express-handlebars");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
@@ -31,7 +31,7 @@ app.set("view engine", ".hbs");
 
 //middlewares
 app.use(cors());
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser("Es un secreto"));

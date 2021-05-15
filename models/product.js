@@ -31,15 +31,15 @@ const Product = sequelize.define(
         },
         img1: {
             type: DataTypes.STRING,
-            defaultValue: "img"
+            defaultValue: "/img/product.png"
         },
         img2: {
             type: DataTypes.STRING,
-            defaultValue: "img"
+            defaultValue: "/img/product.png"
         },
         img3: {
             type: DataTypes.STRING,
-            defaultValue: "img"
+            defaultValue: "/img/product.png"
         },
         status:{
             type : DataTypes.INTEGER(1),
@@ -47,7 +47,9 @@ const Product = sequelize.define(
         },
         category:{
             type: DataTypes.STRING(15),
-            allowNull: false
+            validate:{
+                isIn:[['PRODUCT','VET']]
+            }
         },
         date: {
             type: DataTypes.DATE,

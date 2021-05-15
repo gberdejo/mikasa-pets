@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
 const DetailTicket = sequelize.define("detailticket", {
-    amount: {
+    quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
@@ -18,6 +18,10 @@ const DetailTicket = sequelize.define("detailticket", {
         type: DataTypes.DOUBLE,
         allowNull: false,
     },
+    date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    }
 }, {
     timestamps: false,
 });

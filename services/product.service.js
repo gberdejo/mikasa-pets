@@ -44,6 +44,9 @@ productService.getlistProduct = async ()=> {
         },
         category:{
           [Op.eq]: "PRODUCT"
+        },
+        stock:{
+          [Op.gt]: 0,       
         }
       }
     });

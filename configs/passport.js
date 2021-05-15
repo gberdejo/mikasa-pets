@@ -13,8 +13,6 @@ passport.use(
       if (username.split("@")[1] === "mikasa.pet") {
         let user = await employeeService.getEmployeebyEmail(username);
         if (!user) return done(null, null, { message: "El empleado no exite" });
-
-        console.log(user);
         done(null, user);
       } else {
         const user = await clientService.getClientbyEmail(username);

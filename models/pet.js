@@ -23,7 +23,9 @@ const Pet = sequelize.define(
         },
         sex: {
             type: DataTypes.STRING(20),
-            enum: ["MACHO", "HEMBRA"],
+            validate:{
+                isIn:[['MACHO','HEMBRA']]
+            }
         },
         birthdata: {
             type: DataTypes.DATEONLY,

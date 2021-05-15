@@ -38,6 +38,7 @@ const Client = sequelize.define(
     phone: {
       type: DataTypes.INTEGER(9),
       allowNull: false,
+      unique:true
     },
     email: {
       type: DataTypes.STRING(30),

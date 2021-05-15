@@ -1,5 +1,8 @@
 const { request } = require('express');
+const Product = require('../models/product');
+const detailTicketService = require('../services/detailticket.service');
 const productService = require("../services/product.service");
+const ticketService = require('../services/ticket.service');
 const productController = {};
 
 productController.renderProduct = async (req,res)=>{
@@ -77,4 +80,28 @@ productController.createVet = async(req, res) => {
     req.flash("success", `El producto con codigo ${product.id} y nombre "${product.name}" se a creado con exito!`);
     res.redirect("/create-vet");
 };
+
+productController.addProducttoCart = async (req,res)=>{
+    console.log(req.body);
+    const {productId,quantity,price,subtotal} = req.body;
+    let ticket =  await ticketService.getLastTicketbyStatus();
+    if(!ticket){
+        ticket = ticketService.createTicket({status:'PENDIENTE',clientID:req.user.id});
+    }
+    let detail = await detailTicketService.getDetailTicketbyProductId(ticket.id,productId);
+    if(!detail){
+        detail = await detailTicketService.createDetailTikect
+        ({quantity,price,subtotal,ticketId:ticket.id,productId});
+    }else{
+        detail = await detailTicketService
+                .updateDetailTicket({
+                    ticketId:ticket.id,
+                    productId,
+                    quantity: Number(detail.quantity) + Number(quantity),
+                    subtotal: parseFloat(detail.subtotal) + parseFloat( subtotal)
+                });
+    } 
+    if(!detail) return res.status(400).json({msg:'Hubo un proble con los datos enviados'})
+    res.status(200).json({msg:"200 ok",quantity:detail.quantity});
+}
 module.exports = productController;

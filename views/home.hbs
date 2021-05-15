@@ -66,14 +66,13 @@
           <img
             src="https://images.ctfassets.net/sa0sroutfts9/3HCwCX7Xt73tL6kGkIWM4k/6ec70a5fc39bb1b1522072d37c63667f/GO-SOLUTIONS-Recipe-Image-Dog-Skin_Coat-Care-Salmon-With-Grains.png"
             class="img-fluid" alt="card-img-bottom">
-          <a class="text-muted card-link">price: 152.99</a>
-          {{#if client}}
+          <a class="text-muted card-link">price: {{precio}}</a>
+          <button class="card-link btn btn-success" onclick="addtoCart('{{id}}','{{precio}}')">add</button>
+          <!--
           <form id="form">
-            <a class="btn btn-success card-link">Add</a>
-          </form>
-          {{else}}
-          <a class="btn btn-success card-link">Add</a>
-          {{/if}}
+            <input type="hidden" name="id" value="gabriel">
+            <button type="submit">agragar</button>
+          </form>-->
         </div>
       </div>
     </div>

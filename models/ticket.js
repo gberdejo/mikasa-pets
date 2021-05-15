@@ -11,11 +11,13 @@ const Ticket = sequelize.define(
         },
         status: {
             type: DataTypes.STRING,
-            enum: ["PENDIENTE", "FINALIZADO"],
+            validate:{
+                isIn:[['PENDIENTE','PAGADO']]
+            }
         },
         total: {
             type: DataTypes.DOUBLE,
-            allowNull: false,
+            defaultValue: 0.0
         },
         date: {
             type: DataTypes.DATE,

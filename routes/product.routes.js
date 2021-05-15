@@ -17,8 +17,5 @@ router.post("/update-product/:id", [isAuthenticated], productController.updatePr
 router.get('/list-vet',[isAuthenticated],productController.renderLisVet);
 router.get('/create-vet',[isAuthenticated],productController.renderCreateVet);
 router.post('/create-vet',[isAuthenticated],productController.createVet);
-router.post('/add-product',(req,res)=>{
-    const {id} = req.body;
-    res.json({msg:"200 ok",id});
-})
+router.post('/add-product',productController.addProducttoCart)
 module.exports = router;

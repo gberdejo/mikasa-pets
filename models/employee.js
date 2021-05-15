@@ -25,6 +25,7 @@ const Employee = sequelize.define(
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique:true
     },
     password: {
       type: DataTypes.STRING,
@@ -32,7 +33,9 @@ const Employee = sequelize.define(
     },
     role: {
       type: DataTypes.STRING(20),
-      allowNull: false,
+      validate:{
+        isIn:[['VENDEDOR','VETERINARIO']]
+      }
     },
     date: {
       type: DataTypes.DATE,

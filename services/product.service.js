@@ -1,10 +1,17 @@
 const Product = require("../models/product");
 const { Op } = require("sequelize");
+const {uploadFile} = require('../configs/s3');
+
 const productService = {};
 
 productService.createProductandVet = async (obj) => {
   try {
+    const s3img = await uploadFile(obj.img);
+    console.log(s3img);
     const product = await Product.build(obj);
+    product.img_key = s3img.key;
+    product.img_location = s3img.Location;
+    console.log(product);
     if (product instanceof Product) {
       await product.save();
       return product;

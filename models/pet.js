@@ -31,9 +31,13 @@ const Pet = sequelize.define(
             type: DataTypes.DATEONLY,
             allowNull: false,
         },
-        img: {
-            type: DataTypes.STRING(400),
-            allowNull: false,
+        img_key: {
+            type: DataTypes.STRING(250),
+            defaultValue : ''
+        },
+        img_location:{
+            type : DataTypes.STRING(250),
+            defaultValue : 'https://www.segurossura.com.uy/wp-content/uploads/2018/12/mascotas-sura.jpg'
         },
         Date: {
             type: DataTypes.DATE,

@@ -8,12 +8,13 @@ const MySQLStore = require("express-mysql-session")(session);
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+//config passport-MySql
 const options = {
-  host: process.env.SESSION_DB_HOST,
-  port: process.env.SESSION_DB_PORT,
-  user: process.env.SESSION_DB_USER,
-  password: process.env.SESSION_DB_PASS,
-  database: process.env.SESSION_DB_SESSION_NAME,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_SESSION_NAME,
 };
 require("./configs/passport");
 

@@ -29,17 +29,13 @@ const Product = sequelize.define(
             type: DataTypes.STRING,
             defaultValue: "Descripción compleja"
         },
-        img1: {
-            type: DataTypes.STRING,
-            defaultValue: "/img/product.png"
+        img_key: {
+            type: DataTypes.STRING(250),
+            defaultValue: ""
         },
-        img2: {
-            type: DataTypes.STRING,
-            defaultValue: "/img/product.png"
-        },
-        img3: {
-            type: DataTypes.STRING,
-            defaultValue: "/img/product.png"
+        img_location: {
+            type: DataTypes.STRING(250),
+            defaultValue: "https://dojiw2m9tvv09.cloudfront.net/32548/product/canbo-cachorros-razas-pequenas7560.png"
         },
         status:{
             type : DataTypes.INTEGER(1),

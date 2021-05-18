@@ -5,7 +5,7 @@
         <div class="col">
             <h1 class="text-primary text-center">Registro de Productos</h1>
 
-            <form action="/create-product" method="POST">
+            <form action="/create-product" method="POST" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-outline">
@@ -26,9 +26,9 @@
                         <div class="form-outline">
                             <input type="text" id="typeText" class="form-control" name="description_simple" />
                             <label class="form-label" for="typeText">Descripción del Producto</label>
-                        </div>
-
-
+                        </div><br>
+                        <label class="form-label" for="customFile">Seleccione la primera imagen</label>
+                        <input type="file" class="form-control" id="customFile" name="img1" />
                         <br>
                         <div class="form-outline">
                             <textarea class="form-control" id="textAreaExample" rows="4"

@@ -15,9 +15,10 @@ router.get('/image',(req,res)=>res.render('upload'));
 router.post('/image',upload.single('avatar'), async (req,res)=>{
     try {
         const file = req.file;
-        const fileout =path.join(__dirname,'../','uploads/images',file.originalname);
         console.log(file);
-        await sharp(file.path)
+        const fileImg = fs.createReadStream(file.path);
+        fileImg.pipe(res);
+        const fileimg = await sharp(file.path)
             .resize({
                 width: 300,
                 height:438
@@ -27,15 +28,9 @@ router.post('/image',upload.single('avatar'), async (req,res)=>{
                 saturation: 1
             })
             .png()
-            .toFile(fileout);
-        
-        const imgFile = fs.createReadStream(fileout);
-        imgFile.pipe(res);
-        const datas3 = await uploadFile2(imgFile,file.originalname);
+            .toBuffer();
+        const datas3 = await uploadFile2(fileimg,file.originalname);
         console.log(datas3);
-        fs.unlinkSync(file.path);
-        fs.unlinkSync(fileout);
-     
     } catch (error) {
         console.log(error);
         res.status(400).json({msg:'algo se malogro'});

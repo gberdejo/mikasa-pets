@@ -17,6 +17,7 @@
           <th scope="col">Stock del Producto</th>
           <th scope="col">Descripcion del Producto</th>
           <th scope="col">Descripcion completa</th>
+          <th scope="col">Imagen</th>
           <th scope="col">Acciones</th>
           <th scope="col">Acciones</th>
         </tr>
@@ -31,8 +32,9 @@
           <td>{{stock}}</td>
           <td>{{description_simple}}</td>
           <td>
-            <p class="" style="width: 160px;">{{description_html}}</p>
+            <p style="width: 160px;">{{description_html}}</p>
           </td>
+          <td><img style="width: 100px;" src="{{img_location}}" alt="No se cargo"></td>
           <td><a href="/update-product/{{id}}" class="btn btn-info btn-sm">Actualizar</a></td>
           <td>
             <form action="/delete-product/{{id}}" method="POST"><button class="btn btn-danger btn-sm"

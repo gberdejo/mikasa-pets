@@ -4,7 +4,7 @@
         <div class="col">
             <h1 class="text-primary text-center">Registrate</h1>
             <br><br>
-            <form  method="POST" action="/pets" >
+            <form method="POST" action="/pets">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-floating">
@@ -25,8 +25,12 @@
                             <option>Seleccione el genero de su mascota</option>
                             <option value="Macho">Macho</option>
                             <option value="Hembra">Hembra</option>
-                            
+
                         </select>
+                        <br>
+                        <label class="form-label" for="customFile">Seleccione la primera imagen</label>
+                        <input type="file" class="form-control" id="customFile" name="avatar" />
+                        <br>
                         <br>
                         <h6>Fecha de Nacimiento</h6>
                         <div class="form-floating">
@@ -88,7 +92,7 @@
             })
             .catch((err)=>console.log(err));
 
-        
+
         });
 
 

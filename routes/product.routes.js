@@ -1,16 +1,17 @@
 const { Router } = require("express");
 const upload = require('../configs/multer');
 const router = Router();
+const { isAuthenticated } = require('../helpers');
+
 const productController = require("../controllers/product.controller");
 
-const { isAuthenticated } = require('../helpers');
 
 router.get('/product',productController.renderProduct);
 router.get('/vet',productController.renderVet);
 
 router.get("/list-product", [isAuthenticated], productController.renderListProduct);
 router.get("/create-product", [isAuthenticated], productController.renderCreateProduct);
-router.post("/create-product", [isAuthenticated,upload.single('img1')], productController.createProduct);
+router.post("/create-product", [isAuthenticated],upload.single('avatar'), productController.createProduct);
 router.post("/delete-product/:id", [isAuthenticated], productController.deleteProduct);
 router.get("/update-product/:id", [isAuthenticated], productController.renderUpdateProduct);
 router.post("/update-product/:id", [isAuthenticated], productController.updateProduct);

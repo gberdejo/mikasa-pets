@@ -11,15 +11,11 @@ petController.renderRegisterPet = (req, res) => res.render("pet_register");
 petController.createPet = async(req, res) => {
     console.log(req.body);
     const { name, race, sex, birthdata } = req.body;
-    const pet = await petService.createPet({
-        name,
-        race,
-        sex,
-        birthdata,
-        img: "img",
-        type: "perro",
+    
+    const pet = await petService.createPet(
+        {name,race,sex,birthdata,img: "img",type: "perro",
         clientId: req.user.id,
-    });
+        });
 
     console.log(pet);
     if (pet) return res.redirect('my-pets');

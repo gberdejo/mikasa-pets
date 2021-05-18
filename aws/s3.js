@@ -11,24 +11,8 @@ const s3 = new S3({
     accessKeyId,
     secretAccessKey
 })
-const uploadFile = (file)=>{
-    const fileStream = fs.createReadStream(file.path);
-    return new Promise((resolve,reject)=>{
-        s3.upload({
-            Bucket:bucketName,
-            Body: fileStream,
-            Key:file.originalname,
-        },(err,data)=>{
-            if(err){
-                reject(err);
-            }else{
-                resolve(data);
-            }
-        })
 
-    });
-}
-const uploadFile2 = (fileStream,fileName)=>{
+const uploadFile = (fileStream,fileName)=>{
     return new Promise((resolve,reject)=>{
         s3.upload({
             Bucket:bucketName,
@@ -40,8 +24,21 @@ const uploadFile2 = (fileStream,fileName)=>{
             }else{
                 resolve(data);
             }
-        })
-
+        });
     });
 }
- module.exports = {uploadFile,uploadFile2};
+const deleteFile = (key)=>{
+    return new Promise((resolve,reject)=>{
+        s3.deleteObject({
+            Bucket : bucketName,
+            Key:key
+        },(err,data)=>{
+            if(err){
+                reject(err);
+            }else{
+                resolve(data);
+            }
+        })
+    });
+}
+ module.exports = {uploadFile, deleteFile};

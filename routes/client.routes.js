@@ -5,7 +5,8 @@ const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
 
-const {uploadFile2 } = require('../configs/s3');
+const {uploadFile } = require('../aws/s3');
+const {resize} = require("../settings/sharp");
 
 const clientController = require('../controllers/client.controller');
 const upload = require('../configs/multer');
@@ -13,23 +14,16 @@ const upload = require('../configs/multer');
 router.get('/profile',clientController.renderProfile);
 router.get('/image',(req,res)=>res.render('upload'));
 router.post('/image',upload.single('avatar'), async (req,res)=>{
+    
     try {
         const file = req.file;
+        if(!file) return res.json({msg:'El tipo de imagen no es permitido'});
         console.log(file);
         const fileImg = fs.createReadStream(file.path);
         fileImg.pipe(res);
-        const fileimg = await sharp(file.path)
-            .resize({
-                width: 300,
-                height:438
-            })
-            .modulate({
-                brightness: 1,
-                saturation: 1
-            })
-            .png()
-            .toBuffer();
-        const datas3 = await uploadFile2(fileimg,file.originalname);
+        const fileimg = await resize(file.path);
+        fileimg.pipe(res);
+        const datas3 = await uploadFile(fileimg,file.originalname);
         console.log(datas3);
     } catch (error) {
         console.log(error);

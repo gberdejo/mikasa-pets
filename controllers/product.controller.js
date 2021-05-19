@@ -92,7 +92,7 @@ productController.addProducttoCart = async (req,res)=>{
     const {productId,quantity,price,subtotal} = req.body;
     let ticket =  await ticketService.getLastTicketbyStatus();
     if(!ticket){
-        ticket = ticketService.createTicket({status:'PENDIENTE',clientID:req.user.id});
+        ticket = await ticketService.createTicket({status:'PENDIENTE',clientID:req.user.id});
     }
     let detail = await detailTicketService.getDetailTicketbyProductId(ticket.id,productId);
     if(!detail){

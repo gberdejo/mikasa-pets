@@ -1,10 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 
-const path = require('path');
-const fs = require('fs');
-const sharp = require('sharp');
-
 const {uploadFile } = require('../aws/s3');
 const {resize} = require("../settings/sharp");
 
@@ -16,15 +12,12 @@ router.get('/image',(req,res)=>res.render('upload'));
 router.post('/image',upload.single('avatar'), async (req,res)=>{
     
     try {
-        const file = req.file;
+        /*const file = req.file;
         if(!file) return res.json({msg:'El tipo de imagen no es permitido'});
         console.log(file);
-        const fileImg = fs.createReadStream(file.path);
-        fileImg.pipe(res);
-        const fileimg = await resize(file.path);
-        fileimg.pipe(res);
         const datas3 = await uploadFile(fileimg,file.originalname);
-        console.log(datas3);
+        console.log(datas3);*/
+        res.json({message:'ok'});
     } catch (error) {
         console.log(error);
         res.status(400).json({msg:'algo se malogro'});

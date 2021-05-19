@@ -1,4 +1,41 @@
 
+
+function deletePet(id,name,key) {
+  //get the closable setting value.
+  //var closable = alertify.alert().setting('closable');
+  //grab the dialog instance using its parameter-less constructor then set multiple settings at once.
+  console.log({
+    id,name,key
+  });
+  const obj = {key};
+  alertify.confirm()
+  .setHeader('<em> Confirmacion </em> ')
+  .set('modal',false)
+  .setting({
+    'label':'Eliminar',
+    'message': `¿Quiere eliminar la información de ${name}?` ,
+    'onok': async ()=>{ 
+      await fetch(`/pets/${id}`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(obj),
+      })
+      .then((response)=>{
+        if(response.ok){
+          document.getElementById(`card-pet-${id}`).remove();
+          alertify.set('notifier','position', 'top-right');
+          alertify.success(`Se elimino ${name}`);
+        }else{
+          throw new Error('No se puedo enviar');
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+      });
+    }
+  }).show();
+}
+
 async function addtoCart(id,precio){
     const productId = id;
     const quantity = 2;
@@ -30,34 +67,4 @@ async function addtoCart(id,precio){
     });
     
 }
-const form = document.getElementById("form");
-if(form){
-form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        let data = new FormData(form);
-        const searchParams = new URLSearchParams();
-        for (const pair of data) {
-          searchParams.append(pair[0], pair[1]);
-        }
-        await fetch("/add-product", {
-          method: "POST",
-          headers: {
-            //'Content-Type': 'application/json'
-            "Content-Type": "application/x-www-form-urlencoded",
-            // "Content-Type": "multipart/form-data",
-          },
-          body: searchParams
-        })
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Ocurrio algo");
-          })
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((err) => console.log(err));
-});
-}
-      
+

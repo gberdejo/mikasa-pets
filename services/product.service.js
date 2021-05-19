@@ -1,13 +1,13 @@
 const Product = require("../models/product");
 const { Op } = require("sequelize");
 const {uploadFile} = require('../aws/s3');
-const { resize } = require("../settings/sharp");
+const { resizeProduct } = require("../settings/sharp");
 
 const productService = {};
 
 productService.createProductandVet = async (obj) => {
   try {
-    const buffer = await resize(obj.img.path);
+    const buffer = await resizeProduct(obj.img.path);
     const s3 = await uploadFile(buffer,obj.img.originalname);
     const product = Product.build(obj);
     product.img_key = s3.key;

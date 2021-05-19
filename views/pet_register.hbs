@@ -4,14 +4,21 @@
         <div class="col">
             <h1 class="text-primary text-center">Registrate</h1>
             <br><br>
-            <form method="POST" action="/pets">
+            <form method="POST" action="/pets" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="name_pet" name="name" placeholder="Nombres">
                             <label for="name_pet">Nombres de la mascota</label>
-                        </div>
+                        </div><br>
+                        <!-- Type -->
+                        <select name="type" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                            <option>Seleccione el tipo de mascota que tiene</option>
+                            <option value="PERRO">Perro</option>
+                            <option value="GATO">Gato</option>
+                        </select>
                         <br>
+                        <!-- RACE -->
                         <select name="race" class="form-select form-select-lg" aria-label=".form-select-lg example">
                             <option>Seleccione la raza de su mascota</option>
                             <option value="Pastor Alemán">Pastor Alemán</option>
@@ -23,9 +30,8 @@
                         <!-- SEX -->
                         <select name="sex" class="form-select form-select-lg" aria-label=".form-select-lg example">
                             <option>Seleccione el genero de su mascota</option>
-                            <option value="Macho">Macho</option>
-                            <option value="Hembra">Hembra</option>
-
+                            <option value="MACHO">Macho</option>
+                            <option value="HEMBRA">Hembra</option>
                         </select>
                         <br>
                         <label class="form-label" for="customFile">Seleccione la primera imagen</label>
@@ -56,45 +62,3 @@
     </div>
 </div>
 <br>
-<script>
-    /*(function () {
-        const modal = document.getElementById('exampleModal');
-        modal.show();
-
-        const exampleModal = document.getElementById('exampleModal');
-        exampleModal.show();
-
-        const form = document.getElementById("form");
-        form.addEventListener("submit", async (event)=>{
-            event.preventDefault();
-            let data = new FormData(form);
-            const searchParams =new URLSearchParams();
-            for(const pair of data){
-                searchParams.append(pair[0],pair[1]);
-            }
-            await fetch("/pets",{
-                method:"POST",
-                headers:{
-                    //'Content-Type': 'application/json'
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    // "Content-Type": "multipart/form-data",
-                },
-                body : searchParams
-            })
-            .then((response)=>{
-                if(response.ok){
-                   return response.json();
-                }
-                throw new Error("Ocurrio algo");
-            })
-            .then((data)=>{
-                console.log(data);
-            })
-            .catch((err)=>console.log(err));
-
-
-        });
-
-
-    })();/*
-</script>

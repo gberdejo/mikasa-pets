@@ -1,10 +1,17 @@
 const Pet = require("../models/pet");
 const { Op } = require("sequelize");
+const { uploadFile, deleteFile } = require("../aws/s3");
+const { resizePet } = require("../settings/sharp");
+
 const petService = {};
 
 petService.createPet = async (obj) => {
   try {
-    const pet = await Pet.build(obj);
+    const pet = Pet.build(obj);
+    const buffer = await resizePet(obj.img.path);
+    const s3 = await uploadFile(buffer,obj.img.originalname);
+    pet.img_key = s3.key;
+    pet.img_location = s3.Location;
     if (pet instanceof Pet) {
       await pet.save();
       return pet.dataValues;
@@ -51,4 +58,22 @@ petService.getListPetbyClient = async (id) => {
     return list;
   }
 };
+petService.deletePet = async(id,key)=>{
+  try {
+    const [statusDb,dataFile] = await Promise.all([
+      await Pet.destroy({
+        where:{
+          id
+        }
+      }),
+      await deleteFile(key)]);
+    return {
+      statusDb,
+      dataFile
+    };
+  } catch (error) {
+    console.log(error);
+    return null
+  }
+}
 module.exports = petService;

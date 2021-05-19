@@ -50,11 +50,11 @@ const Client = sequelize.define(
     },
     img_key:{
       type : DataTypes.STRING(250),
-      defaultValue: ''
+      allowNull: true
     },
     img_location:{
       type : DataTypes.STRING(250),
-      defaultValue : 'https://image.flaticon.com/icons/png/512/147/147144.png'
+      allowNull: true
     },
     date: {
       type: DataTypes.DATE,

@@ -33,11 +33,11 @@ const Employee = sequelize.define(
     },
     img_key:{
       type : DataTypes.STRING(250),
-      defaultValue: ''
+      allowNull: true
     },
     img_location:{
       type : DataTypes.STRING(250),
-      defaultValue : 'https://image.flaticon.com/icons/png/512/572/572711.png'
+      allowNull: true
     },
     role: {
       type: DataTypes.STRING(20),

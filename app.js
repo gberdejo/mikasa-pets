@@ -1,13 +1,18 @@
 const express = require("express");
 const app = express();
+const express_handlebars = require("express-handlebars");
+
+const config = require('config');
 const cors = require("cors");
 const morgan = require("morgan");
-const express_handlebars = require("express-handlebars");
+
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
+
 const passport = require("passport");
+
 //config passport-MySql
 const options = {
     host: process.env.DB_HOST,
@@ -32,7 +37,8 @@ app.set("view engine", ".hbs");
 
 //middlewares
 app.use(cors());
-app.use(morgan("dev"));
+app.use(morgan(config.get('morgan')));
+console.log(config.get('morgan'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser("Es un secreto"));

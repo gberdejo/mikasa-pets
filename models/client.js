@@ -81,14 +81,4 @@ Product.belongsTo(Employee);
 // TICKET <----< DETAILTICKET >----> PRODUCT
 Ticket.belongsToMany(Product, { through: DetailTicket, uniqueKey: false });
 
-/*(async() => {
-    await sequelize
-        .sync({ force: false })
-        .then(() => console.log("--->>> Tablas Sincronizadas"))
-        .catch((err) => {
-            console.log("--->>> Tablas NO! Sincronizadas");
-            console.log(err);
-        });
-})();*/
-
 module.exports = Client;

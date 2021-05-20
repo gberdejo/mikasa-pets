@@ -99,7 +99,7 @@ productController.addProducttoCart = async(req, res) => {
         if (!req.user) return res.status(401).json({ msg: 'Necesita autenticarse' });
 
         console.log(req.body);
-        const { productId, quantity, price, subtotal } = req.body;
+        const { productId, quantity, price, subtotal, name } = req.body;
         const clientId = req.user.id;
 
         let ticket = await ticketService.getTicketbyStatusClientId(clientId);
@@ -109,7 +109,7 @@ productController.addProducttoCart = async(req, res) => {
 
         let detail = await detailTicketService.getDetailTicketbyProductId(ticket.id, productId);
         if (!detail) {
-            detail = await detailTicketService.createDetailTikect({ quantity, price, subtotal, ticketId: ticket.id, productId });
+            detail = await detailTicketService.createDetailTikect({ quantity, price, subtotal, ticketId: ticket.id, productId, name });
         } else {
             detail = await detailTicketService
                 .updateDetailTicket({
@@ -126,7 +126,12 @@ productController.addProducttoCart = async(req, res) => {
     }
     /* Shopping Cart */
 productController.renderShoppingCart = async(req, res) => {
-    //const ticket = await ticketService.getTicketbyClientId(req.user.id);
-    res.render('shopping_cart');
+    const clientId = req.user.id;
+
+    const ticket = await ticketService.getTicketbyStatusClientId(clientId);
+    if (!ticket) return res.redirect('/');
+
+    const details = await detailTicketService.listDetailTicket(ticket.id);
+    res.render('shopping_cart', { details });
 }
 module.exports = productController;

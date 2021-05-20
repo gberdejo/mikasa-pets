@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const upload = require('../configs/multer');
+const upload = require('../settings/multer');
 const router = Router();
 const { isAuthenticated } = require('../helpers');
 
@@ -23,8 +23,8 @@ router.get('/create-vet', [isAuthenticated], productController.renderCreateVet);
 router.post('/create-vet', [isAuthenticated], productController.createVet);
 
 /* Carrito de compras */
-router.post('/add-product', productController.addProducttoCart);
-router.get('/cart', productController.renderShoppingCart);
+router.post('/add-product', [isAuthenticated], productController.addProducttoCart);
+router.get('/cart', [isAuthenticated], productController.renderShoppingCart);
 //router.get('/shopping-cart', productController.shoppingCart);
 
 module.exports = router;

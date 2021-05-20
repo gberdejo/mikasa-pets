@@ -36,13 +36,13 @@ function deletePet(id, name, key) {
         }).show();
 }
 
-async function addtoCart(id, precio) {
+async function addtoCart(id, precio, name) {
     const productId = id;
     const quantity = 2;
     const price = precio;
     const subtotal = quantity * price;
 
-    const obj = { productId, quantity, price, subtotal }
+    const obj = { productId, quantity, price, subtotal, name }
     await fetch('/add-product', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

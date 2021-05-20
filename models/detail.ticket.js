@@ -2,6 +2,10 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
 const DetailTicket = sequelize.define("detailticket", {
+    name: {
+        type: DataTypes.STRING(30),
+        allowNull: false
+    },
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,

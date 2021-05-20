@@ -1,28 +1,28 @@
 const { Router } = require("express");
 const router = Router();
 
-const {uploadFile } = require('../aws/s3');
-const {resize} = require("../settings/sharp");
+const { uploadFile } = require('../aws/s3');
+const { resize } = require("../settings/sharp");
 
 const clientController = require('../controllers/client.controller');
-const upload = require('../configs/multer');
+const upload = require('../settings/multer');
 
-router.get('/profile',clientController.renderProfile);
-router.get('/image',(req,res)=>res.render('upload'));
-router.post('/image',upload.single('avatar'), async (req,res)=>{
-    
+router.get('/profile-client', clientController.renderProfileClient);
+router.get('/image', (req, res) => res.render('upload'));
+router.post('/image', upload.single('avatar'), async(req, res) => {
+
     try {
         /*const file = req.file;
         if(!file) return res.json({msg:'El tipo de imagen no es permitido'});
         console.log(file);
         const datas3 = await uploadFile(fileimg,file.originalname);
         console.log(datas3);*/
-        res.json({message:'ok'});
+        res.json({ message: 'ok' });
     } catch (error) {
         console.log(error);
-        res.status(400).json({msg:'algo se malogro'});
+        res.status(400).json({ msg: 'algo se malogro' });
     }
- 
+
 
 });
 /*router.get('/images/:key',  (req,res)=>{

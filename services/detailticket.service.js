@@ -1,5 +1,6 @@
 const DetailTicket = require('../models/detail.ticket');
-const { Op } = require('sequelize');
+const { Op, AccessDeniedError } = require('sequelize');
+const productService = require('./product.service');
 const detailTicketService = {};
 
 detailTicketService.createDetailTikect = async(obj) => {
@@ -59,5 +60,24 @@ detailTicketService.updateDetailTicket = async(obj) => {
         return null;
     }
 }
-
+detailTicketService.listDetailTicket = async(ticketId) => {
+    let list = [];
+    try {
+        const raw = await DetailTicket.findAll({
+            where: {
+                ticketId
+            }
+        });
+        console.log(raw);
+        if (raw.length >= 0) {
+            raw.map((data) => {
+                list.push(data.dataValues);
+            });
+        }
+        return list;
+    } catch (error) {
+        console.log(error);
+        return list
+    }
+}
 module.exports = detailTicketService;

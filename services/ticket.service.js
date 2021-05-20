@@ -24,21 +24,6 @@ ticketService.getTicketbyID = async(id) => {
 
     }
 }
-ticketService.getTicketbyClientId = async(id) => {
-    try {
-        const ticket = await Ticket.findOne({
-            where: {
-                [Op.and]: [{ id }, { status: 'PENDIENTE' }]
-            }
-        });
-        if (!ticket) return null;
-        return ticket;
-    } catch (error) {
-        console.log(error);
-        return null;
-
-    }
-}
 ticketService.getTicketbyStatusClientId = async(clientId) => {
     try {
         const ticket = await Ticket.findOne({

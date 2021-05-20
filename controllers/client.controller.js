@@ -3,5 +3,5 @@ const clientService = require("../services/client.service");
 const productService = require("../services/product.service");
 const clientController = {};
 
-clientController.renderProfile = (req,res)=> res.render('profile');
+clientController.renderProfileClient = (req, res) => res.render('profile_client');
 module.exports = clientController;

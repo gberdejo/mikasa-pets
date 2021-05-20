@@ -8,23 +8,26 @@
             <thead>
                 <tr>
                     <th scope="col">Codigo</th>
-                    <th scope="col">Vendedor</th>
                     <th scope="col">Producto</th>
+                    <th scope="col">Descuento</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Subtotal</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Modificar cantidad</th>
                     <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
+                {{#each details}}
                 <tr>
                     <th scope="row">1</th>
-                    <th>qwd</th>
-                    <td>wqdw</td>
-                    <td>qwd</td>
+                    <th>{{name}}</th>
+                    <td>{{discount}}</td>
+                    <td>{{price}}</td>
+                    <td>{{subtotal}}</td>
                     <td>
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" value="5" min="1" max="100"/>
+                            <input type="number" id="typeNumber"  class="form-control" value="{{quantity}}" min="1" max="100"/>
                         </div>
                     </td>
                     <td>
@@ -36,6 +39,7 @@
                             data-mdb-ripple-color="#000000"> Eliminar <i class="fas fa-download ms-1"></i></button>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

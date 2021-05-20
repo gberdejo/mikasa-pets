@@ -34,11 +34,10 @@ app.engine(
     })
 );
 app.set("view engine", ".hbs");
-
+app.set('port', config.get('server.port'));
 //middlewares
 app.use(cors());
 app.use(morgan(config.get('morgan')));
-console.log(config.get('morgan'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser("Es un secreto"));

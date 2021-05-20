@@ -6,10 +6,19 @@ global.DOMAIN = "mikasa.pet";
 sequelize.authenticate()
     .then(() => {
         console.log('Go DataBase!');
-        app.listen(process.env.PORT, () => {
-            console.log("Run Server on port: " + process.env.PORT);
-        });
+
+        const server = app.listen(app.get('port'), () => {
+            console.log("Run Server on port: " + app.get('port'));
+        }, );
+
+        process.on('SIGTERM', () => {
+            server.close(() => {
+                console.log('Proceso Terminado')
+            })
+        })
+
     })
     .catch((err) => {
+
         console.log(err);
     })

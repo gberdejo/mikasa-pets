@@ -1,15 +1,15 @@
 const { Sequelize } = require("sequelize");
-
+const config = require('config');
 const sequelize = new Sequelize(
-    process.env.DB_NAME || 'mikasapet',
-    process.env.DB_USER || 'root',
-    process.env.DB_PASS || 'mysql', {
-        host: process.env.DB_HOST || 'localhost',
-        port: process.env.DB_PORT || 3306,
+    config.get('mysql.database'),
+    config.get('mysql.user'),
+    config.get('mysql.password'), {
+        host: config.get('mysql.host'),
+        port: config.get('mysql.port'),
         logging: false,
         dialect: 'mysql',
         dialectOptions: {
-            ssl: process.env.DB_SSL || false
+            ssl: config.get('mysql.ssl')
         },
         pool: {
             max: 5,

@@ -1,8 +1,8 @@
 require("dotenv").config();
 const app = require("./app");
 const sequelize = require('./database/index');
-global.DOMAIN = "mikasa.pet";
 
+//sequelize.sync({ alter: true }).then(() => console.log('sync go!'));
 sequelize.authenticate()
     .then(() => {
         console.log('Go DataBase!');

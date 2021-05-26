@@ -15,11 +15,11 @@ const passport = require("passport");
 
 //config passport-MySql
 const options = {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_SESSION_NAME,
+    host: config.get('mysql.host'),
+    port: config.get('mysql.port'),
+    user: config.get('mysql.user'),
+    password: config.get('mysql.password'),
+    database: config.get('mysql.databaseSession'),
 };
 require("./settings/passport");
 

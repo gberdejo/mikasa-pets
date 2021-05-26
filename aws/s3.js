@@ -1,9 +1,11 @@
 const S3 = require('aws-sdk/clients/s3');
 
-const bucketName = process.env.AWS_BUCKET_NAME;
-const region = process.env.AWS_BUCKET_REGION;
-const accessKeyId = process.env.AWS_ACCESS_KEY;
-const secretAccessKey= process.env.AWS_SECRET_KEY;
+const config = require('config');
+
+const bucketName = config.get('s3.bucketName');
+const region = config.get('s3.bucketRegion');
+const accessKeyId = config.get('s3.secretKey');
+const secretAccessKey = config.get('s3.accessKey');
 
 const s3 = new S3({
     region,
@@ -11,33 +13,33 @@ const s3 = new S3({
     secretAccessKey
 })
 
-const uploadFile = (fileStream,fileName)=>{
-    return new Promise((resolve,reject)=>{
+const uploadFile = (fileStream, fileName) => {
+    return new Promise((resolve, reject) => {
         s3.upload({
-            Bucket:bucketName,
+            Bucket: bucketName,
             Body: fileStream,
-            Key:fileName,
-        },(err,data)=>{
-            if(err){
+            Key: fileName,
+        }, (err, data) => {
+            if (err) {
                 reject(err);
-            }else{
+            } else {
                 resolve(data);
             }
         });
     });
 }
-const deleteFile =  (key)=>{
-    return new Promise((resolve,reject)=>{
+const deleteFile = (key) => {
+    return new Promise((resolve, reject) => {
         s3.deleteObject({
-            Bucket : bucketName,
-            Key:key
-        },(err,data)=>{
-            if(err){
+            Bucket: bucketName,
+            Key: key
+        }, (err, data) => {
+            if (err) {
                 reject(err);
-            }else{
+            } else {
                 resolve(data);
             }
         })
     });
 }
- module.exports = {uploadFile, deleteFile};
+module.exports = { uploadFile, deleteFile };

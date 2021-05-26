@@ -23,8 +23,10 @@ const Pet = sequelize.define(
         },
         sex: {
             type: DataTypes.STRING(20),
-            validate:{
-                isIn:[['MACHO','HEMBRA']]
+            validate: {
+                isIn: [
+                    ['MACHO', 'HEMBRA']
+                ]
             }
         },
         birthdata: {
@@ -35,8 +37,8 @@ const Pet = sequelize.define(
             type: DataTypes.STRING(250),
             allowNull: true
         },
-        img_location:{
-            type : DataTypes.STRING(250),
+        img_location: {
+            type: DataTypes.STRING(250),
             allowNull: true
         },
         date: {
@@ -48,5 +50,7 @@ const Pet = sequelize.define(
         initialAutoIncrement: 3000,
     }
 );
+//Pet.sync({ alter: true }).then(() => console.log('---> Sync Pet'));
 
+//Pet.sync({ alter: true }).then(() => console.log('Goo alter pet'));
 module.exports = Pet;

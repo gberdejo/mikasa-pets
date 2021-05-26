@@ -1,4 +1,4 @@
-require("dotenv").config();
+if (process.env.NODE_ENV === 'development') require("dotenv").config();
 const app = require("./app");
 const sequelize = require('./database/index');
 

@@ -1,6 +1,5 @@
 const DetailTicket = require('../models/detail.ticket');
-const { Op, AccessDeniedError } = require('sequelize');
-const productService = require('./product.service');
+const { Op, } = require('sequelize');
 const detailTicketService = {};
 
 detailTicketService.createDetailTikect = async(obj) => {

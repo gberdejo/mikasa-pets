@@ -1,9 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 
-const { uploadFile } = require('../aws/s3');
-const { resize } = require("../settings/sharp");
-
 const clientController = require('../controllers/client.controller');
 const upload = require('../settings/multer');
 

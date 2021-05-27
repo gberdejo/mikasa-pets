@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV === 'development') {
-    require("dotenv").config();
-}
+require("dotenv").config();
 const app = require("./app");
 const sequelize = require('./database/index');
 
@@ -12,6 +10,11 @@ sequelize.authenticate()
         const server = app.listen(app.get('port'), () => {
             console.log("Run Server on port: " + app.get('port'));
         }, );
+        console.log('variables de entorno');
+        console.log(process.env.AWS_BUCKET_NAME);
+        console.log(process.env.AWS_BUCKET_REGION);
+        console.log(process.env.AWS_ACCESS_KEY);
+        console.log(process.env.AWS_SECRET_KEY);
 
         process.on('SIGTERM', () => {
             server.close(() => {

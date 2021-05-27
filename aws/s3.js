@@ -1,5 +1,4 @@
 const S3 = require('aws-sdk/clients/s3');
-
 const config = require('config');
 
 const bucketName = config.get('s3.bucketName');
@@ -7,6 +6,10 @@ const region = config.get('s3.bucketRegion');
 const accessKeyId = config.get('s3.secretKey');
 const secretAccessKey = config.get('s3.accessKey');
 
+console.log(bucketName);
+console.log(region);
+console.log(accessKeyId);
+console.log(secretAccessKey);
 const s3 = new S3({
     region,
     accessKeyId,

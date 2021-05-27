@@ -19,5 +19,4 @@ module.exports = {
         secretKey: 'AWS_SECRET_KEY'
 
     }
-
 }

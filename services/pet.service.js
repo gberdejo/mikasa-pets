@@ -1,19 +1,19 @@
 const Pet = require("../models/pet");
 const { uploadFile, deleteFile } = require("../aws/s3");
 const { resizePet } = require("../settings/sharp");
-
+const fs = require('fs');
 const petService = {};
 
 petService.createPet = async(obj) => {
     try {
         const pet = Pet.build(obj);
-        const buffer = await resizePet(obj.img.path);
-        const s3 = await uploadFile(buffer, obj.img.originalname);
-        pet.img_key = s3.key;
-        pet.img_location = s3.Location;
+        const editFile = await resizePet(obj.img);
+        fs.unlinkSync(obj.img.path);
+        pet.img_key = editFile.filename;
+        pet.img_location = 'editFile.path';
         if (pet instanceof Pet) {
             await pet.save();
-            return pet.dataValues;
+            return pet;
         }
         return null;
     } catch (error) {

@@ -81,11 +81,25 @@ productController.renderLisVet = async(req, res) => {
     res.render('vet_list', { vets });
 }
 productController.renderCreateVet = (req, res) => res.render('vet_register');
+
 productController.createVet = async(req, res) => {
     console.log(req.body);
     const category = "VET";
-    const { name, precio, description_simple, description_html } = req.body;
-    const obj = { name, precio, description_simple, description_html, category, employeeId: req.user.id };
+    if (!img) {
+        req.flash('error', 'El formato de la imagen no esta soportado');
+        return res.redirect("/create-product");
+    }
+    const { name, precio, stock, description_simple, description_html } = req.body;
+    const obj = {
+        name,
+        precio,
+        stock,
+        description_simple,
+        description_html,
+        category,
+        employeeId: req.user.id,
+        img
+    };
     const product = await productService.createProductandVet(obj);
     if (!product) {
         req.flash('error', 'Hubo un problema a la hora de crear el servicio, intentelo denuevo');

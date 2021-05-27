@@ -23,6 +23,10 @@ const options = {
 };
 require("./settings/passport");
 
+//vars 
+console.log(config.get('path.root'));
+console.log(config.get('path.uploads'));
+console.log(config.get('path.edits'));
 //settings
 app.engine(
     ".hbs",

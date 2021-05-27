@@ -12,11 +12,4 @@ module.exports = {
         port: 'DB_PORT',
         ssl: 'DB_SSL'
     },
-    s3: {
-        bucketName: 'AWS_BUCKET_NAME',
-        bucketRegion: 'AWS_BUCKET_REGION',
-        accessKey: 'AWS_ACCESS_KEY',
-        secretKey: 'AWS_SECRET_KEY'
-
-    }
 }

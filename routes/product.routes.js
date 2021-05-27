@@ -20,7 +20,7 @@ router.post("/update-product/:id", [isAuthenticated], productController.updatePr
 /* Crear servicios veterinario */
 router.get('/list-vet', [isAuthenticated], productController.renderLisVet);
 router.get('/create-vet', [isAuthenticated], productController.renderCreateVet);
-router.post('/create-vet', [isAuthenticated], productController.createVet);
+router.post('/create-vet', [isAuthenticated], upload.single('avatar'), productController.createVet);
 
 /* Carrito de compras */
 router.post('/add-product', [isAuthenticated], productController.addProducttoCart);

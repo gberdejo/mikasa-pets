@@ -3,6 +3,7 @@ const config = require('config');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+
         cb(null, config.get('path.uploads'))
     },
     filename: (req, file, cb) => {
@@ -10,7 +11,7 @@ const storage = multer.diskStorage({
     }
 })
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
+    if (file.mimetype == 'image/jpeg' ||file.mimetype == 'image/jpg'|| file.mimetype == 'image/png') {
         cb(null, true);
     } else {
 

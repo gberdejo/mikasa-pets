@@ -1,18 +1,18 @@
 const Product = require("../models/product");
 const { Op } = require("sequelize");
 const { uploadFile } = require('../aws/s3');
-const { resizeProduct } = require("../settings/sharp");
+const { resizeProduct , resizeVet } = require("../settings/sharp");
 const fs = require('fs');
 
 const productService = {};
 
-productService.createProductandVet = async(obj) => {
+productService.createProduct = async(obj) => {
     try {
         const product = Product.build(obj);
         const editFile = await resizeProduct(obj.img);
         fs.unlinkSync(obj.img.path);
         product.img_key = editFile.filename;
-        product.img_location = 'editFile.path';
+        product.img_location = editFile.path;
         if (product instanceof Product) {
             await product.save();
             return product;
@@ -23,6 +23,23 @@ productService.createProductandVet = async(obj) => {
         return null;
     }
 };
+productService.createVet = async(obj) => {
+    try {
+        const product = Product.build(obj);
+        const editFile = await resizeVet(obj.img);
+        fs.unlinkSync(obj.img.path);
+        product.img_key = editFile.filename;
+        product.img_location = editFile.path;
+        if (product instanceof Product) {
+            await product.save();
+            return product;
+        }
+        return null;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
 productService.getProduct = async(id) => {
     try {
         const product = await Product.findOne({
@@ -47,18 +64,17 @@ productService.getlistProduct = async() => {
     try {
         const raw = await Product.findAll({
             where: {
-                status: {
-                    [Op.eq]: 1
-                },
-                category: {
-                    [Op.eq]: "PRODUCT"
-                },
-                stock: {
-                    [Op.gt]: 0,
-                }
-            }
+                [Op.and]:[
+                    {status: 1},
+                    {category:"PRODUCT"},
+                    {stock :{[Op.gt]: 0,}}
+                ]
+            },
+            order: [
+                ['name','ASC']
+            ]
         });
-        if (raw.length >= 0) {
+        if (raw.length > 0) {
             raw.map((products) => {
                 list.push(products.dataValues);
             });

@@ -21,32 +21,29 @@ productController.renderCreateProduct = async(req, res) => {
     res.render("product_register");
 };
 productController.createProduct = async(req, res) => {
-    console.log(req.body);
-    const category = "PRODUCT";
-    const img = req.file;
-    if (!img) {
-        req.flash('error', 'El formato de la imagen no esta soportado');
-        return res.redirect("/create-product");
-    }
-    const { name, precio, stock, description_simple, description_html } = req.body;
-    const obj = {
-        name,
-        precio,
-        stock,
-        description_simple,
-        description_html,
-        category,
-        employeeId: req.user.id,
-        img
-    };
-
-    const product = await productService.createProductandVet(obj);
-    if (!product) {
+    try {
+        console.log(req.body);
+        const category = "PRODUCT";
+        const img = req.file;
+        if (!img) {
+            req.flash('error', 'El formato de la imagen no esta soportado');
+            return res.redirect("/create-product");
+        }
+        const { name, precio, stock, description_simple, description_html } = req.body;
+        const obj = {name,precio,stock,description_simple,description_html,category,employeeId: req.user.id,img};
+    
+        const product = await productService.createProduct(obj);
+        if (!product) {
+            req.flash('error', 'Hubo un problema a la hora de crear el producto, intentelo denuevo');
+            return res.redirect("/create-product");
+        }
+        req.flash("success", `El producto con codigo ${product.id} y nombre "${product.name}" se a creado con exito!`);
+        res.redirect("/create-product");
+    } catch (error) {
+        console.log(error);
         req.flash('error', 'Hubo un problema a la hora de crear el producto, intentelo denuevo');
         return res.redirect("/create-product");
     }
-    req.flash("success", `El producto con codigo ${product.id} y nombre "${product.name}" se a creado con exito!`);
-    res.redirect("/create-product");
 };
 productController.deleteProduct = async(req = request, res) => {
     console.log(req.params.id);
@@ -83,30 +80,32 @@ productController.renderLisVet = async(req, res) => {
 productController.renderCreateVet = (req, res) => res.render('vet_register');
 
 productController.createVet = async(req, res) => {
-    console.log(req.body);
-    const category = "VET";
-    if (!img) {
-        req.flash('error', 'El formato de la imagen no esta soportado');
-        return res.redirect("/create-product");
-    }
-    const { name, precio, stock, description_simple, description_html } = req.body;
-    const obj = {
-        name,
-        precio,
-        stock,
-        description_simple,
-        description_html,
-        category,
-        employeeId: req.user.id,
-        img
-    };
-    const product = await productService.createProductandVet(obj);
-    if (!product) {
+    try {
+        console.log(req.body);
+        const category = "VET";
+         const img = req.file;
+        console.log(img);
+        if (!img) {
+            req.flash('error', 'El formato de la imagen no esta soportado');
+            return res.redirect("/create-vet");
+        }
+        const { name, precio, description_simple, description_html } = req.body;
+        const obj = {name,precio,description_simple,description_html,category,employeeId: req.user.id,img};
+        console.log(obj);
+    
+        const product = await productService.createVet(obj);
+        console.log(obj);
+        if (!product) {
+            req.flash('error', 'Hubo un problema a la hora de crear el servicio, intentelo denuevo');
+            return res.redirect("/create-vet");
+        }
+        req.flash("success", `El servicio con codigo ${product.id} y nombre "${product.name}" se a creado con exito!`);
+        res.redirect("/create-vet");
+    } catch (error) {
+        console.log(error);
         req.flash('error', 'Hubo un problema a la hora de crear el servicio, intentelo denuevo');
         return res.redirect("/create-vet");
     }
-    req.flash("success", `El producto con codigo ${product.id} y nombre "${product.name}" se a creado con exito!`);
-    res.redirect("/create-vet");
 };
 
 productController.addProducttoCart = async(req, res) => {

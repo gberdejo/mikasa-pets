@@ -1,6 +1,7 @@
 const sharp = require('sharp');
 const path = require('path');
 const config = require('config');
+
 const resizeProduct = (img) => {
     const extencion = path.extname(img.path);
     const originalname = path.basename(img.path, extencion);
@@ -11,6 +12,34 @@ const resizeProduct = (img) => {
             .resize({
                 width: 300,
                 height: 438
+            })
+            .modulate({
+                brightness: 1,
+                saturation: 1
+            })
+            .jpeg()
+            .toFile(pathEdit,
+                (err, info) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        info.filename = filename;
+                        info.path = pathEdit;
+                        resolve(info);
+                    }
+                });
+    });
+}
+const resizeVet = (img) => {
+    const extencion = path.extname(img.path);
+    const originalname = path.basename(img.path, extencion);
+    const filename = `${originalname}.jpeg`;
+    const pathEdit = path.join(config.get('path.edits'), filename);
+    return new Promise((resolve, reject) => {
+        sharp(img.path)
+            .resize({
+                width: 700,
+                height: 270
             })
             .modulate({
                 brightness: 1,
@@ -64,4 +93,4 @@ const resizePet = (img) => {
         })*/
     });
 }
-module.exports = { resizeProduct, resizePet };
+module.exports = { resizeProduct, resizePet ,resizeVet};

@@ -5,19 +5,19 @@ const config = require('config');
 const resizeProduct = (img) => {
     const extencion = path.extname(img.path);
     const originalname = path.basename(img.path, extencion);
-    const filename = `${originalname}.jpeg`;
+    const filename = `${originalname}.png`;
     const pathEdit = path.join(config.get('path.edits'), filename);
     return new Promise((resolve, reject) => {
         sharp(img.path)
             .resize({
-                width: 300,
-                height: 438
+                width: 150,
+                height: 200
             })
             .modulate({
                 brightness: 1,
                 saturation: 1
             })
-            .jpeg()
+            .png({ compressionLevel: 6 })
             .toFile(pathEdit,
                 (err, info) => {
                     if (err) {
@@ -38,14 +38,14 @@ const resizeVet = (img) => {
     return new Promise((resolve, reject) => {
         sharp(img.path)
             .resize({
-                width: 700,
-                height: 270
+                width: 500,
+                height: 200
             })
             .modulate({
                 brightness: 1,
                 saturation: 1
             })
-            .jpeg()
+            .jpeg({ compressionLevel: 6 })
             .toFile(pathEdit,
                 (err, info) => {
                     if (err) {
@@ -66,14 +66,14 @@ const resizePet = (img) => {
         const pathEdit = path.join(config.get('path.edits'), filename);
         sharp(img.path)
             .resize({
-                width: 600,
+                width: 500,
                 height: 300
             })
             .modulate({
                 brightness: 1,
                 saturation: 2
             })
-            .jpeg()
+            .jpeg({ compressionLevel: 6 })
             .toFile(pathEdit,
                 (err, info) => {
                     if (err) {
@@ -93,4 +93,4 @@ const resizePet = (img) => {
         })*/
     });
 }
-module.exports = { resizeProduct, resizePet ,resizeVet};
+module.exports = { resizeProduct, resizePet, resizeVet };

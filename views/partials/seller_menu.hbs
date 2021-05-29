@@ -1,11 +1,10 @@
 {{#if seller}}
+        {{#each user}}
 <li class="nav-item me-3 me-lg-1">
     <a class="nav-link d-sm-flex align-items-sm-center" href="#">
         <img src="https://mdbootstrap.com/img/new/avatars/3.jpg" class="rounded-circle" height="22" alt=""
             loading="lazy" />
-        {{#each user}}
         <strong class="d-none d-sm-block ms-1">Vendedor {{name}}</strong>
-        {{/each}}
     </a>
 </li>
 
@@ -29,10 +28,11 @@
         <i class="fas fa-chevron-circle-down fa-lg"></i>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-        <li><a class="dropdown-item" href="/profile-client">Perfil</a></li>
+        <li><a class="dropdown-item" href="">Perfil</a></li>
         <li>
             <a class="dropdown-item" href="/exit">Cerrar Sesión</a>
         </li>
     </ul>
 </li>
+        {{/each}}
 {{/if}}

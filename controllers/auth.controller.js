@@ -6,56 +6,71 @@ const employeeService = require("../services/employee.service");
 
 const authController = {};
 
-authController.renderHome = async (req, res) => {
-  const products = await productService.getlistProduct();
-  
-  res.render("home", { products });
+authController.renderHome = async(req, res) => {
+    try {
+        const products = await productService.getlistProduct();
+
+        res.render("home", { products });
+    } catch (error) {
+        res.render("home");
+    }
 };
 authController.renderLogin = (req, res) => res.render("login");
 authController.login = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/login",
-  failureFlash: {
-    type: "error",
-  },
-  failureMessage: true,
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: {
+        type: "error",
+    },
+    failureMessage: true,
 });
 authController.renderSignUp = (req, res) => res.render("signup");
-authController.signUp = async (req, res) => {
-  const {name,lastname,birthdata,direction,nick,phone,email,password} = req.body;
-  const clientExists = await clientService.getClientbyEmail(email);
-  if (clientExists) {
-    req.flash("error", "El Usuario ya existe");
-    return res.redirect("/signup");
-  }
+authController.signUp = async(req, res) => {
+    try {
+        const { name, lastname, birthdata, direction, nick, phone, email, password } = req.body;
+        const clientExists = await clientService.getClientbyEmail(email);
+        if (clientExists) {
+            req.flash("error", "El Usuario ya existe");
+            return res.redirect("/signup");
+        }
 
-  const client = await clientService.registerClient(
-    {name,lastname,birthdata,direction,nick,phone,email,password,});
-  if (client) return res.redirect("/login");
+        const client = await clientService.registerClient({ name, lastname, birthdata, direction, nick, phone, email, password, });
+        if (client) return res.redirect("/login");
 
-  return res.redirect("/signup");
+        return res.redirect("/signup");
+    } catch (err) {
+        console.log(err)
+        req.flash("error", "Intentelo en unos minutos");
+        res.redirect("/signup");
+    }
 };
 authController.renderSignUpAdmin = (req, res) => res.render("signup_admin");
-authController.signUpAdmin = async (req, res) => {
-  console.log(req.body);
-  const { name, lastname, phone, email, password, role } = req.body;
-  const obj = { name, lastname, phone, email, password, role };
-  const employeeExists = await employeeService.getEmployeebyEmail(obj.email);
-  if (employeeExists) {
-    req.flash("error", "El usuario ya existe");
-    return res.redirect("/signup-admin");
-  }
-  const employee = await employeeService.createEmployee(obj);
-  if (!employee) {
-    req.flash("error", "Ocurrio un error con los datos enviados");
-    return res.redirect("/signup-admin");
-  }
-  res.redirect("/login");
+authController.signUpAdmin = async(req, res) => {
+    try {
+        console.log(req.body);
+        const { name, lastname, phone, email, password, role } = req.body;
+        const obj = { name, lastname, phone, email, password, role };
+        const employeeExists = await employeeService.getEmployeebyEmail(obj.email);
+        if (employeeExists) {
+            req.flash("error", "El usuario ya existe");
+            return res.redirect("/signup-admin");
+        }
+        const employee = await employeeService.createEmployee(obj);
+        if (!employee) {
+            req.flash("error", "Ocurrio un error con los datos enviados");
+            return res.redirect("/signup-admin");
+        }
+        res.redirect("/login");
+    } catch (err) {
+        console.log(err);
+        req.flash("error", "Intentelo en unos minutos");
+        res.redirect("/signup-admin");
+    }
 };
 
 authController.logout = (req, res) => {
-  req.logout();
-  res.redirect("/");
+    req.logout();
+    res.redirect("/");
 };
 
 module.exports = authController;

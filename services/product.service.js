@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 const { Op } = require("sequelize");
 const { uploadFile } = require('../aws/s3');
-const { resizeProduct , resizeVet } = require("../settings/sharp");
+const { resizeProduct, resizeVet } = require("../settings/sharp");
 const fs = require('fs');
 
 const productService = {};
@@ -64,14 +64,18 @@ productService.getlistProduct = async() => {
     try {
         const raw = await Product.findAll({
             where: {
-                [Op.and]:[
-                    {status: 1},
-                    {category:"PRODUCT"},
-                    {stock :{[Op.gt]: 0,}}
+                [Op.and]: [
+                    { status: 1 },
+                    { category: "PRODUCT" },
+                    {
+                        stock: {
+                            [Op.gt]: 0,
+                        }
+                    }
                 ]
             },
             order: [
-                ['name','ASC']
+                ['name', 'ASC']
             ]
         });
         if (raw.length > 0) {

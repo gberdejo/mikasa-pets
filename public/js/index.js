@@ -21,12 +21,18 @@ function deletePet(id, name, key) {
                         body: JSON.stringify(obj),
                     })
                     .then((response) => {
-                        if (response.ok) {
+                        if (response.status === 200) {
                             document.getElementById(`card-pet-${id}`).remove();
                             alertify.set('notifier', 'position', 'top-right');
                             alertify.success(`Se elimino ${name}`);
-                        } else {
-                            throw new Error('No se puedo enviar');
+                        } else if (response.status === 400) {
+                            document.getElementById(`card-pet-${id}`).remove();
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.warning(`Intentelo denuevo ${name}`);
+                        } else if (response.status === 500) {
+                            document.getElementById(`card-pet-${id}`).remove();
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.error(`Intentelo denuevo ${name}`);
                         }
                     })
                     .catch((err) => {
@@ -37,8 +43,9 @@ function deletePet(id, name, key) {
 }
 
 async function addtoCart(id, precio, name) {
+
     const productId = id;
-    const quantity = 2;
+    const quantity = 1;
     const price = precio;
     const subtotal = quantity * price;
 
@@ -49,27 +56,51 @@ async function addtoCart(id, precio, name) {
             body: JSON.stringify(obj)
         })
         .then((response) => {
-            if (response.status === 200) {
+            console.log(response.statusText);
+            console.log(response.status)
+            if (response.status == 500) {
                 alertify.set('notifier', 'position', 'top-right');
-                alertify.success('Add to cart');
-                return response.json();
-            } else if (response.status === 401) {
+                alertify.warning('Necesitas autenticarte');
+            } else if (response.status == 401) {
                 alertify.set('notifier', 'position', 'top-right');
-                alertify.error('Necesitas Iniciar sesión');
-            } else if (response.status === 400) {
+                alertify.warning('Necesitas autenticarte');
+            } else if (response.status == 400) {
                 alertify.set('notifier', 'position', 'top-right');
-                alertify.error('No se enviaron los datos');
+                alertify.warning('Intentalo denuevo');
             } else {
-                throw new Error('Algo sucedio mal');
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.success('Add to Cart');
             }
         })
-        .then((data) => {
-            console.log(data);
-        })
         .catch((err) => {
+            console.log(err);
             alertify.set('notifier', 'position', 'top-right');
-            alertify.error('error');
-            console.log(err)
+            alertify.warning('Necesitas autenticarte');
         });
 
+}
+
+function buy() {
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('En mantenimiento mi Kin 😁👌');
+}
+
+function dropAllCart() {
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('En mantenimiento mi Kin 😁👌');
+}
+
+function dropItemCart() {
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('En mantenimiento mi Kin 😁👌');
+}
+
+function updateItemQuantityCart() {
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('En mantenimiento mi Kin 😁👌');
+}
+
+function cita() {
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('En mantenimiento mi Kin 😁👌');
 }

@@ -55,15 +55,15 @@
 <br><br>
 <div class="container">
   <h3 class="text-center text-primary">Comida de Perros</h3>
-  <div class="row row-cols-1 row-cols-sm-4 g-3">
+  <div class="row row-cols-1 row-cols-sm-6 g-3">
     {{#each products}}
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-primary">{{name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{description_simple}}</h6>
+          <h6 class="card-title text-primary">{{name}}</h6>
+          <p class="card-subtitle mb-2 text-muted">{{description_simple}}</p>
           <p class="card-text">Stock: {{stock}} unidades</p>
-          <img src="img/{{img_key}}" class="img-fluid" alt="card-img-bottom">
+          <img src="/images/{{img_key}}" class="img-fluid mb-3"  alt="card-img-bottom">
           <a class="text-muted card-link">price: {{precio}}</a>
           <button class="card-link btn btn-success" onclick="addtoCart('{{id}}','{{precio}}','{{name}}')">add</button>
           <!--

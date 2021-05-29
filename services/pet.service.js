@@ -1,5 +1,5 @@
 const Pet = require("../models/pet");
-const { uploadFile, deleteFile } = require("../aws/s3");
+const { deleteFile } = require("../aws/s3");
 const { resizePet } = require("../settings/sharp");
 const fs = require('fs');
 const petService = {};

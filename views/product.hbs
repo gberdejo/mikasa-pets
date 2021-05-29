@@ -1,24 +1,25 @@
 <br>
 <div class="container">
     <h3 class="text-center text-primary">¡Encuentra los productos necesarios para tener una mascota feliz!</h3>
-    <div class="row row-cols-1 row-cols-sm-4 g-3">
+    <div class="row row-cols-1 row-cols-sm-6 g-3">
         {{#each products}}
         <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">{{name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{description_simple}}</h6>
-                    <p class="card-text">Stock: {{stock}} unidades</p>
-                    <img src="img/{{img_key}}" class="img-fluid mb-3" alt="card-img-bottom">
-                    <a class="text-muted card-link">price: 152.99</a>
-                    {{#if client}}
-                    <a href="#" class="btn btn-success card-link">Add</a>
-                    {{else}}
-                    <a class="btn btn-success card-link">Add</a>
-                    {{/if}}
-                </div>
-            </div>
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title text-primary">{{name}}</h6>
+          <p class="card-subtitle mb-2 text-muted">{{description_simple}}</p>
+          <p class="card-text">Stock: {{stock}} unidades</p>
+          <img src="/images/{{img_key}}" class="img-fluid mb-3"  alt="card-img-bottom">
+          <a class="text-muted card-link">price: {{precio}}</a>
+          <button class="card-link btn btn-success" onclick="addtoCart('{{id}}','{{precio}}','{{name}}','{{employeeId}}')">add</button>
+          <!--
+          <form id="form">
+            <input type="hidden" name="id" value="gabriel">
+            <button type="submit">agragar</button>
+          </form>-->
         </div>
+      </div>
+    </div>
         {{/each}}
     </div>
 </div><br><br><br><br><br><br>

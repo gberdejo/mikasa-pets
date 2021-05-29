@@ -24,6 +24,6 @@ module.exports = {
     path: {
         root: path.join(__dirname, '../'),
         uploads: path.join(__dirname, '../', 'uploads'),
-        edits: path.join(__dirname, '../', 'public', 'img')
+        edits: path.join(__dirname, '../', 'uploads', 'edits')
     }
 }

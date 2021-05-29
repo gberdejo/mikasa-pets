@@ -2,7 +2,9 @@ const { Router } = require("express");
 const upload = require('../settings/multer');
 const router = Router();
 const { isAuthenticated } = require('../helpers');
-
+const config = require('config');
+const path = require('path');
+const fs = require('fs');
 const productController = require("../controllers/product.controller");
 
 /* Paginas Publicas */
@@ -27,4 +29,14 @@ router.post('/add-product', [isAuthenticated], productController.addProducttoCar
 router.get('/cart', [isAuthenticated], productController.renderShoppingCart);
 //router.get('/shopping-cart', productController.shoppingCart);
 
+router.get('/images/:name', async(req, res) => {
+    fs.readFile(path.join(config.get('path.edits'), req.params.name), function(err, data) {
+        if (!err) {
+            res.writeHead(200, { 'Content-Type': 'image/png' });
+            res.end(data, 'binary');
+        } else {
+            res.status(400).json('Not Found');
+        }
+    });
+})
 module.exports = router;

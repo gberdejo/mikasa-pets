@@ -1,38 +1,34 @@
-<!-- Aqui el form de los productos --->
 <br>
 <div class="container ">
     <div class="row row-cols-2 justify-content-center">
+        {{#each vet}}
         <div class="col">
-            <h1 class="text-primary text-center">Registro de Servicios</h1>
-
-            <form action="/create-vet" method="POST" enctype="multipart/form-data">
+            <h1 class="text-primary text-center">Actulizar de Servicio</h1>
+            <form action="/update-vet/{{id}}" method="POST">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-outline">
-                            <input type="text" id="typeText" class="form-control" name="name" maxlength="30"
-                                minlength="5" />
-                            <label class="form-label" for="typeText">Nombre del Servicio</label>
+                            <input type="text" id="typeText" class="form-control" name="name" value="{{name}}" />
+                            <label class="form-label" for="typeText">Nombre del Producto</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="precio" min="1" max="3" />
-                            <label class="form-label" for="typeNumber">Precio del Servicio</label>
+                            <input type="number" id="typeNumber" class="form-control" name="precio"
+                                value="{{precio}}" />
+                            <label class="form-label" for="typeNumber">Precio del Producto</label>
                         </div>
                         <br>
                         <div class="form-outline">
                             <input type="text" id="typeText" class="form-control" name="description_simple"
-                                minlength="10" maxlength="50" />
-                            <label class="form-label" for="typeText">Descripción del Servicio</label>
+                                value="{{description_simple}}" />
+                            <label class="form-label" for="typeText">Descripción del Producto</label>
                         </div>
                         <br>
                         <div class="form-outline">
                             <textarea class="form-control" id="textAreaExample" rows="4"
-                                name="description_html"></textarea>
+                                name="description_html">{{description_html}}</textarea>
                             <label class="form-label" for="textAreaExample">Descripción</label>
                         </div>
-                        <br>
-                        <label class="form-label" for="customFile">Seleccione la primera imagen</label>
-                        <input type="file" class="form-control" id="customFile" name="avatar" />
                         <br>
                         <div class="ms-1 form-check">
                             <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
@@ -47,5 +43,6 @@
                 </div>
             </form>
         </div>
+        {{/each}}
     </div>
 </div><br><br><br><br>

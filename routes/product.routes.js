@@ -23,6 +23,9 @@ router.post("/update-product/:id", [isAuthenticated], productController.updatePr
 router.get('/list-vet', [isAuthenticated], productController.renderLisVet);
 router.get('/create-vet', [isAuthenticated], productController.renderCreateVet);
 router.post('/create-vet', [isAuthenticated], upload.single('avatar'), productController.createVet);
+router.get('/update-vet/:id',[isAuthenticated],productController.renderUpdateVet)
+router.post('/update-vet/:id', [isAuthenticated],productController.updateVet);
+router.post('/delete-vet/:id',[isAuthenticated],productController.deleteVet);
 
 /* Carrito de compras */
 router.post('/add-product', [isAuthenticated], productController.addProducttoCart);

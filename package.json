@@ -4,7 +4,7 @@
     "description": "Proyecto Integrador",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon index ",
+        "dev": "nodemon index",
         "start": "node index"
     },
     "author": "",

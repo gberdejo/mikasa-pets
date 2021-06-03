@@ -154,4 +154,42 @@ productService.updateProduct = async(obj) => {
         return null;
     }
 }
+productService.updateVet = async (id,data) => {
+    try {
+        const vet = await Product.findByPk(id);
+        if(!vet) return null
+        await Product.update({
+            name:data.name,
+            precio: data.precio,
+            description_simple:data.description_simple,
+            description_html:data.description_html,
+        },{
+            where:{ id : vet.id }
+        })
+        return true
+    } catch (error) {
+        return null
+    }
+}
+productService.getVetbyId = async (id) => {
+    try {
+        const vet = await Product.findByPk(id);
+        if(!vet) return null;
+        return vet.get({plain: true});
+    } catch (error) {
+        return null
+    }
+}
+productService.deleteVet = async(id) => {
+    try {
+        const vet = await Product.findByPk(id);
+        if(!vet) return null;
+        await Product.update({ status: 0 }, {
+            where: { id : vet.id }
+        });
+        return true;
+    } catch (error) {
+        return null;
+    }
+}
 module.exports = productService;

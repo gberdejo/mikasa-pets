@@ -41,7 +41,34 @@ function deletePet(id, name, key) {
             }
         }).show();
 }
-
+async function deleteVet(id,name){
+    alertify.confirm()
+        .setHeader('<em> Confirmacion </em> ')
+        .set('modal', false)
+        .setting({
+            'label': 'Eliminar',
+            'message': `¿Quiere eliminar el servicio de ${name}?`,
+            'onok': async() => {
+                await fetch(`/delete-vet/${id}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    })
+                    .then((response) => {
+                        if (response.status === 200) {
+                            document.getElementById(`row-vet-${id}`).remove();
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.success(`Se elimino ${name}`);
+                        }else{
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.success(`No se pudp eliminar ${name}`);
+                        }
+                    }) 
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }).show();
+}
 async function addtoCart(id, precio, name) {
 
     const productId = id;

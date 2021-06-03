@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 {{#each vets}}
-                <tr>
+                <tr id="row-vet-{{id}}">
                     <th scope="row">{{id}}</th>
                     <th>{{employeeId}}</th>
                     <td>{{name}}</td>
@@ -33,11 +33,11 @@
                     <td>
                         <p class="" style="width: 160px;">{{description_html}}</p>
                     </td>
-                    <td><a href="#" class="btn btn-info btn-sm">Actualizar</a></td>
+                    <td><a href="/update-vet/{{id}}" class="btn btn-info btn-sm">Actualizar</a></td>
                     <td>
-                        <form action="#" method="POST"><button class="btn btn-danger btn-sm"
-                                type="submit">Eliminar</button>
-                        </form>
+                        <button onclick="deleteVet('{{id}}','{{name}}')" class="btn btn-danger btn-sm"
+                            type="button">Eliminar</button>
+
                     </td>
                 </tr>
                 {{/each}}

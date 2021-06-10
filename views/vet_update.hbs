@@ -8,25 +8,26 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-outline">
-                            <input type="text" id="typeText" class="form-control" name="name" value="{{name}}" />
-                            <label class="form-label" for="typeText">Nombre del Producto</label>
+                            <input type="text" id="typeText" class="form-control" name="name" value="{{name}}" required
+                                minlength="3" maxlength="30" />
+                            <label class="form-label" for="typeText">Nombre del Servicio</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="precio"
-                                value="{{precio}}" />
-                            <label class="form-label" for="typeNumber">Precio del Producto</label>
+                            <input type="number" id="typeNumber" class="form-control" name="precio" value="{{precio}}"
+                                required />
+                            <label class="form-label" for="typeNumber">Precio del Servicio</label>
                         </div>
                         <br>
                         <div class="form-outline">
                             <input type="text" id="typeText" class="form-control" name="description_simple"
-                                value="{{description_simple}}" />
-                            <label class="form-label" for="typeText">Descripción del Producto</label>
+                                value="{{description_simple}}" required minlength="10" maxlength="50" />
+                            <label class="form-label" for="typeText">Descripción del Servicio</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <textarea class="form-control" id="textAreaExample" rows="4"
-                                name="description_html">{{description_html}}</textarea>
+                            <textarea class="form-control" id="textAreaExample" rows="4" name="description_html"
+                                required>{{description_html}}</textarea>
                             <label class="form-label" for="textAreaExample">Descripción</label>
                         </div>
                         <br>

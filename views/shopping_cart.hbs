@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 {{#each details}}
-                <tr>
+                <tr id="item-cart-{{productId}}-{{ticketId}}">
                     <th scope="row">1</th>
                     <th>{{name}}</th>
                     <td>{{discount}}</td>
@@ -32,12 +32,15 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" onclick="updateItemQuantityCart()" class="btn btn-outline-primary btn-rounded   btn-sm"
-                            data-mdb-ripple-color="#000000"> Modificar <i class="fas fa-download ms-1"></i></button>
+                        <button type="button"
+                            onclick="updateItemQuantityCart('{{ticketId}}','{{productId}}','{{name}}')"
+                            class="btn btn-outline-primary btn-rounded   btn-sm" data-mdb-ripple-color="#000000">
+                            Modificar <i class="fas fa-download ms-1"></i></button>
                     </td>
                     <td>
-                        <button type="button" onclick="dropItemCart()" class="btn btn-outline-danger btn-rounded   btn-sm"
-                            data-mdb-ripple-color="#000000"> Eliminar <i class="fas fa-download ms-1"></i></button>
+                        <button type="button" onclick="dropItemCart('{{ticketId}}','{{productId}}')"
+                            class="btn btn-outline-danger btn-rounded   btn-sm" data-mdb-ripple-color="#000000">
+                            Eliminar <i class="fas fa-download ms-1"></i></button>
                     </td>
                 </tr>
                 {{/each}}
@@ -46,9 +49,11 @@
     </div>
     <div class="row justify-content-end row-cols-3">
         <div class="col">
-        <button type="button" onclick="buy()" class="btn btn-outline-success btn-rounded   btn-lg" data-mdb-ripple-color="#000000"> Comprar
-        <i class="fas fa-download ms-1"></i></button>
-        <button type="button" onclick="dropAllCart()" class="btn btn-outline-danger btn-rounded   btn-lg" data-mdb-ripple-color="#000000"> Vaciar carrito <i class="fas fa-download ms-1"></i></button>
+            <a  class="btn btn-outline-success btn-rounded btn-lg"
+                data-mdb-ripple-color="#000000" href="pasarela-product"> Comprar
+                <i class="fas fa-download ms-1"></i></a>
+            <button type="button" onclick="dropAllCart()" class="btn btn-outline-danger btn-rounded   btn-lg"
+                data-mdb-ripple-color="#000000"> Vaciar carrito <i class="fas fa-download ms-1"></i></button>
         </div>
 
     </div>

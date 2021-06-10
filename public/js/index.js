@@ -117,9 +117,35 @@ function dropAllCart() {
     alertify.success('En mantenimiento mi Kin 😁👌');
 }
 
-function dropItemCart() {
-    alertify.set('notifier', 'position', 'top-right');
-    alertify.success('En mantenimiento mi Kin 😁👌');
+function dropItemCart(ticketId,productId,name) {
+    const obj = {ticketId,productId};
+    alertify.confirm()
+        .setHeader('<em> Confirmacion </em> ')
+        .set('modal', false)
+        .setting({
+            'label': 'Eliminar',
+            'message': `¿Quiere eliminar el producto ?`,
+            'onok': async() => {
+                await fetch(`/delete-item-cart`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(obj)
+                    })
+                    .then((response) => {
+                        if (response.ok) {
+                            document.getElementById(`item-cart-${productId}-${ticketId}`).remove();
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.success(`Se elimino el producto`);
+                        }else{
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.success(`No se pudo eliminar `);
+                        }
+                    }) 
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }).show();
 }
 
 function updateItemQuantityCart() {

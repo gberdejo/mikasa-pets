@@ -1,8 +1,12 @@
 const { request } = require("express");
+const DetailTicket = require("../models/detail.ticket");
 const Product = require("../models/product");
 const detailTicketService = require("../services/detailticket.service");
 const productService = require("../services/product.service");
 const ticketService = require("../services/ticket.service");
+const { sendEmail } = require("../utils/nodemailer");
+const { Op } = require("sequelize");
+
 const productController = {};
 
 productController.renderProduct = async (req, res) => {
@@ -242,42 +246,70 @@ productController.renderShoppingCart = async (req, res) => {
     const details = await detailTicketService.listDetailTicket(ticket.id);
     res.render("shopping_cart", { details });
   } catch (err) {
-    console.log(err);  
+    console.log(err);
     res.redirect("/");
   }
 };
-productController.renderUpdateVet = async (req,res) => {
+productController.renderUpdateVet = async (req, res) => {
   try {
     const vet = await productService.getVetbyId(req.params.id);
-    res.render('vet_update',{vet:[vet]});
+    res.render("vet_update", { vet: [vet] });
   } catch (error) {
-    res.redirect('/list-vet');
+    res.redirect("/list-vet");
   }
-}
-productController.updateVet = async (req,res) => {
+};
+productController.updateVet = async (req, res) => {
   try {
-    const vet = await productService.updateVet(req.params.id,req.body);
-    if(!vet) {
-      req.flash('error','Hubo un problema a la hora actualizar')
+    const vet = await productService.updateVet(req.params.id, req.body);
+    if (!vet) {
+      req.flash("error", "Hubo un problema a la hora actualizar");
       return res.redirect(`/update-vet/${req.params.id}`);
     }
-    req.flash('success',`Servcio actualizado : codigo ${req.params.id}`);
-    res.redirect('/list-vet')
+    req.flash("success", `Servcio actualizado : codigo ${req.params.id}`);
+    res.redirect("/list-vet");
   } catch (error) {
-    req.flash('error','Hubo un problema a la hora actualizar')
-      return res.redirect(`/update-vet/${req.params.id}`);
+    req.flash("error", "Hubo un problema a la hora actualizar");
+    return res.redirect(`/update-vet/${req.params.id}`);
   }
-} 
-productController.deleteVet = async (req,res ) => {
-  try {  
+};
+productController.deleteVet = async (req, res) => {
+  try {
     const vet = productService.deleteVet(req.params.id);
-    if(!vet){ 
-      res.status(404).json({msg:'no se elimino'})
+    if (!vet) {
+      res.status(404).json({ msg: "no se elimino" });
     }
-    res.status(200).json({msg:'ok'})
-
+    res.status(200).json({ msg: "ok" });
   } catch (error) {
-    res.status(500).json({msg:'no se elimino'})
+    res.status(500).json({ msg: "no se elimino" });
   }
-}
+};
+productController.deleteItemCart = async (req, res) => {
+  try {
+    const { ticketId, productId } = req.body;
+    const detail = await DetailTicket.findOne({
+      where: {
+        [Op.and]: [{ ticketId }, { productId }],
+      },
+    });
+    if (!detail) return res.status(500).json({ msg: ":v" });
+    const raw = detail.get({ plain: true });
+    await DetailTicket.destroy({
+      where: {
+        [Op.and]: [{ ticketId }, { productId }],
+      },
+    });
+    res.status(200).json({ msg: ":ok" });
+  } catch (error) {
+    res.status(500).json({ msg: ":v" });
+  }
+};
+productController.renderPasarelaProduct = (req, res) => res.render("pasarela");
+productController.buyProduct = async (req, res) => {
+  try {
+    const info = await sendEmail();
+    res.status(200).send(`${info.messageId}`);
+  } catch (err) {
+    res.status(500).json({ err });
+  }
+};
 module.exports = productController;

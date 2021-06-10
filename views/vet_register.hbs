@@ -10,29 +10,29 @@
                     <div class="card-body">
                         <div class="form-outline">
                             <input type="text" id="typeText" class="form-control" name="name" maxlength="30"
-                                minlength="5" />
+                                minlength="3" required />
                             <label class="form-label" for="typeText">Nombre del Servicio</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="precio" min="1" max="3" />
+                            <input type="number" id="typeNumber" class="form-control" name="precio" required />
                             <label class="form-label" for="typeNumber">Precio del Servicio</label>
                         </div>
                         <br>
                         <div class="form-outline">
                             <input type="text" id="typeText" class="form-control" name="description_simple"
-                                minlength="10" maxlength="50" />
+                                minlength="10" maxlength="50" required />
                             <label class="form-label" for="typeText">Descripción del Servicio</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <textarea class="form-control" id="textAreaExample" rows="4"
-                                name="description_html"></textarea>
+                            <textarea class="form-control" id="textAreaExample" rows="4" name="description_html"
+                                required></textarea>
                             <label class="form-label" for="textAreaExample">Descripción</label>
                         </div>
                         <br>
                         <label class="form-label" for="customFile">Seleccione la primera imagen</label>
-                        <input type="file" class="form-control" id="customFile" name="avatar" />
+                        <input type="file" class="form-control" id="customFile" name="avatar" required />
                         <br>
                         <div class="ms-1 form-check">
                             <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">

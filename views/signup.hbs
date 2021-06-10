@@ -11,14 +11,14 @@
                             <div class="col">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="name_client" name="name"
-                                        placeholder="Nombres">
+                                        placeholder="Nombres" required minlength="5" maxlength="50">
                                     <label for="name_client">Nombres</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="lastname_client" name="lastname"
-                                        placeholder="Apellidos">
+                                        placeholder="Apellidos" required minlength="5" maxlength="50">
                                     <label for="lastname_client">Apellidos</label>
                                 </div>
 
@@ -26,17 +26,17 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="nick_client" name="nick"
-                                placeholder="name@example.com">
+                                placeholder="name@example.com" required minlength="5" maxlength="10">
                             <label for="nick_client">Usuario</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="email" name="email"
-                                placeholder="name@example.com">
+                                placeholder="name@example.com" required>
                             <label for="email">Email</label>
                         </div>
                         <div class="form-floating">
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password">
+                                placeholder="Password" required>
                             <label for="password">Contraseña</label>
                         </div>
                         <br>
@@ -44,13 +44,13 @@
                         <div class="row row-cols-2">
                             <div class="col">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" name="birthdata" id="">
+                                    <input type="date" class="form-control" name="birthdata" id="" required>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-floating">
                                     <input type="number" class="form-control" id="phone_client" name="phone"
-                                        placeholder="Celular">
+                                        placeholder="Celular" required>
                                     <label for="phone_client">Celular</label>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                         <br>
                         <div class="form-floating">
                             <input type="text" class="form-control" id="clientDireccion" name="direction"
-                                placeholder="Dirección">
+                                placeholder="Dirección" required>
                             <label for="clientDireccion">Dirección</label>
                         </div>
                         <br>

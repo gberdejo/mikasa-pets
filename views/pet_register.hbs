@@ -8,18 +8,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="name_pet" name="name" placeholder="Nombres">
+                            <input type="text" class="form-control" id="name_pet" name="name" placeholder="Nombres"
+                                required minlength="3" maxlength="20">
                             <label for="name_pet">Nombres de la mascota</label>
                         </div><br>
                         <!-- Type -->
-                        <select name="type" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                        <select name="type" class="form-select form-select-lg" aria-label=".form-select-lg example"
+                            required>
                             <option>Seleccione el tipo de mascota que tiene</option>
                             <option value="PERRO">Perro</option>
                             <option value="GATO">Gato</option>
                         </select>
                         <br>
                         <!-- RACE -->
-                        <select name="race" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                        <select name="race" class="form-select form-select-lg" aria-label=".form-select-lg example"
+                            required>
                             <option>Seleccione la raza de su mascota</option>
                             <option value="Pastor Alemán">Pastor Alemán</option>
                             <option value="Bulldog">Bulldog</option>
@@ -28,25 +31,27 @@
                         </select>
                         <br>
                         <!-- SEX -->
-                        <select name="sex" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                        <select name="sex" class="form-select form-select-lg" aria-label=".form-select-lg example"
+                            required>
                             <option>Seleccione el genero de su mascota</option>
                             <option value="MACHO">Macho</option>
                             <option value="HEMBRA">Hembra</option>
                         </select>
                         <br>
                         <label class="form-label" for="customFile">Seleccione la primera imagen</label>
-                        <input type="file" class="form-control" id="customFile" name="avatar" />
+                        <input type="file" class="form-control" id="customFile" name="avatar" required />
                         <br>
                         <br>
                         <h6>Fecha de Nacimiento</h6>
                         <div class="form-floating">
-                            <input type="date" class="form-control" name="birthdata" id="">
+                            <input type="date" class="form-control" name="birthdata" id="" required>
                         </div>
 
                         <br>
                         <br>
                         <div class="ms-1 form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked="">
+                            <input class="form-check-input" type="checkbox" value="" id="formCheckChecked" checked=""
+                                required>
                             <label class="form-check-label" for="formCheckChecked">Aceptas que usemos tu información
                                 para venderla a Facebook.</label>
                         </div>

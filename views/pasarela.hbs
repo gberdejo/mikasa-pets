@@ -1,0 +1,56 @@
+<div class="container"><br><br><br>
+    <div class="row row-cols-2 justify-content-center">
+        <div class="col">
+            <h2> Pasarela de pagos </h2>
+            </header>
+            <br>
+            <form action="/buy-product" method="POST" class="credit-card-div">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <input required type="text" class="form-control" placeholder="Numero de Tarjeta" />
+                            </div>
+                        </div><br>
+                        <div class="row ">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <span class="help-block text-muted small-font"> Expiry Month</span>
+                                <input required type="text" class="form-control" placeholder="MM" />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <span class="help-block text-muted small-font"> Expiry Year</span>
+                                <input required type="text" class="form-control" placeholder="YY" />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <span class="help-block text-muted small-font"> CCV</span>
+                                <input required type="text" class="form-control" placeholder="CCV" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row ">
+                            <div class="col-md-12 pad-adjust">
+                                <input required type="text" class="form-control" placeholder="Nombre del Propietario" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="row ">
+                                <div class="col-md-12 pad-adjust">
+                                    <input type="text" class="form-control" placeholder="Correo del Propietario" />
+                                </div>
+                            </div><br><br><br>
+                            <div class="row ">
+                                <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                    <input type="submit" class="btn btn-outline-warning text-dark" value="Cancelar" />
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                    <input type="submit" class="btn btn-danger btn-block" value="Pagar" />
+                                </div>
+                            </div><br><br><br><br><br><br>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>

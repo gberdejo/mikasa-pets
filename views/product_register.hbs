@@ -9,29 +9,31 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-outline">
-                            <input type="text" id="typeText" class="form-control" name="name" />
+                            <input type="text" id="typeText" class="form-control" name="name" required minlength="3"
+                                maxlength="20" />
                             <label class="form-label" for="typeText">Nombre del Producto</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="precio" />
+                            <input type="number" id="typeNumber" class="form-control" name="precio" required />
                             <label class="form-label" for="typeNumber">Precio del Producto</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="stock" />
+                            <input type="number" id="typeNumber" class="form-control" name="stock" required />
                             <label class="form-label" for="typeNumber">Stock del Producto</label>
                         </div>
                         <br>
                         <div class="form-outline">
-                            <input type="text" id="typeText" class="form-control" name="description_simple" />
+                            <input type="text" id="typeText" class="form-control" name="description_simple" required
+                                minlength="5" maxlength="30" />
                             <label class="form-label" for="typeText">Descripción del Producto</label>
                         </div><br>
                         <label class="form-label" for="customFile">Seleccione la primera imagen</label>
-                        <input type="file" class="form-control" id="customFile" name="avatar" />
+                        <input type="file" class="form-control" id="customFile" name="avatar" required />
                         <br>
                         <div class="form-outline">
-                            <textarea class="form-control" id="textAreaExample" rows="4"
+                            <textarea class="form-control" id="textAreaExample" rows="4" required
                                 name="description_html"></textarea>
                             <label class="form-label" for="textAreaExample">Descripción</label>
                         </div><br>

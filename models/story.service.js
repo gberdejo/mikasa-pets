@@ -2,22 +2,44 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
 const StoryService = sequelize.define("storyservice", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+    },
     attention: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+
     },
-    nameservice: {
+    atendido: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: 'PROGRAMADA'
     },
-    diagnosis: {
-        type: DataTypes.STRING(300),
-        allowNull: false
+    motivo: {
+        type: DataTypes.STRING
     },
-    id_ticket_service: {
+    tratamiento: {
+        type: DataTypes.STRING
+    },
+    petId: {
+        type: DataTypes.INTEGER
+    },
+    productId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+
     },
+    state: {
+        type: DataTypes.STRING,
+        defaultValue: 'PENDIENTE'
+
+    },
+    responsable: {
+        type: DataTypes.STRING
+    },
+    dni: {
+        type: DataTypes.INTEGER
+    }
 }, {
     timestamps: false,
 });

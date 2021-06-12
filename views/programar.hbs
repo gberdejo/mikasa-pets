@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>¡Encuentra los mejores cuidados que tu mascota necesita!</h2>
+    <br><br>
+    <form action="/pasarela-vet" method="POST">
+        <div class="row row-cols-2">
+            {{#each product}}
+            <input type="hidden" name="productId" value="{{id}}">
+            <div class="col">
+                <div class="card text-center">
+                    <div class="card-header">{{description_simple}}</div>
+                    <img src="/images/{{img_key}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">{{description_html}}</p>
+
+                    </div>
+                    <div class="card-footer text-muted">2 days ago</div>
+                </div>
+            </div>
+            {{/each}}
+            <div class="col p-5">
+                <h2>Programar la cita</h2>
+                <select name="petId" required class="form-select" aria-label=".form-select-lg example">
+                    <option>Mis mascotas</option>
+                    {{#each pets}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select><br>
+                <div class="form-outline">
+                    <input type="text" id="responsable" class="form-control" name="responsable" required minlength="5"
+                        maxlength="50" />
+                    <label class="form-label" for="responsable">Persona responsable</label>
+                </div><br>
+                <div class="form-outline">
+                    <input type="number" id="responsable" class="form-control" name="dni" required />
+                    <label class="form-label" for="dni">Documento de indentificación</label>
+                </div><br>
+
+                <div class="form-floating">
+                    <input type="datetime-local" class="form-control" name="attention" id="" required>
+                </div><br>
+                <center> <input type="submit" class="btn btn-success" value="Pagar Cita"></center>
+            </div>
+        </div>
+        </form>
+</div>

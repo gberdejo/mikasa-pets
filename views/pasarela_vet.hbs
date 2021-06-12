@@ -1,13 +1,18 @@
+{{#each user}}
 <div class="container"><br><br><br>
     <div class="row row-cols-2 justify-content-center">
         <div class="col">
             <h2> Pasarela de pagos </h2>
             </header>
             <br>
-            <form class="credit-card-div">
+            <form method="POST" action="/buy-vet"  class="credit-card-div">
+            <input type="hidden" name="productId" value="{{productId}}">
+            <input type="hidden" name="petId" value="{{petId}}">
+            <input type="hidden" name="responsable" value="{{responsable}}">
+            <input type="hidden" name="dni" value="{{dni}}">
+            <input type="hidden" name="attention" value="{{attention}}">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-
                         <div class="row ">
                             <div class="col-md-12">
                                 <input required type="text" class="form-control" placeholder="Numero de Tarjeta" value="1235-5423-8563-5214-5214" />
@@ -20,7 +25,7 @@
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font"> Expiry Year</span>
-                                <input required type="text" class="form-control" placeholder="YY" value="05" />
+                                <input required type="text" class="form-control" placeholder="YY" value="25" />
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <span class="help-block text-muted small-font"> CCV</span>
@@ -30,7 +35,12 @@
                         <br>
                         <div class="row ">
                             <div class="col-md-12 pad-adjust">
-                                <input required type="text" class="form-control" placeholder="Nombre del Propietario" />
+                                <input required type="text" value="{{name}} {{lastname}}" class="form-control" placeholder="Nombre del Propietario" />
+                            </div>
+                        </div><br>
+                        <div class="row ">
+                            <div class="col-md-12 pad-adjust">
+                                <input required type="email" value="{{email}}" class="form-control" placeholder="Nombre del Propietario" />
                             </div>
                         </div>
                         <br>
@@ -38,10 +48,11 @@
                           
                             <div class="row ">
                                 <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                  <a class="btn btn-outline-warning text-dark" href="#">Cancelar</a>
+                                  <a class="btn btn-outline-warning text-dark" href="/vet">Cancelar</a>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                    <button onclick="buyVet()" class="btn btn-danger btn-block">Pagar</button>
+                                    <input type="submit" class="btn btn-danger btn-block" value="Pagar">
+                                    <!--<button onclick="buyProduct()" class="btn btn-danger btn-block">Pagar</button>-->
                                 </div>
                             </div><br><br><br><br><br><br>
                         </div>
@@ -50,3 +61,4 @@
         </div>
     </div>
 </div>
+{{/each}}

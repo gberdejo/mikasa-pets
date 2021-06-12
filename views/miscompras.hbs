@@ -1,0 +1,30 @@
+<br>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Estatus</th>
+                    <th scope="col">Monto total</th>
+                    <th scope="col">Fecha de compras</th>
+                    <th scope="col">Track</th>
+                    <th scope="col">Detalle</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each list}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <th>{{status}}</th>
+                    <td>{{total}}</td>
+                    <td>{{date}}</td>
+                    <td><strong>{{track}}</strong> </td>
+                    <td><a class="btn btn-outline-info btn-rounded" href="#">Seguimiento</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

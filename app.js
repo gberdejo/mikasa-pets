@@ -75,6 +75,7 @@ app.use("/", require("./routes/auth.routes"));
 app.use("/", require("./routes/client.routes"));
 app.use("/", require("./routes/pet.routes"));
 app.use("/", require("./routes/product.routes"));
+app.use("/", require("./routes/employee.routes"));
 
 //Static
 app.use(express.static("public"));

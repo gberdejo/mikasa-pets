@@ -1,0 +1,52 @@
+<div class="container">
+        <h2>Mascota por atender</h2>
+    <div class="row row-cols-2">
+        {{#each pets}}
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card text-center ">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="/images/{{img_key}}" class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                        </a>
+                    </div>
+                    <div class="card-header">{{race}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">
+                            Nacio en {{birthdata}}
+                        </p>
+                    </div>
+                    <div class="card-footer">Hace un minuto</div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <div class="col">
+            <h3>Registro de historial</h3>
+            <div class="form-outline">
+                <input type="text" id="responsable" class="form-control" name="responsable" required minlength="5" maxlength="50" />
+                <label class="form-label" for="responsable">Historial</label>
+            </div><br>
+            <div class="form-outline">
+                <input type="text" id="responsable" class="form-control" name="responsable" required minlength="5" maxlength="50" />
+                <label class="form-label" for="responsable">Historial</label>
+            </div><br>
+            <div class="form-outline">
+                <input type="text" id="responsable" class="form-control" name="responsable" required minlength="5" maxlength="50" />
+                <label class="form-label" for="responsable">Historial</label>
+            </div><br>
+            <div class="form-outline">
+                <input type="text" id="responsable" class="form-control" name="responsable" required minlength="5" maxlength="50" />
+                <label class="form-label" for="responsable">Historial</label>
+            </div><br>
+            <div class="form-outline">
+                <input type="text" id="responsable" class="form-control" name="responsable" required minlength="5" maxlength="50" />
+                <label class="form-label" for="responsable">Historial</label>
+            </div><br>
+            <a href="#" class="btn btn-success">Guardar</a>
+        </div>
+        
+    </div>
+</div>

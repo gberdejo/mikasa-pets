@@ -1,0 +1,36 @@
+<br>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Mi mascota</th>
+                    <th scope="col">Servicio contratado</th>
+                    <th scope="col">Precio del servicio</th>
+                    <th scope="col">Persona responsable</th>
+                    <th scope="col">Identificacion(DNI)</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Atención</th>
+                    <th scope="col">Acción</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each citas}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <th>{{pet}}</th>
+                    <td>{{product}}</td>
+                    <td>{{precio}}</td>
+                    <td>{{responsable}}</td>
+                    <td>{{dni}}</td>
+                    <td>{{state}}</td>
+                    <td>{{atendido}}</td>
+                    <td><a class="btn btn-outline-success btn-rounded" href="/consultoria-vet/{{id}}">Atender</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

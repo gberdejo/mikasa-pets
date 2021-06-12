@@ -9,6 +9,7 @@ const fs = require("fs");
 sequelize
   .authenticate()
   .then(() => {
+    sequelize.sync({ alter: true });
     console.log("Go DataBase!");
     const server = app.listen(app.get("port"), () => {
       console.log("Run Server on port: " + app.get("port"));

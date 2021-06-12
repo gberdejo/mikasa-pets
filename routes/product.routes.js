@@ -5,82 +5,44 @@ const { isAuthenticated } = require("../helpers");
 const config = require("config");
 const path = require("path");
 const fs = require("fs");
-const productController = require("../controllers/product.controller");
+const pro = require("../controllers/product.controller");
 
-/* Paginas Publicas */
-router.get("/vet", productController.renderVet);
-router.get("/product", productController.renderProduct);
+//TODO Paginas Publicas
+router.get("/vet", pro.renderVet);
+router.get("/product", pro.renderProduct);
 
-/* Crear productos */
-router.get(
-  "/list-product",
-  [isAuthenticated],
-  productController.renderListProduct
-);
-router.get(
-  "/create-product",
-  [isAuthenticated],
-  productController.renderCreateProduct
-);
+//TODO Crear productos
+router.get("/list-product", [isAuthenticated], pro.renderListProduct);
+router.get("/create-product", [isAuthenticated], pro.renderCreateProduct);
 router.post(
   "/create-product",
   [isAuthenticated],
   upload.single("avatar"),
-  productController.createProduct
+  pro.createProduct
 );
-router.post(
-  "/delete-product/:id",
-  [isAuthenticated],
-  productController.deleteProduct
-);
-router.get(
-  "/update-product/:id",
-  [isAuthenticated],
-  productController.renderUpdateProduct
-);
-router.post(
-  "/update-product/:id",
-  [isAuthenticated],
-  productController.updateProduct
-);
-router.post(
-  "/delete-item-cart",
-  [isAuthenticated],
-  productController.deleteItemCart
-);
-router.post("/buy-product", [isAuthenticated], productController.buyProduct);
+router.post("/delete-product/:id", [isAuthenticated], pro.deleteProduct);
+router.get("/update-product/:id", [isAuthenticated], pro.renderUpdateProduct);
+router.post("/update-product/:id", [isAuthenticated], pro.updateProduct);
 
-/* Crear servicios veterinario */
-router.get("/list-vet", [isAuthenticated], productController.renderLisVet);
-router.get("/create-vet", [isAuthenticated], productController.renderCreateVet);
+//TODO Crear servicios veterinario
+router.get("/list-vet", [isAuthenticated], pro.renderLisVet);
+router.get("/create-vet", [isAuthenticated], pro.renderCreateVet);
 router.post(
   "/create-vet",
   [isAuthenticated],
   upload.single("avatar"),
-  productController.createVet
+  pro.createVet
 );
-router.get(
-  "/update-vet/:id",
-  [isAuthenticated],
-  productController.renderUpdateVet
-);
-router.post("/update-vet/:id", [isAuthenticated], productController.updateVet);
-router.post("/delete-vet/:id", [isAuthenticated], productController.deleteVet);
+router.get("/update-vet/:id", [isAuthenticated], pro.renderUpdateVet);
+router.post("/update-vet/:id", [isAuthenticated], pro.updateVet);
+router.post("/delete-vet/:id", [isAuthenticated], pro.deleteVet);
 
-/* Carrito de compras */
-router.post(
-  "/add-product",
-  [isAuthenticated],
-  productController.addProducttoCart
-);
-router.get("/cart", [isAuthenticated], productController.renderShoppingCart);
-router.get(
-  "/pasarela-product",
-  [isAuthenticated],
-  productController.renderPasarelaProduct
-);
-//router.get('/shopping-cart', productController.shoppingCart);
-
+//TODO Carrito de compras
+router.post("/add-product", [isAuthenticated], pro.addProducttoCart);
+router.get("/cart", [isAuthenticated], pro.renderShoppingCart);
+router.get("/pasarela-product", [isAuthenticated], pro.renderPasarelaProduct);
+router.post("/delete-item-cart", [isAuthenticated], pro.deleteItemCart);
+router.post("/buy-product", [isAuthenticated], pro.buyProduct);
 router.get("/images/:name", async (req, res) => {
   fs.readFile(
     path.join(config.get("path.edits"), req.params.name),

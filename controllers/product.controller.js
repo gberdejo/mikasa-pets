@@ -1,11 +1,12 @@
-const { request } = require("express");
+const { request, response } = require("express");
 const DetailTicket = require("../models/detail.ticket");
 const Product = require("../models/product");
 const detailTicketService = require("../services/detailticket.service");
 const productService = require("../services/product.service");
 const ticketService = require("../services/ticket.service");
-const { sendEmail } = require("../utils/nodemailer");
 const { Op } = require("sequelize");
+const fs = require("fs");
+const Ticket = require("../models/ticket");
 
 const productController = {};
 
@@ -303,13 +304,46 @@ productController.deleteItemCart = async (req, res) => {
     res.status(500).json({ msg: ":v" });
   }
 };
-productController.renderPasarelaProduct = (req, res) => res.render("pasarela");
-productController.buyProduct = async (req, res) => {
+productController.renderPasarelaProduct = (req, res) => {
+  res.render("pasarela");
+};
+productController.buyProduct = async (req, res = response) => {
   try {
-    const info = await sendEmail();
-    res.status(200).send(`${info.messageId}`);
+    const ticket = await Ticket.findOne({
+      where: {
+        [Op.and]: {
+          clientId: req.user.id,
+          status: "PENDIENTE",
+        },
+      },
+    });
+    if (!ticket) {
+      req.flash("error", "Tienes el carrito vacio");
+      return res.redirect("/cart");
+    }
+    const list = await DetailTicket.findAll({
+      where: { ticketId: ticket.dataValues.id },
+    });
+    let total = 0;
+    list.map((item) => {
+      total += item.dataValues.subtotal;
+    });
+    await Ticket.update(
+      {
+        status: "PAGADO",
+        total,
+      },
+      {
+        where: {
+          id: ticket.dataValues.id,
+        },
+      }
+    );
+    req.flash("success", "Revice su bandeja de compras");
+    res.redirect("/product");
   } catch (err) {
-    res.status(500).json({ err });
+    req.flash("error", "Tienes el carrito vacio");
+    return res.redirect("/cart");
   }
 };
 module.exports = productController;

@@ -10,7 +10,6 @@ const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
-
 const passport = require("passport");
 
 //config passport-MySql

@@ -25,7 +25,6 @@
         </div>
         {{/each}}
         <div class="col">
-            <form action="/registrar-historial" method="post">
             <h3 class="text-secondary">Registro de historial📰</h3>
             {{#each story}}
             <input type="hidden" name="id" value="{{id}}">
@@ -53,19 +52,20 @@
             <div class="form-outline">
                 <input type="text"  value="{{attention}}" class="form-control " disabled />
             </div><br>
+            <label class="form-label">Motivo</label>
             <div class="form-outline">
-                <input type="text" id="motivo" class="form-control" name="motivo" required minlength="5" maxlength="50" />
-                <label class="form-label" for="motivo">Motivo</label>
+                <input type="text"  value="{{motivo}}" class="form-control " disabled />
             </div><br>
+            <label class="form-label" for="tratamiento">Tratamiento o incidencia</label>
             <div class="form-outline">
-                <textarea class="form-control" id="tratamiento" rows="4" required
-                    name="tratamiento"></textarea>
-                <label class="form-label" for="tratamiento">Tratamiento o incidencia</label>
+                <textarea class="form-control" id="tratamiento" rows="4" disabled
+                    >{{tratamiento}}</textarea>
             </div><br>
             
             {{/each}}
-            <input class="btn btn-outline-success btn-rounded  btn-block " data-mdb-ripple-color="#000000" type="submit" value="Finalizar atención">
-            </form>
+            <a href="/citas-atender" class="btn btn-outline-success btn-rounded  btn-block " data-mdb-ripple-color="#000000">Regresar</a>
+       
+       
         </div>
         
     </div>

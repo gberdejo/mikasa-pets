@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const app = require('./app');
 const sequelize = require('./database/index');
 const config = require('config');

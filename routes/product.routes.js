@@ -49,6 +49,10 @@ router.post('/buy-vet', [isAuthenticated], pro.buyVet);
 //TODO Veterinaria
 router.get('/programar-cita/:id', [isAuthenticated], pro.renderProgramarCita);
 
+//TODO Track
+router.get('/product-seguimiento', pro.renderProductSeguimiento);
+router.get('/product-seguimiento-enviar/:id', pro.enviarProduct);
+
 router.get('/images/:name', async (req, res) => {
   fs.readFile(
     path.join(config.get('path.edits'), req.params.name),

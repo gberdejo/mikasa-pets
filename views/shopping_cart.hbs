@@ -13,7 +13,7 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Subtotal</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Modificar cantidad</th>
+                    {{!-- <th scope="col">Modificar cantidad</th> --}}
                     <th scope="col">Eliminar</th>
                 </tr>
             </thead>
@@ -31,12 +31,12 @@
                                 max="100" />
                         </div>
                     </td>
-                    <td>
+                    {{!-- <td>
                         <button type="button"
                             onclick="updateItemQuantityCart('{{ticketId}}','{{productId}}','{{name}}')"
                             class="btn btn-outline-primary btn-rounded   btn-sm" data-mdb-ripple-color="#000000">
                             Modificar <i class="fas fa-download ms-1"></i></button>
-                    </td>
+                    </td> --}}
                     <td>
                         <button type="button" onclick="dropItemCart('{{ticketId}}','{{productId}}')"
                             class="btn btn-outline-danger btn-rounded   btn-sm" data-mdb-ripple-color="#000000">
@@ -52,8 +52,8 @@
             <a  class="btn btn-outline-success btn-rounded btn-lg"
                 data-mdb-ripple-color="#000000" href="pasarela-product"> Comprar
                 <i class="fas fa-download ms-1"></i></a>
-            <button type="button" onclick="dropAllCart()" class="btn btn-outline-danger btn-rounded   btn-lg"
-                data-mdb-ripple-color="#000000"> Vaciar carrito <i class="fas fa-download ms-1"></i></button>
+            {{!-- <button type="button" onclick="dropAllCart()" class="btn btn-outline-danger btn-rounded   btn-lg"
+                data-mdb-ripple-color="#000000"> Vaciar carrito <i class="fas fa-download ms-1"></i></button> --}}
         </div>
 
     </div>

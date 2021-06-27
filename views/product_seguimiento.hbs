@@ -1,0 +1,152 @@
+
+<br>
+<div class="container-fluid">
+    <img src="https://www.olvacourier.com/wp-content/uploads/2017/03/umasf-1.jpg" alt=""><br><br>
+<div class="row">
+  <div class="col-2">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a
+        class="list-group-item list-group-item-action active"
+        id="list-home-list"
+        data-mdb-toggle="list"
+        href="#list-home"
+        role="tab"
+        aria-controls="list-home"
+        >Enviar Pedidos</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        id="list-profile-list"
+        data-mdb-toggle="list"
+        href="#list-profile"
+        role="tab"
+        aria-controls="list-profile"
+        >Pedidos en curso</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        id="list-messages-list"
+        data-mdb-toggle="list"
+        href="#list-messages"
+        role="tab"
+        aria-controls="list-messages"
+        >Entregados</a
+      >
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active"
+        id="list-home"
+        role="tabpanel"
+        aria-labelledby="list-home-list">
+       <!---------------------->
+        <h2 class="text-primary">Lista de Pedidos por enviar🛴</h2>
+        <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Codigo cliente</th>
+                    <th scope="col">Fecha de compra</th>
+                    <th scope="col">Valor total</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Enviar el Producto</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each espera}}
+                <tr>
+                    <th scope="row">{{ticketId}}</th>
+                    <th>{{clientId}}</th>
+                    <td>{{date}}</td>
+                    <td>{{total}}</td>
+                    <td>{{track}}</td>
+                    <td><a class="btn btn-outline-primary btn-rounded  btn-block " 
+                        data-mdb-ripple-color="#000000" 
+                        href="/product-seguimiento-enviar/{{ticketId}}?clientId={{clientId}}">Enviar</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+      </div>
+      <div  class="tab-pane fade" id="list-profile"  role="tabpanel" aria-labelledby="list-profile-list" >
+         <!---------------------->
+        <h2 class="text-primary">Lista de pedidos en curso🚚</h2>
+        <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Codigo cliente</th>
+                    <th scope="col">Fecha de compra</th>
+                    <th scope="col">Valor total</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Empresa Courier</th>
+                    <th scope="col">Fecha de salida</th>
+                    <th scope="col">Fecha aproximada de llegada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each enviado}}
+                <tr>
+                    <th scope="row">{{ticketId}}</th>
+                    <th>{{clientId}}</th>
+                    <td>{{date}}</td>
+                    <td>{{total}}</td>
+                    <td>{{track}}</td>
+                    <td><strong>{{empresa}}</strong></td>
+                    <td>{{date_salida}}</td>
+                    <td>{{date_llegada}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+      </div>
+      <div class="tab-pane fade"  id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+          <!---------------------->
+          <h2 class="text-primary">Lista de pedidos en curso🚚</h2>
+        <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Codigo cliente</th>
+                    <th scope="col">Fecha de compra</th>
+                    <th scope="col">Valor total</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Empresa Courier</th>
+                    <th scope="col">Fecha de salida</th>
+                    <th scope="col">Fecha aproximada de llegada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each entregado}}
+                <tr>
+                    <th scope="row">{{ticketId}}</th>
+                    <th>{{clientId}}</th>
+                    <td>{{date}}</td>
+                    <td>{{total}}</td>
+                    <td>{{track}}</td>
+                    <td><strong>{{empresa}}</strong></td>
+                    <td>{{date_salida}}</td>
+                    <td>{{date_llegada}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+            </table>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+

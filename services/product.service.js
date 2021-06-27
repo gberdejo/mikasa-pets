@@ -1,8 +1,8 @@
-const Product = require("../models/product");
-const { Op } = require("sequelize");
-const { uploadFile } = require("../aws/s3");
-const { resizeProduct, resizeVet } = require("../settings/sharp");
-const fs = require("fs");
+const Product = require('../models/product');
+const { Op } = require('sequelize');
+const { uploadFile } = require('../aws/s3');
+const { resizeProduct, resizeVet } = require('../settings/sharp');
+const fs = require('fs');
 
 const productService = {};
 
@@ -48,7 +48,7 @@ productService.getProduct = async (id) => {
           [Op.eq]: id,
         },
         category: {
-          [Op.eq]: "PRODUCT",
+          [Op.eq]: 'PRODUCT',
         },
       },
     });
@@ -66,7 +66,7 @@ productService.getlistProduct = async () => {
       where: {
         [Op.and]: [
           { status: 1 },
-          { category: "PRODUCT" },
+          { category: 'PRODUCT' },
           {
             stock: {
               [Op.gt]: 0,
@@ -74,7 +74,7 @@ productService.getlistProduct = async () => {
           },
         ],
       },
-      order: [["name", "ASC"]],
+      order: [['name', 'ASC']],
     });
     if (raw.length > 0) {
       raw.map((products) => {
@@ -97,7 +97,7 @@ productService.getlistVet = async () => {
           [Op.eq]: 1,
         },
         category: {
-          [Op.eq]: "VET",
+          [Op.eq]: 'VET',
         },
       },
     });
@@ -201,4 +201,5 @@ productService.deleteVet = async (id) => {
     return null;
   }
 };
+
 module.exports = productService;

@@ -1,0 +1,112 @@
+<br>
+<div class="container">
+    <h1 class="text-primary">🚑Consultoria de mascotas🏣</h1>
+    <br>
+    <div class="row row-cols-2">
+        <div class="col">
+            <div class="row row-cols-1">
+            {{#each pets}}
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card text-center ">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="/images/{{img_key}}" class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                        </a>
+                    </div>
+                    <div class="card-header">{{race}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text note note-info">
+                            <strong>Nacio</strong> en {{birthdata}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- id: 2002,
+    name: 'karen',
+    lastname: 'k',
+    phone: 936865356,
+    email: 'karen@mikasa.pet',
+    password: '$2a$10$lstF/E8y1xk5pl2Z115ZA.lB6.eMZdqMzhQm30pTUbdDDIeVKJ/ne',
+    img_key: null,
+    img_location: null,
+    role: 'VETERINARIO',
+    date: 2021-05-27T14:18:37.000Z --}}
+        {{/each}}
+                {{#each vets}}
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">{{description_simple}}</div>
+                <img src="/images/{{img_key}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text note note-info">{{description_html}}</p>
+                </div>
+                <div class="card-footer text-muted">2 days ago</div>
+            </div>
+        </div>
+        {{/each}}
+          {{#each employees}}
+        <div class="card text-center border border-primary shadow-0 ">
+            <div class="card-header">{{role}}</div>
+            <div class="card-body">
+                <h5 class="card-title">Nombre: {{name}} {{lastname}}.</h5>
+                <p class="card-text">Contacto: {{phone}}</p>
+            </div>
+        </div>
+             {{/each}}
+            </div>
+        </div>
+        <div class="col">
+            <h3 class="text-secondary">Registro de historial📰</h3>
+            {{#each story}}
+            <input type="hidden" name="id" value="{{id}}">
+            <label class="form-label">Estado del la cita</label>
+            <div class="form-outline">
+                <input type="text"  value="{{atendido}}" class="form-control "  disabled />
+            </div><br>
+            <label class="form-label">Codigo de consulta</label>
+            <div class="form-outline">
+                <input type="text"  value="{{id}}" class="form-control "  disabled />
+            </div><br>
+            <label class="form-label">Codigo de mascota</label>
+            <div class="form-outline">
+                <input type="text"  value="{{petId}}" class="form-control " disabled />
+            </div><br>
+            <label class="form-label">Codigo de servicio</label>
+            <div class="form-outline">
+                <input type="text"  value="{{productId}}" class="form-control " disabled />
+            </div><br>
+            <label class="form-label">Responsable de las mascota</label>
+            <div class="form-outline">
+                <input type="text"  value="{{responsable}}" class="form-control " disabled />
+            </div><br>
+            <label class="form-label">DNI del responsable</label>
+            <div class="form-outline">
+                <input type="text"  value="{{dni}}" class="form-control " disabled />
+            </div><br>
+            <label class="form-label">Fecha de atención</label>
+            <div class="form-outline">
+                <input type="text"  value="{{attention}}" class="form-control " disabled />
+            </div><br>
+            <label class="form-label">Motivo</label>
+            <div class="form-outline">
+                <input type="text"  value="{{motivo}}" class="form-control " disabled />
+            </div><br>
+            <label class="form-label" for="tratamiento">Tratamiento o incidencia</label>
+            <div class="form-outline">
+                <textarea class="form-control" id="tratamiento" rows="4" disabled
+                    >{{tratamiento}}</textarea>
+            </div><br>
+            
+            {{/each}}
+            <a href="/miscitas" class="btn btn-outline-success btn-rounded  btn-block " data-mdb-ripple-color="#000000">Regresar</a>
+       
+       
+        </div>
+    </div>
+
+</div><br><br><br><br>

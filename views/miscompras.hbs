@@ -1,6 +1,43 @@
 <br>
-<div class="container">
-    <h1 class="text-primary">🦴Mis compras🛒</h1>
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col-2">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a
+        class="list-group-item list-group-item-action active"
+        id="list-home-list"
+        data-mdb-toggle="list"
+        href="#list-home"
+        role="tab"
+        aria-controls="list-home"
+        >Compras recientes</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        id="list-profile-list"
+        data-mdb-toggle="list"
+        href="#list-profile"
+        role="tab"
+        aria-controls="list-profile"
+        >Paquetes en camino</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        id="list-messages-list"
+        data-mdb-toggle="list"
+        href="#list-messages"
+        role="tab"
+        aria-controls="list-messages"
+        >Paquetes entregados</a
+      >
+   
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home"   role="tabpanel"  aria-labelledby="list-home-list"  >
+        <h3 class="text-primary">🦴Mis compras🛒</h3>
     <div class="table-responsive">
         <table class="table align-middle table-hover">
             <thead>
@@ -10,22 +47,99 @@
                     <th scope="col">Monto total</th>
                     <th scope="col">Fecha de compras</th>
                     <th scope="col">Track</th>
-                    <th scope="col">Detalle</th>
 
                 </tr>
             </thead>
             <tbody>
-                {{#each list}}
+                {{#each list_espera}}
                 <tr>
-                    <th scope="row">{{id}}</th>
+                    <th scope="row">{{ticketId}}</th>
                     <th>{{status}}</th>
                     <td>{{total}}</td>
                     <td>{{date}}</td>
                     <td class="text-secondary"><strong>{{track}}</strong> </td>
-                    <td><a class="btn btn-outline-info btn-rounded" href="#">Seguimiento</a></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
     </div>
-</div><br><br><br><br>
+      </div>
+      <div  class="tab-pane fade"  id="list-profile"  role="tabpanel" aria-labelledby="list-profile-list"  >
+        <h3 class="text-primary">🦴Mis compras🛒</h3>
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Estatus</th>
+                    <th scope="col">Monto total</th>
+                    <th scope="col">Fecha de compras</th>
+                    <th scope="col">Fecha de salida</th>
+                    <th scope="col">Fecha de llegada</th>
+                    <th scope="col">Empresa comtratada</th>
+                    <th scope="col">Track</th>
+                    <th scope="col">acción</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each list_enviado}}
+                <tr>
+                    <th scope="row">{{ticketId}}</th>
+                    <th>{{status}}</th>
+                    <td>{{total}}</td>
+                    <td>{{date}}</td>
+                    <td>{{date_salida}}</td>
+                    <td>{{date_llegada}}</td>
+                    <td>{{empresa}}</td>
+                    <td class="text-secondary"><strong>{{track}}</strong> </td>
+                    <td><a  class="btn btn-{{color}} btn-rounded   " data-mdb-ripple-color="#ffffff" href="{{url}}">{{text}}</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+      </div>
+      <div  class="tab-pane fade" id="list-messages"  role="tabpanel" aria-labelledby="list-messages-list" >
+    <h3 class="text-primary">🦴Mis compras recibidas🛒</h3>
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Estatus</th>
+                    <th scope="col">Monto total</th>
+                    <th scope="col">Fecha de compras</th>
+                    <th scope="col">Fecha de salida</th>
+                    <th scope="col">Fecha de llegada</th>
+                    <th scope="col">Empresa comtratada</th>
+                    <th scope="col">Track</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each list_entregado}}
+                <tr>
+                    <th scope="row">{{ticketId}}</th>
+                    <th>{{status}}</th>
+                    <td>{{total}}</td>
+                    <td>{{date}}</td>
+                    <td>{{date_salida}}</td>
+                    <td>{{date_llegada}}</td>
+                    <td>{{empresa}}</td>
+                    <td class="text-secondary"><strong>{{track}}</strong> </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    
+<br><br><br><br><br><br>

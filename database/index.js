@@ -9,9 +9,9 @@ const sequelize = new Sequelize(
     port: config.get('mysql.port'),
     logging: false,
     dialect: 'mysql',
-    dialectOptions: {
-      ssl: config.get('mysql.ssl'),
-    },
+    // dialectOptions: {
+    //   ssl: config.get('mysql.ssl'),
+    // },
     pool: {
       max: 5,
       min: 0,

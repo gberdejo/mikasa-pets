@@ -3,7 +3,9 @@ const app = require('./app');
 const sequelize = require('./database/index');
 const config = require('config');
 const fs = require('fs');
+const Track = require('./models/track');
 
+// sequelize.sync({ alter: true });
 sequelize
   .authenticate()
   .then(() => {
